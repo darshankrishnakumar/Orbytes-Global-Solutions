@@ -45,7 +45,7 @@ export const servicesData: Record<string, ServiceItem> = {
     imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "24/7 Cybersecurity Security Operations Center monitoring enterprise threat telemetry",
     problemStatement: "Cyber threats do not observe business hours. Sophisticated ransomware, phishing vectors, and zero-day vulnerabilities threaten data integrity, brand reputation, and regulatory compliance. Internal IT teams are often overwhelmed by alert fatigue and lack 24/7 specialized SOC resources.",
-    solutionOverview: "Technosprint provides an enterprise-grade security operations center (SOC) that continuously monitors your networks, endpoints, cloud instances, and user identities. We combine real-time threat intelligence with automated containment and human expertise to eliminate risks before business disruption occurs.",
+    solutionOverview: "Orbytes provides an enterprise-grade security operations center (SOC) that continuously monitors your networks, endpoints, cloud instances, and user identities. We combine real-time threat intelligence with automated containment and human expertise to eliminate risks before business disruption occurs.",
     iconName: "ShieldCheck",
     capabilities: [
       {
@@ -95,23 +95,23 @@ export const servicesData: Record<string, ServiceItem> = {
     ],
     faqs: [
       {
-        question: "What security services does Technosprint's Managed Security Services include?",
+        question: "What security services does Orbytes's Managed Security Services include?",
         answer: "Our Managed Security Services include 24/7 SOC monitoring, real-time threat detection and response, SIEM telemetry analysis, next-gen endpoint protection (EDR), vulnerability assessments, compliance management (GDPR, HIPAA, PCI-DSS, ISO 27001), and rapid incident response.",
       },
       {
-        question: "How does Technosprint protect my business from cyber threats?",
+        question: "How does Orbytes protect my business from cyber threats?",
         answer: "We deploy layered security defenses including intrusion detection and prevention systems (IDS/IPS), AI-driven anomaly detection, behavioral analytics, threat intelligence feeds, and proactive vulnerability patching to stop attacks before execution.",
       },
       {
-        question: "Does Technosprint provide incident response services?",
+        question: "Does Orbytes provide incident response services?",
         answer: "Yes, our dedicated incident response team is available 24/7/365 with immediate SLAs to contain breaches, isolate compromised nodes, eliminate persistence, and conduct deep digital forensics.",
       },
       {
-        question: "How does Technosprint ensure compliance with security regulations?",
+        question: "How does Orbytes ensure compliance with security regulations?",
         answer: "We map your security controls against frameworks like ISO 27001, HIPAA, GDPR, and PCI-DSS, conducting regular compliance audits, generating automated audit logs, and remediating compliance drift.",
       },
       {
-        question: "Can Technosprint integrate with my existing security infrastructure?",
+        question: "Can Orbytes integrate with my existing security infrastructure?",
         answer: "Yes, our MSSP architecture is vendor-neutral and integrates seamlessly with your existing firewalls, cloud providers (Azure, AWS), identity providers, and endpoints.",
       },
     ],
@@ -132,7 +132,7 @@ export const servicesData: Record<string, ServiceItem> = {
     imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Enterprise data center server infrastructure and high-availability network racks",
     problemStatement: "Unplanned server downtime, sluggish networks, and recurring IT tickets drain productivity and distract leadership from driving strategic growth. Managing disparate vendors, hardware lifecycles, and software patches without dedicated specialists leads to costly operational inefficiencies.",
-    solutionOverview: "Technosprint becomes your comprehensive IT backbone or supplements your existing internal team. We take full stewardship of your infrastructure, offering 24/7 helpdesk support, proactive remote monitoring and management (RMM), automated data backups, and lifecycle planning.",
+    solutionOverview: "Orbytes becomes your comprehensive IT backbone or supplements your existing internal team. We take full stewardship of your infrastructure, offering 24/7 helpdesk support, proactive remote monitoring and management (RMM), automated data backups, and lifecycle planning.",
     iconName: "Server",
     capabilities: [
       {
@@ -182,23 +182,23 @@ export const servicesData: Record<string, ServiceItem> = {
     ],
     faqs: [
       {
-        question: "What services are included in Technosprint's Managed IT Services?",
+        question: "What services are included in Orbytes's Managed IT Services?",
         answer: "Our Managed IT Services cover proactive 24/7 infrastructure monitoring, remote and on-site helpdesk support, network administration, patch management, cloud solutions, automated data backups, and disaster recovery.",
       },
       {
-        question: "How does Technosprint ensure my IT systems stay operational?",
+        question: "How does Orbytes ensure my IT systems stay operational?",
         answer: "We deploy proactive Remote Monitoring and Management (RMM) tools that detect and rectify system anomalies, storage constraints, and memory leaks before they lead to downtime.",
       },
       {
-        question: "Can Technosprint support my internal IT team (Co-managed IT)?",
+        question: "Can Orbytes support my internal IT team (Co-managed IT)?",
         answer: "Yes, we frequently operate in a co-managed model, handling 24/7 tier-1 helpdesk, repetitive patching, and after-hours alerts so your in-house IT team can focus entirely on high-impact strategic projects.",
       },
       {
-        question: "What kind of IT support response times does Technosprint offer?",
+        question: "What kind of IT support response times does Orbytes offer?",
         answer: "We offer strict SLA guarantees, with critical emergency incidents addressed within 15 minutes and 24/7 remote troubleshooting available immediately.",
       },
       {
-        question: "How can Technosprint's Managed IT Services improve my business growth?",
+        question: "How can Orbytes's Managed IT Services improve my business growth?",
         answer: "By removing technology friction, minimizing unplanned downtime, and aligning your IT infrastructure with your commercial goals, your teams can focus on customer delivery and revenue growth.",
       },
     ],
@@ -219,7 +219,7 @@ export const servicesData: Record<string, ServiceItem> = {
     imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Global enterprise cloud infrastructure and hybrid multi-region networking",
     problemStatement: "Legacy on-premises hardware carries staggering refresh costs, physical failure risks, and rigid scaling limitations. However, migrating to the cloud without rigorous planning risks data corruption, budget overruns, security vulnerabilities, and extended operational downtime.",
-    solutionOverview: "Technosprint designs and executes structured cloud migrations adhering to the AWS and Microsoft Cloud Adoption Frameworks (CAF). From initial workload assessment to post-migration FinOps cost governance, we ensure your infrastructure achieves maximum elasticity, security, and performance.",
+    solutionOverview: "Orbytes designs and executes structured cloud migrations adhering to the AWS and Microsoft Cloud Adoption Frameworks (CAF). From initial workload assessment to post-migration FinOps cost governance, we ensure your infrastructure achieves maximum elasticity, security, and performance.",
     iconName: "Cloud",
     capabilities: [
       {
@@ -277,11 +277,11 @@ export const servicesData: Record<string, ServiceItem> = {
         answer: "We utilize live replication tools that synchronize data in the background while your on-premises systems remain active. Final cutover is scheduled during off-peak windows and typically takes only minutes.",
       },
       {
-        question: "How does Technosprint control and optimize Azure cloud costs?",
+        question: "How does Orbytes control and optimize Azure cloud costs?",
         answer: "Our certified cloud engineers implement FinOps practices: right-sizing over-provisioned virtual machines, applying Azure Reserved Instances and Savings Plans, and implementing automated shutdown schedules for non-production environments.",
       },
       {
-        question: "Can Technosprint help migrate legacy databases and proprietary applications?",
+        question: "Can Orbytes help migrate legacy databases and proprietary applications?",
         answer: "Yes, we specialize in refactoring and migrating legacy SQL databases, custom business software, and enterprise ERP systems with complete data integrity verification.",
       },
       {
@@ -306,7 +306,7 @@ export const servicesData: Record<string, ServiceItem> = {
     imageUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Enterprise IT Service Management operations and technical workflow coordination",
     problemStatement: "As businesses expand, informal IT support channels (chat messages, hallway requests, dropped emails) lead to lost requests, unmeasured resolution times, uncoordinated changes that cause outages, and total lack of visibility into IT assets.",
-    solutionOverview: "Technosprint implements and operates ITIL-aligned IT Service Management frameworks. We deploy automated service catalogs, standard incident workflows, structured change advisory boards (CAB), and comprehensive asset lifecycles across leading platforms like ServiceNow, Jira Service Management, and BMC Helix.",
+    solutionOverview: "Orbytes implements and operates ITIL-aligned IT Service Management frameworks. We deploy automated service catalogs, standard incident workflows, structured change advisory boards (CAB), and comprehensive asset lifecycles across leading platforms like ServiceNow, Jira Service Management, and BMC Helix.",
     iconName: "Settings",
     capabilities: [
       {
@@ -356,15 +356,15 @@ export const servicesData: Record<string, ServiceItem> = {
     ],
     faqs: [
       {
-        question: "What does Technosprint's IT Service Management (ITSM) cover?",
-        answer: "Technosprint's ITSM services focus on delivering structured, ITIL-compliant IT operations: incident management, service request fulfillment, change management, problem resolution, IT asset management (ITAM/CMDB), and continuous service improvement.",
+        question: "What does Orbytes's IT Service Management (ITSM) cover?",
+        answer: "Orbytes's ITSM services focus on delivering structured, ITIL-compliant IT operations: incident management, service request fulfillment, change management, problem resolution, IT asset management (ITAM/CMDB), and continuous service improvement.",
       },
       {
         question: "How does ITSM improve operational efficiency?",
         answer: "By replacing unstructured emails and ad-hoc requests with standardized workflows, automated approval routings, and self-service portals, repetitive tasks are automated and resolution times drop significantly.",
       },
       {
-        question: "Can Technosprint integrate with our existing ITSM platform?",
+        question: "Can Orbytes integrate with our existing ITSM platform?",
         answer: "Yes, our team has deep expertise working within ServiceNow, Jira Service Management, BMC Helix, and Zendesk, as well as building customized ticketing integrations into your core business systems.",
       },
       {
@@ -393,7 +393,7 @@ export const servicesData: Record<string, ServiceItem> = {
     imageUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Enterprise executive technology strategy, risk governance, and digital roadmap planning session",
     problemStatement: "Technology is evolving faster than ever. Organizations struggle with accumulated technical debt, misaligned software expenditures, vague technology roadmaps, and expanding regulatory frameworks that threaten heavy fines for non-compliance.",
-    solutionOverview: "Technosprint acts as your strategic Virtual CIO (vCIO) and technology advisory partner. We conduct comprehensive architectural assessments, formulate long-term technology roadmaps, and design rock-solid Governance, Risk & Compliance (GRC) frameworks tailored to your industry.",
+    solutionOverview: "Orbytes acts as your strategic Virtual CIO (vCIO) and technology advisory partner. We conduct comprehensive architectural assessments, formulate long-term technology roadmaps, and design rock-solid Governance, Risk & Compliance (GRC) frameworks tailored to your industry.",
     iconName: "Compass",
     capabilities: [
       {
@@ -443,11 +443,11 @@ export const servicesData: Record<string, ServiceItem> = {
     ],
     faqs: [
       {
-        question: "What is included in Technosprint's IT Strategy & Consulting services?",
+        question: "What is included in Orbytes's IT Strategy & Consulting services?",
         answer: "Our consulting services include vCIO strategic guidance, technology roadmap design, comprehensive IT infrastructure assessments, Governance, Risk & Compliance (GRC) audits, and M&A technical due diligence.",
       },
       {
-        question: "How does Technosprint help with regulatory compliance audits?",
+        question: "How does Orbytes help with regulatory compliance audits?",
         answer: "We conduct gap analyses against standards like ISO 27001, HIPAA, GDPR, and PCI-DSS, draft missing policy documentation, implement technical controls, and prepare your teams for successful third-party audits.",
       },
       {
@@ -480,7 +480,7 @@ export const servicesData: Record<string, ServiceItem> = {
     imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Software engineers architecting enterprise APIs and cloud microservices",
     problemStatement: "Off-the-shelf software often forces businesses into rigid, inefficient compromises. Disconnected legacy systems create data silos, slow manual re-entry, and poor user experiences that cause customers and employees to disengage.",
-    solutionOverview: "Technosprint engineers bespoke digital products tailored precisely to your operational workflows. We build responsive, enterprise-grade web applications, secure cloud-native microservices, custom middleware APIs, and high-concurrency e-commerce architectures.",
+    solutionOverview: "Orbytes engineers bespoke digital products tailored precisely to your operational workflows. We build responsive, enterprise-grade web applications, secure cloud-native microservices, custom middleware APIs, and high-concurrency e-commerce architectures.",
     iconName: "Code2",
     capabilities: [
       {
@@ -530,7 +530,7 @@ export const servicesData: Record<string, ServiceItem> = {
     ],
     faqs: [
       {
-        question: "What digital development services does Technosprint provide?",
+        question: "What digital development services does Orbytes provide?",
         answer: "We provide custom web application development, cloud-integrated applications, API development and system integration, transactional e-commerce platforms, and legacy application modernization.",
       },
       {

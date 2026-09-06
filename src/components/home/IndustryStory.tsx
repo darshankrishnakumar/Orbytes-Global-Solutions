@@ -44,7 +44,7 @@ export function IndustryStory() {
             Technology that understands your industry.
           </h2>
           <p className="text-base text-slate-600 leading-relaxed">
-            Every sector operates under distinct regulatory frameworks, threat models, and operational rhythms. Discover how Technosprint tailors architecture for your sector.
+            Every sector operates under distinct regulatory frameworks, threat models, and operational rhythms. Discover how Orbytes tailors architecture for your sector.
           </p>
         </div>
 
@@ -171,7 +171,7 @@ export function IndustryStory() {
                   <div className="rounded-xl border border-cyan-200 bg-cyan-50/70 p-5 space-y-3">
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-600">
                       <Sparkles className="h-4 w-4" />
-                      <span>Technosprint Architecture</span>
+                      <span>Orbytes Architecture</span>
                     </div>
                     <p className="text-xs text-slate-700 leading-relaxed">
                       {activeIndustry.technosprintSolution}

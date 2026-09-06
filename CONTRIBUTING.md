@@ -1,6 +1,6 @@
-# Contributing to RBit Global Infosolutions (Technosprint Platform)
+# Contributing to Orbytes Global Solutions (Orbytes Platform)
 
-Thank you for your interest in contributing to the Technosprint / RBit Global Infosolution enterprise platform.
+Thank you for your interest in contributing to the Orbytes / Orbytes Global Solutions enterprise platform.
 
 ## Code of Conduct
 

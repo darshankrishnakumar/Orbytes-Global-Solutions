@@ -39,7 +39,7 @@ export function ChronoTimelineVisual() {
           </div>
           <div>
             <div className="text-sm font-bold text-white uppercase tracking-wider font-display">
-              Technosprint Chrono-Scanner (2020 – 2025)
+              Orbytes Chrono-Scanner (2020 – 2025)
             </div>
             <div className="text-xs text-cyan-400 font-mono">
               Interactive 5-Year Enterprise Growth Trajectory

@@ -243,7 +243,7 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
                   Commercial and Operational Value
                 </h2>
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                  By entrusting Technosprint with your {service.title}, your organization unlocks predictable resilience, reduced overhead, and faster speed-to-market.
+                  By entrusting Orbytes with your {service.title}, your organization unlocks predictable resilience, reduced overhead, and faster speed-to-market.
                 </p>
               </div>
 

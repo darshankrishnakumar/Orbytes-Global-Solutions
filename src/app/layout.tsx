@@ -8,9 +8,9 @@ import { JsonLd } from "@/components/common/JsonLd";
 import { ThemeProvider } from "@/context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "Technosprint | Enterprise Technology, Managed Security & Cloud Solutions",
+  title: "Orbytes | Enterprise Technology, Managed Security & Cloud Solutions",
   description:
-    "Technosprint delivers proactive cybersecurity (MSSP), managed IT operations (MSP), cloud migration, ITSM, and digital solutions for growing and enterprise organizations across India and Canada.",
+    "Orbytes delivers proactive cybersecurity (MSSP), managed IT operations (MSP), cloud migration, ITSM, and digital solutions for growing and enterprise organizations across India and Canada.",
   keywords: [
     "Managed Security Services",
     "MSSP",
@@ -21,21 +21,21 @@ export const metadata: Metadata = {
     "ITSM",
     "ITIL",
     "IT Consulting",
-    "Technosprint Info Solutions",
+    "Orbytes Global Solutions",
   ],
   metadataBase: new URL("https://technosprint.net"),
   openGraph: {
-    title: "Technosprint | Technology that Secures. Technology that Scales.",
+    title: "Orbytes | Technology that Secures. Technology that Scales.",
     description:
       "Enterprise technology solutions built around your business: Managed Security (MSSP), 24/7 Managed IT, Cloud Migration, and Strategic IT Consulting.",
     url: "https://technosprint.net",
-    siteName: "Technosprint Info Solutions",
+    siteName: "Orbytes Global Solutions",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technosprint | Enterprise Technology & Managed Services",
+    title: "Orbytes | Enterprise Technology & Managed Services",
     description: "Technology that secures. Technology that scales. Technology that moves business forward.",
   },
 };

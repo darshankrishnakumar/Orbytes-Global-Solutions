@@ -360,7 +360,7 @@ export function ContactWizard() {
                 Thanks, {formData.fullName || "there"}! Your request is on its way.
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
-                We'll connect you with the appropriate Technosprint technology expert within 1 business day to review your environment.
+                We'll connect you with the appropriate Orbytes technology expert within 1 business day to review your environment.
               </p>
             </div>
 

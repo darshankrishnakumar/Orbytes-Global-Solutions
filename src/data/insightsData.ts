@@ -23,7 +23,7 @@ export const insightsData: InsightArticle[] = [
     content: [
       "Traditional perimeter security operated under the assumption that everything inside the corporate firewall could be trusted. In today's distributed enterprise environment, where employees connect from home, branch offices, and airport lounges, this perimeter has fundamentally dissolved.",
       "Zero-Trust Architecture (ZTA) operates on the core principle: 'Never trust, always verify.' Every access request—regardless of origin—must be dynamically authenticated, authorized, and continuously validated before access is granted.",
-      "At Technosprint, our Managed Security Services (MSSP) practice helps organizations deploy least-privilege access controls, multi-factor authentication (MFA), and automated conditional access policies to stop lateral threat movement dead in its tracks.",
+      "At Orbytes, our Managed Security Services (MSSP) practice helps organizations deploy least-privilege access controls, multi-factor authentication (MFA), and automated conditional access policies to stop lateral threat movement dead in its tracks.",
     ],
   },
   {
@@ -37,7 +37,7 @@ export const insightsData: InsightArticle[] = [
     summary: "A practical framework for IT leaders to regain visibility into sprawling cloud budgets without slowing down engineering innovation.",
     content: [
       "The rapid shift to public cloud infrastructure brought unprecedented agility, but also unprecedented budget unpredictability. Without strict FinOps governance, orphaned disks, over-provisioned virtual instances, and idle staging environments quickly inflate monthly bills.",
-      "Technosprint's Azure Cost Management and Cloud Optimization practice focuses on continuous cost telemetry: matching actual workload resource consumption to the optimal compute tiers, utilizing automated reserved instance commitments, and instituting automated shutdown schedules.",
+      "Orbytes's Azure Cost Management and Cloud Optimization practice focuses on continuous cost telemetry: matching actual workload resource consumption to the optimal compute tiers, utilizing automated reserved instance commitments, and instituting automated shutdown schedules.",
       "Organizations adopting continuous FinOps principles frequently experience a 25% to 35% reduction in cloud expenditures within the first 90 days, freeing capital for strategic digital initiatives.",
     ],
   },

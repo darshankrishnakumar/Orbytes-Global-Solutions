@@ -41,9 +41,9 @@ export function EcosystemVisual() {
     const cx = width / 2;
     const cy = height / 2;
 
-    // Define core ecosystem nodes around central Technosprint Core
+    // Define core ecosystem nodes around central Orbytes Core
     const nodes: Node[] = [
-      { id: "core", label: "TECHNOSPRINT", category: "Core Hub", x: cx, y: cy, vx: 0, vy: 0, radius: 26, color: "#00e5ff", pulseOffset: 0 },
+      { id: "core", label: "ORBYTES GLOBAL", category: "Core Hub", x: cx, y: cy, vx: 0, vy: 0, radius: 26, color: "#00e5ff", pulseOffset: 0 },
       { id: "sec", label: "SECURITY (MSSP)", category: "Cyber Defense", x: cx - 170, y: cy - 90, vx: 0.15, vy: -0.1, radius: 18, color: "#38bdf8", pulseOffset: 1 },
       { id: "cloud", label: "CLOUD & MIGRATION", category: "Elastic Scalability", x: cx + 160, y: cy - 100, vx: -0.12, vy: 0.14, radius: 18, color: "#60a5fa", pulseOffset: 2 },
       { id: "it", label: "MANAGED IT (MSP)", category: "Operations", x: cx - 180, y: cy + 100, vx: 0.1, vy: 0.12, radius: 18, color: "#34d399", pulseOffset: 3 },
@@ -223,7 +223,7 @@ export function EcosystemVisual() {
       <canvas
         ref={canvasRef}
         className="w-full h-full cursor-pointer"
-        aria-label="Technosprint Technology Ecosystem Interactive Diagram"
+        aria-label="Orbytes Technology Ecosystem Interactive Diagram"
       />
       {/* Decorative radial background light */}
       <div className="pointer-events-none absolute inset-0 bg-radial-gradient from-cyan-500/10 via-blue-600/5 to-transparent blur-3xl -z-10" />

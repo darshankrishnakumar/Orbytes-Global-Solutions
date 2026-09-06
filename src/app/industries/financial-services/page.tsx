@@ -3,7 +3,7 @@ import { industriesData } from "@/data/industriesData";
 import { IndustryTemplate } from "@/components/common/IndustryTemplate";
 
 export const metadata: Metadata = {
-  title: "Financial Services IT Solutions | Technosprint",
+  title: "Financial Services IT Solutions | Orbytes",
   description: "High-availability financial infrastructure, PCI-DSS compliance, fraud defense, and 24/7 financial SOC.",
 };
 

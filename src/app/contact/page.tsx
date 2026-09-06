@@ -5,8 +5,8 @@ import { ContactWizard } from "@/components/common/ContactWizard";
 import { GlobalNetworkVisual } from "@/components/visuals/global/GlobalNetworkVisual";
 
 export const metadata: Metadata = {
-  title: "Contact Technosprint | Global Technology Offices & Consultation",
-  description: "Connect with Technosprint Info Solutions. Schedule an enterprise architecture assessment. Offices in Chennai, Pondicherry, and Toronto.",
+  title: "Contact Orbytes | Global Technology Offices & Consultation",
+  description: "Connect with Orbytes Global Solutions. Schedule an enterprise architecture assessment. Offices in Chennai, Pondicherry, and Toronto.",
 };
 
 export default function ContactPage() {

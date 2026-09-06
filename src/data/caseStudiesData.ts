@@ -15,13 +15,13 @@ export interface CaseStudy {
 export const caseStudiesData: CaseStudy[] = [
   {
     slug: "manufacturing-operations-transformation",
-    title: "How Technosprint Transformed 24/7 IT Operations for an Industrial Manufacturer",
+    title: "How Orbytes Transformed 24/7 IT Operations for an Industrial Manufacturer",
     clientIndustry: "Manufacturing & Heavy Industrial",
     clientType: "Multi-Plant Operations Firm (VP of Operations)",
     imageUrl: "/images/case-studies/manufacturing.jpg",
     imageAlt: "Automated precision manufacturing machinery with industrial monitoring systems",
     challenge: "Frequent assembly-line network drops and uncoordinated server maintenance cycles were costing up to $80,000 per hour in idle production line downtime.",
-    solution: "Deployed Technosprint Managed IT & MSSP monitoring across all factory floors, implemented automated OT/IT network segmentation, and instituted scheduled predictive maintenance.",
+    solution: "Deployed Orbytes Managed IT & MSSP monitoring across all factory floors, implemented automated OT/IT network segmentation, and instituted scheduled predictive maintenance.",
     impact: "Achieved 99.98% production line availability, reduced unexpected IT incidents by 45%, and established 24/7 dedicated industrial NOC response.",
     metrics: [
       { value: "45%", label: "Incident Reduction" },

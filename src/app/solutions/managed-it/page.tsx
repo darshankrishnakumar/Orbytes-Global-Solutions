@@ -3,8 +3,8 @@ import { servicesData } from "@/data/servicesData";
 import { ServiceTemplate } from "@/components/common/ServiceTemplate";
 
 export const metadata: Metadata = {
-  title: "Managed IT Services (MSP) | Technosprint",
-  description: "Proactive 24/7 infrastructure monitoring, 99.99% uptime SLAs, helpdesk, and maintenance from Technosprint.",
+  title: "Managed IT Services (MSP) | Orbytes",
+  description: "Proactive 24/7 infrastructure monitoring, 99.99% uptime SLAs, helpdesk, and maintenance from Orbytes.",
 };
 
 export default function ManagedITPage() {

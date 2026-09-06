@@ -6,8 +6,8 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { ChronoTimelineVisual } from "@/components/visuals/about/ChronoTimelineVisual";
 
 export const metadata: Metadata = {
-  title: "About Technosprint | Our Story & Technological Journey",
-  description: "Learn about Technosprint Info Solutions, founded in 2020. Our journey, mission, values, and global presence across India and Canada.",
+  title: "About Orbytes | Our Story & Technological Journey",
+  description: "Learn about Orbytes Global Solutions, founded in 2020. Our journey, mission, values, and global presence across India and Canada.",
 };
 
 export default function AboutPage() {
@@ -24,20 +24,20 @@ export default function AboutPage() {
             Empowering Digital Transformation. Driving Enterprise Resilience.
           </h1>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto">
-            Technosprint Info Solutions delivers comprehensive, enterprise-grade IT management, cybersecurity, and cloud solutions that turn technology into a core competitive advantage.
+            Orbytes Global Solutions delivers comprehensive, enterprise-grade IT management, cybersecurity, and cloud solutions that turn technology into a core competitive advantage.
           </p>
 
           <div className="pt-6">
             <div className="relative group overflow-hidden rounded-3xl border border-white/10 shadow-2xl aspect-[21/9] max-w-4xl mx-auto">
               <img
                 src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80"
-                alt="Technosprint enterprise technology operations and research center"
+                alt="Orbytes enterprise technology operations and research center"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#030714] via-transparent to-transparent flex items-end p-6">
                 <p className="text-xs text-cyan-300 font-medium">
-                  Technosprint Global Operations & Technology Command Center
+                  Orbytes Global Operations & Technology Command Center
                 </p>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function AboutPage() {
               Our Journey
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-display">
-              The Evolution of Technosprint
+              The Evolution of Orbytes
             </h2>
             <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">
               Since our inception in 2020, we have expanded our service offerings and global presence to support organizations across three continents.
@@ -134,7 +134,7 @@ export default function AboutPage() {
               <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
                 <img
                   src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
-                  alt="Technosprint Executive Leadership Team"
+                  alt="Orbytes Executive Leadership Team"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />

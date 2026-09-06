@@ -102,7 +102,7 @@ export function LeadershipVisual() {
               </h3>
             </div>
             <div className="text-xs text-slate-400 font-mono">
-              Technosprint Executive Governance
+              Orbytes Executive Governance
             </div>
           </div>
 

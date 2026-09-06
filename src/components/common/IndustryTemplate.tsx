@@ -137,14 +137,14 @@ export function IndustryTemplate({ industry }: IndustryTemplateProps) {
               </div>
             </div>
 
-            {/* Right Technosprint Architecture */}
+            {/* Right Orbytes Architecture */}
             <div className="lg:col-span-6 space-y-6">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-600">
                 <Sparkles className="h-4 w-4" />
-                <span>Technosprint Architecture</span>
+                <span>Orbytes Architecture</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display">
-                How Technosprint Solves This
+                How Orbytes Solves This
               </h2>
 
               {/* Dedicated Specialized Challenge Animation for Finance, Retail, Professional OR Photo for Healthcare, Manufacturing, Education */}

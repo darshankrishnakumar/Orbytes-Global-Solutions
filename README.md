@@ -1,4 +1,4 @@
-# RBit Global Infosolution — Enterprise Digital Technology Platform
+# Orbytes Global Solutions — Enterprise Digital Technology Platform
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -7,7 +7,7 @@
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](https://github.com/darshankrishnakumar/RBit-Global-Infosolution-)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-A premier enterprise-grade web platform engineered for **RBit Global Infosolution / Technosprint Info Solutions**. The platform merges the structured information architecture of **TCS**, the outcome-driven storytelling of **Cognizant**, the high-conversion consultation pathways of **F12.net**, and the modular ecosystem visualization of **Zoho** into a unified, high-performance web experience.
+A premier enterprise-grade web platform engineered for **Orbytes Global Solutions / Orbytes Global Solutions**. The platform merges the structured information architecture of **TCS**, the outcome-driven storytelling of **Cognizant**, the high-conversion consultation pathways of **F12.net**, and the modular ecosystem visualization of **Zoho** into a unified, high-performance web experience.
 
 ---
 
@@ -78,7 +78,7 @@ A premier enterprise-grade web platform engineered for **RBit Global Infosolutio
 │   │   ├── layout.tsx           # Global RootLayout with SmoothScroll & CustomCursor
 │   │   └── page.tsx             # Homepage orchestrator
 │   ├── components/
-│   │   ├── home/                # HeroSection, Solutions, WhyTechnosprint, CaseStudyHero
+│   │   ├── home/                # HeroSection, Solutions, WhyOrbytes, CaseStudyHero
 │   │   ├── layout/              # Navbar (obsidian glass), Footer, MobileNav
 │   │   ├── motion/              # CustomCursor (120fps GPU spring physics), SmoothScroll
 │   │   └── visuals/             # Specialized interactive telemetry and canvas instruments
@@ -168,4 +168,4 @@ Contributions, issues, and feature requests are welcome. Please read [CONTRIBUTI
 ## 📄 License
 This project is licensed under the [MIT License](LICENSE) — see the LICENSE file for details.
 
-Developed with precision for **RBit Global Infosolution / Technosprint**.
+Developed with precision for **Orbytes Global Solutions / Orbytes**.

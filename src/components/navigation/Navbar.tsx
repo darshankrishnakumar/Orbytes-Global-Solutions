@@ -47,10 +47,10 @@ export function Navbar() {
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(0,229,255,0.4)] transition-transform duration-300 group-hover:scale-105">
-            T
+            O
           </div>
           <span className="text-xl font-bold tracking-tight text-white font-display">
-            TECHNOSPRINT
+            ORBYTES GLOBAL
           </span>
         </Link>
 
@@ -108,7 +108,7 @@ export function Navbar() {
             href="/#why-technosprint"
             className="px-3.5 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
           >
-            Why Technosprint
+            Why Orbytes
           </Link>
 
           <Link

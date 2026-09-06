@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Sparkles, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy & Governance Terms | Technosprint",
-  description: "Technosprint Info Solutions privacy policy, data protection, GDPR/HIPAA compliance frameworks, and terms of service.",
+  title: "Privacy Policy & Governance Terms | Orbytes",
+  description: "Orbytes Global Solutions privacy policy, data protection, GDPR/HIPAA compliance frameworks, and terms of service.",
 };
 
 export default function PrivacyPage() {
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
             Privacy Policy & Data Protection
           </h1>
           <p className="text-sm text-slate-400">
-            Last updated: January 2026 • Technosprint Info Solutions
+            Last updated: January 2026 • Orbytes Global Solutions
           </p>
         </div>
       </section>
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
               1. Commitment to Data Privacy & Protection
             </h2>
             <p className="text-slate-600 leading-relaxed">
-              Technosprint Info Solutions ("Technosprint", "we", "our", or "us") respects your privacy and is dedicated to protecting the personal and operational data entrusted to us. This Privacy Policy outlines our procedures concerning the collection, storage, encryption, and disclosure of information when you access our website or engage our Managed Security, Managed IT, Cloud, and Consulting services.
+              Orbytes Global Solutions ("Orbytes", "we", "our", or "us") respects your privacy and is dedicated to protecting the personal and operational data entrusted to us. This Privacy Policy outlines our procedures concerning the collection, storage, encryption, and disclosure of information when you access our website or engage our Managed Security, Managed IT, Cloud, and Consulting services.
             </p>
           </div>
 
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
               4. Terms of Service
             </h2>
             <p className="text-slate-600 leading-relaxed">
-              All technology services, managed SLAs, and consultation advisories delivered by Technosprint Info Solutions are subject to individual enterprise Master Services Agreements (MSAs), Statements of Work (SOWs), and Service Level Agreements (SLAs).
+              All technology services, managed SLAs, and consultation advisories delivered by Orbytes Global Solutions are subject to individual enterprise Master Services Agreements (MSAs), Statements of Work (SOWs), and Service Level Agreements (SLAs).
             </p>
           </div>
 

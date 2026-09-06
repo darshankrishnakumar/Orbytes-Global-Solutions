@@ -6,8 +6,8 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { RoiTelemetryVisual } from "@/components/visuals/success/RoiTelemetryVisual";
 
 export const metadata: Metadata = {
-  title: "Customer Success & Case Studies | Technosprint",
-  description: "Explore how Technosprint transformed IT operations, secured legal data, and scaled retail clouds with verified metrics.",
+  title: "Customer Success & Case Studies | Orbytes",
+  description: "Explore how Orbytes transformed IT operations, secured legal data, and scaled retail clouds with verified metrics.",
 };
 
 export default function SuccessPage() {
@@ -24,7 +24,7 @@ export default function SuccessPage() {
             Customer Success Stories
           </h1>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            Discover how organizations in manufacturing, professional services, and retail achieved operational excellence with Technosprint.
+            Discover how organizations in manufacturing, professional services, and retail achieved operational excellence with Orbytes.
           </p>
         </div>
 

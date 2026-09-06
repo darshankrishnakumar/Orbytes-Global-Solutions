@@ -13,7 +13,7 @@ export function StrategyMatrixVisual() {
           <Compass className="h-4 w-4" />
           <span>Strategic Transformation Matrix</span>
         </div>
-        <span className="text-[10px] text-slate-400">Technosprint vCIO Framework</span>
+        <span className="text-[10px] text-slate-400">Orbytes vCIO Framework</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -38,7 +38,7 @@ export function StrategyMatrixVisual() {
           </ul>
         </div>
 
-        {/* State B: Technosprint Strategy */}
+        {/* State B: Orbytes Strategy */}
         <div
           onClick={() => setActivePoint("target")}
           className={`cursor-pointer p-4 rounded-xl border transition-all ${
@@ -48,7 +48,7 @@ export function StrategyMatrixVisual() {
           }`}
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-bold text-cyan-300">Technosprint Strategic vCIO</span>
+            <span className="text-xs font-bold text-cyan-300">Orbytes Strategic vCIO</span>
             <CheckCircle2 className="h-4 w-4 text-cyan-400" />
           </div>
           <ul className="space-y-1.5 text-xs text-slate-200">

@@ -13,9 +13,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const article = insightsData.find((a) => a.slug === params.slug);
-  if (!article) return { title: "Insight Not Found | Technosprint" };
+  if (!article) return { title: "Insight Not Found | Orbytes" };
   return {
-    title: `${article.title} | Technosprint Insights`,
+    title: `${article.title} | Orbytes Insights`,
     description: article.summary,
   };
 }
@@ -90,7 +90,7 @@ export default function InsightDetailPage({ params }: { params: { slug: string }
 
           <div className="mt-16 pt-8 border-t border-slate-200 flex items-center justify-between">
             <span className="text-xs text-slate-500">
-              Published by Technosprint Technology Research Group
+              Published by Orbytes Technology Research Group
             </span>
             <Link
               href="/contact"

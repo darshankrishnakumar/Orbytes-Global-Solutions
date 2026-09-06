@@ -14,8 +14,8 @@ export interface TimelineMilestone {
 }
 
 export const companyData = {
-  name: "Technosprint Info Solutions",
-  shortName: "Technosprint",
+  name: "Orbytes Global Solutions",
+  shortName: "Orbytes",
   tagline: "Technology that secures. Technology that scales. Technology that moves business forward.",
   foundedYear: 2020,
   email: "info@technosprint.net",
@@ -64,7 +64,7 @@ export const companyData = {
   milestones: [
     {
       year: "2020",
-      title: "Foundation of Technosprint",
+      title: "Foundation of Orbytes",
       description: "Founded with a clear mission to provide high-reliability enterprise IT services, modern infrastructure, and secure technology management.",
     },
     {

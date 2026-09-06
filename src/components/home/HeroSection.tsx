@@ -164,7 +164,7 @@ export function HeroSection() {
             {/* Main Headline */}
             <motion.div variants={itemVariants} className="space-y-1">
               <span className="text-xs md:text-sm font-bold tracking-widest text-cyan-400 uppercase font-display block">
-                TECHNOSPRINT
+                ORBYTES GLOBAL
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white font-display leading-[1.08]">
                 Technology that <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">secures.</span><br />

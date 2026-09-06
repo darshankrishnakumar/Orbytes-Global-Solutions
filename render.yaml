@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: rbit-global-infosolution
+    name: orbytes-global-solutions
     runtime: node
     plan: free
     region: oregon

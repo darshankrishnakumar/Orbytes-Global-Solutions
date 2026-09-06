@@ -5,7 +5,7 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { PartnersEcosystemVisual } from "@/components/visuals/about/PartnersEcosystemVisual";
 
 export const metadata: Metadata = {
-  title: "Technology Alliances & Partners | Technosprint",
+  title: "Technology Alliances & Partners | Orbytes",
   description: "Verified partnerships with industry leaders: Microsoft, AWS, GoDaddy, Hostinger, and NXT GEN.",
 };
 

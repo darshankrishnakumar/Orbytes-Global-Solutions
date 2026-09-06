@@ -3,9 +3,9 @@ import { servicesData } from "@/data/servicesData";
 import { ServiceTemplate } from "@/components/common/ServiceTemplate";
 
 export const metadata: Metadata = {
-  title: "Managed Security Services (MSSP) | Technosprint",
+  title: "Managed Security Services (MSSP) | Orbytes",
   description:
-    "Proactive 24/7 SOC defense, SIEM telemetry correlation, threat detection, and HIPAA/GDPR/PCI-DSS compliance from Technosprint.",
+    "Proactive 24/7 SOC defense, SIEM telemetry correlation, threat detection, and HIPAA/GDPR/PCI-DSS compliance from Orbytes.",
 };
 
 export default function ManagedSecurityPage() {

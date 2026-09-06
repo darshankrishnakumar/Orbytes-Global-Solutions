@@ -6,8 +6,8 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { InsightsRadarVisual } from "@/components/visuals/insights/InsightsRadarVisual";
 
 export const metadata: Metadata = {
-  title: "Enterprise Insights & Thought Leadership | Technosprint",
-  description: "Strategic technology perspectives on cybersecurity zero-trust, cloud FinOps, and IT service management from Technosprint.",
+  title: "Enterprise Insights & Thought Leadership | Orbytes",
+  description: "Strategic technology perspectives on cybersecurity zero-trust, cloud FinOps, and IT service management from Orbytes.",
 };
 
 export default function InsightsHubPage() {

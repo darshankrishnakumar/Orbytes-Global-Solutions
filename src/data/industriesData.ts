@@ -36,7 +36,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "24/7 Zero-Downtime Demands", description: "In acute healthcare settings, system unavailability directly impacts clinical decisions, emergency patient care, and lives." },
       { title: "Telehealth & Remote Care Security", description: "Expanding virtual patient appointments and remote patient monitoring (RPM) over untrusted residential internet connections." },
     ],
-    technosprintSolution: "Technosprint deploys specialized healthcare IT architectures that isolate medical devices, encrypt patient records at rest and in transit, and enforce zero-trust identity policies. Our 24/7 healthcare NOC/SOC guarantees uninterrupted clinical operations.",
+    technosprintSolution: "Orbytes deploys specialized healthcare IT architectures that isolate medical devices, encrypt patient records at rest and in transit, and enforce zero-trust identity policies. Our 24/7 healthcare NOC/SOC guarantees uninterrupted clinical operations.",
     capabilities: [
       { title: "HIPAA-Compliant Cloud & Storage", description: "Encrypted, geo-redundant storage architectures meeting strict HIPAA, HITECH, and GDPR mandates." },
       { title: "Medical Device & IoT Telemetry Integration", description: "Secure network segmentation isolating diagnostic equipment and infusion pumps from standard office networks." },
@@ -52,7 +52,7 @@ export const industriesData: Record<string, IndustryItem> = {
     subSectors: ["Hospitals & Healthcare Systems", "Specialty Clinics", "Pharmacies & Dispensing", "Biotech & Clinical Laboratories", "Telehealth Providers"],
     faqs: [
       {
-        question: "How does Technosprint ensure HIPAA compliance for healthcare IT?",
+        question: "How does Orbytes ensure HIPAA compliance for healthcare IT?",
         answer: "We sign Business Associate Agreements (BAAs), implement end-to-end encryption for all Protected Health Information (PHI), enforce multi-factor authentication, perform annual risk assessments, and maintain continuous immutable audit logs.",
       },
       {
@@ -76,7 +76,7 @@ export const industriesData: Record<string, IndustryItem> = {
     badge: "High-Availability & Regulatory GRC",
     tagline: "Resilient infrastructure and airtight security for banks, asset managers, and fintechs.",
     heroHeadline: "Financial Services IT: High Availability, Security & Regulatory Resilience",
-    heroSubheadline: "Safeguard transactions, customer capital, and corporate trust. Technosprint engineers low-latency, highly resilient IT infrastructure compliant with SOX, GLBA, and PCI-DSS standards.",
+    heroSubheadline: "Safeguard transactions, customer capital, and corporate trust. Orbytes engineers low-latency, highly resilient IT infrastructure compliant with SOX, GLBA, and PCI-DSS standards.",
     imageUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Fintech market analytics, algorithmic trading graphs, and banking data screens",
     challenges: [
@@ -101,7 +101,7 @@ export const industriesData: Record<string, IndustryItem> = {
     subSectors: ["Commercial & Community Banking", "Wealth & Asset Management", "FinTech & Payment Processors", "Insurance & Underwriting", "Credit Unions"],
     faqs: [
       {
-        question: "How does Technosprint handle PCI-DSS compliance requirements?",
+        question: "How does Orbytes handle PCI-DSS compliance requirements?",
         answer: "We design compliant cardholder data environments (CDE), isolate payment tokens, conduct quarterly vulnerability scans, and implement rigorous multi-factor authentication across all access points.",
       },
       {
@@ -109,7 +109,7 @@ export const industriesData: Record<string, IndustryItem> = {
         answer: "We deploy immutable, air-gapped cloud backups, next-gen endpoint protection (EDR) with real-time ransomware rollback, and strict zero-trust network segmentation.",
       },
       {
-        question: "Can Technosprint help modernize legacy core banking systems?",
+        question: "Can Orbytes help modernize legacy core banking systems?",
         answer: "Yes, we architect secure API middleware layers that allow legacy backends to securely communicate with modern web portals, mobile banking apps, and cloud analytics.",
       },
     ],
@@ -130,7 +130,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Supply Chain & Logistics Glitches", description: "Disjointed ERP, MES, and warehouse management systems causing shipping delays and inventory discrepancies." },
       { title: "Harsh Physical Factory Conditions", description: "Dust, vibration, and temperature fluctuations degrading traditional IT hardware on plant floors." },
     ],
-    technosprintSolution: "Technosprint provides industrial-grade IT infrastructure: segmented OT/IT networks, predictive maintenance telemetry, and ruggedized edge computing that keeps assembly lines and automated warehouses running without interruption.",
+    technosprintSolution: "Orbytes provides industrial-grade IT infrastructure: segmented OT/IT networks, predictive maintenance telemetry, and ruggedized edge computing that keeps assembly lines and automated warehouses running without interruption.",
     capabilities: [
       { title: "OT / SCADA Network Segmentation", description: "Purdue Model-aligned firewalls isolating industrial control systems from standard corporate internet." },
       { title: "Predictive IT Infrastructure Monitoring", description: "Detecting network bottlenecks and server degradation before assembly line scanners fail." },
@@ -150,7 +150,7 @@ export const industriesData: Record<string, IndustryItem> = {
         answer: "We implement defense-in-depth network architectures, establishing strict Demilitarized Zones (DMZ) between corporate IT and factory OT, enforcing unidirectional data diodes and strict access control.",
       },
       {
-        question: "How does Technosprint handle plant-floor wireless connectivity in challenging environments?",
+        question: "How does Orbytes handle plant-floor wireless connectivity in challenging environments?",
         answer: "We perform predictive RF wireless heat mapping, installing industrial-grade access points with directional antennas that overcome metal interference and physical warehouse barriers.",
       },
       {
@@ -175,7 +175,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Inventory & Catalog Discrepancies", description: "Lag between physical warehouse inventory and online storefronts causing overselling and stockouts." },
       { title: "PCI-DSS Data Protection", description: "Ensuring customer credit card information is never compromised across hundreds of branch stores." },
     ],
-    technosprintSolution: "Technosprint ensures your retail enterprise operates without a hiccup. From cloud auto-scaling that handles 10x traffic surges to redundant cellular failover for store POS terminals, we power modern retail commerce.",
+    technosprintSolution: "Orbytes ensures your retail enterprise operates without a hiccup. From cloud auto-scaling that handles 10x traffic surges to redundant cellular failover for store POS terminals, we power modern retail commerce.",
     capabilities: [
       { title: "POS Terminal Management & LTE Failover", description: "Automatic failover to cellular 5G whenever landline broadband fails, ensuring transactions never stop." },
       { title: "High-Concurrency Cloud E-Commerce", description: "Elastic auto-scaling web infrastructure capable of handling millions of simultaneous shoppers." },
@@ -211,7 +211,7 @@ export const industriesData: Record<string, IndustryItem> = {
     badge: "Secure Campus Networks & High-Scale LMS",
     tagline: "Scalable cloud, student data privacy, and robust campus digital infrastructure.",
     heroHeadline: "Education & Research IT: Scalable, Secure Digital Learning Campuses",
-    heroSubheadline: "Empower students, faculty, and academic researchers with secure, high-speed digital tools. Technosprint designs resilient campus networks, high-concurrency LMS architectures, and FERPA-compliant cloud storage.",
+    heroSubheadline: "Empower students, faculty, and academic researchers with secure, high-speed digital tools. Orbytes designs resilient campus networks, high-concurrency LMS architectures, and FERPA-compliant cloud storage.",
     imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "University students collaborating with modern digital cloud learning tools on smart campus",
     challenges: [
@@ -220,7 +220,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "LMS Exam Outages", description: "Server bottlenecks when hundreds of students submit online exams or register for courses simultaneously." },
       { title: "High-Performance Computing for Research", description: "Meeting complex compute, storage, and cluster demands for academic science and engineering labs." },
     ],
-    technosprintSolution: "Technosprint provides comprehensive education IT services: high-density enterprise campus Wi-Fi, elastic cloud-hosted learning management systems (LMS), and research computing support that fosters collaborative learning.",
+    technosprintSolution: "Orbytes provides comprehensive education IT services: high-density enterprise campus Wi-Fi, elastic cloud-hosted learning management systems (LMS), and research computing support that fosters collaborative learning.",
     capabilities: [
       { title: "High-Density Campus Wi-Fi & Switching", description: "Robust wireless arrays with beamforming technology engineered for crowded classrooms and auditoriums." },
       { title: "Elastic LMS & Virtual Classrooms", description: "Cloud hosting and maintenance for Moodle, Canvas, and custom learning portals that never crash during exams." },
@@ -240,7 +240,7 @@ export const industriesData: Record<string, IndustryItem> = {
         answer: "We implement strict role-based access control (RBAC), end-to-end encryption for student information systems (SIS), and automated audit tracking for any record retrieval.",
       },
       {
-        question: "Can Technosprint help our institution deploy a hybrid learning environment?",
+        question: "Can Orbytes help our institution deploy a hybrid learning environment?",
         answer: "Yes, we integrate video conferencing solutions, cloud storage, virtual desktops, and LMS platforms to provide students and faculty a seamless hybrid experience.",
       },
       {
@@ -265,7 +265,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Document Management Bottlenecks", description: "Slow file transfers, conflicting document versions, and inefficient document retention compliance." },
       { title: "Fleet Telemetry & Dispatch Reliability", description: "Logistics systems failing during dispatch runs, resulting in delayed deliveries and SLA fines." },
     ],
-    technosprintSolution: "Technosprint provides end-to-end IT support: encrypted legal document repositories, fleet dispatch integration, remote worker cybersecurity, and cloud migration tailored for high-billing firms.",
+    technosprintSolution: "Orbytes provides end-to-end IT support: encrypted legal document repositories, fleet dispatch integration, remote worker cybersecurity, and cloud migration tailored for high-billing firms.",
     capabilities: [
       { title: "Encrypted Document Repositories & DMS", description: "Secure, version-controlled cloud document management with granular access restrictions." },
       { title: "Zero-Trust Remote Work Security", description: "Ensuring attorneys, accountants, and consultants can securely access corporate servers from anywhere." },
@@ -281,7 +281,7 @@ export const industriesData: Record<string, IndustryItem> = {
     subSectors: ["Law Firms & Legal Practices", "CPA & Accounting Firms", "Freight & Logistics Fleets", "Commercial Real Estate & Property", "Management Consulting"],
     faqs: [
       {
-        question: "How does Technosprint protect confidential client files for law firms?",
+        question: "How does Orbytes protect confidential client files for law firms?",
         answer: "We deploy multi-factor authentication, endpoint encryption, restricted access controls, and data loss prevention (DLP) tools that stop unauthorized downloading or forwarding of privileged documents.",
       },
       {

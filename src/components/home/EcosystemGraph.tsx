@@ -130,7 +130,7 @@ export function EcosystemGraph() {
             One technology partner. Complete IT ecosystem.
           </h2>
           <p className="text-base text-slate-400 leading-relaxed">
-            Eliminate vendor finger-pointing. Technosprint interconnects your entire technology fabric into one cohesive, resilient enterprise operation.
+            Eliminate vendor finger-pointing. Orbytes interconnects your entire technology fabric into one cohesive, resilient enterprise operation.
           </p>
         </div>
 
@@ -202,7 +202,7 @@ export function EcosystemGraph() {
                     </div>
                     <div>
                       <span className="text-[11px] font-bold tracking-widest text-slate-400 uppercase">
-                        Technosprint Connected Capability
+                        Orbytes Connected Capability
                       </span>
                       <h3 className="text-lg sm:text-xl font-bold text-white font-display">
                         {current.title}

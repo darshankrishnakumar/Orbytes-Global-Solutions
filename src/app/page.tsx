@@ -2,7 +2,7 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { NeedSelector } from "@/components/home/NeedSelector";
 import { SolutionsShowcase } from "@/components/home/SolutionsShowcase";
 import { IndustryStory } from "@/components/home/IndustryStory";
-import { WhyTechnosprint } from "@/components/home/WhyTechnosprint";
+import { WhyOrbytes } from "@/components/home/WhyOrbytes";
 import { ProcessJourney } from "@/components/home/ProcessJourney";
 import { EcosystemGraph } from "@/components/home/EcosystemGraph";
 import { TrustMetrics } from "@/components/home/TrustMetrics";
@@ -18,7 +18,7 @@ export default function HomePage() {
       <NeedSelector />
       <SolutionsShowcase />
       <IndustryStory />
-      <WhyTechnosprint />
+      <WhyOrbytes />
       <ProcessJourney />
       <EcosystemGraph />
       <TrustMetrics />

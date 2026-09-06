@@ -6,7 +6,7 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { IndustryImpactVisual } from "@/components/visuals/industries/IndustryImpactVisual";
 
 export const metadata: Metadata = {
-  title: "Industry Verticals & Sector Solutions | Technosprint",
+  title: "Industry Verticals & Sector Solutions | Orbytes",
   description: "Specialized IT architectures for Healthcare, Financial Services, Manufacturing, Retail, Education, and Professional Services.",
 };
 

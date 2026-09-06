@@ -33,7 +33,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
             <Link href="/" onClick={onClose} className="flex items-center gap-2">
               <span className="text-xl font-bold tracking-tight text-white font-display">
-                TECHNOSPRINT
+                ORBYTES GLOBAL
               </span>
               <div className="h-2 w-2 rounded-full bg-cyan-400" />
             </Link>

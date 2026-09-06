@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Eye, Shield, TrendingUp, Target, CheckCircle2 } from "lucide-react";
 
-export function WhyTechnosprint() {
+export function WhyOrbytes() {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const pillars = [
@@ -13,7 +13,7 @@ export function WhyTechnosprint() {
       tag: "PROACTIVE",
       title: "We identify problems before they become business disruptions.",
       description:
-        "Traditional IT waits for servers to crash and users to submit panic tickets. Technosprint operates continuous telemetry, synthetic health checks, and automated healing scripts that resolve potential failures long before your team notices an issue.",
+        "Traditional IT waits for servers to crash and users to submit panic tickets. Orbytes operates continuous telemetry, synthetic health checks, and automated healing scripts that resolve potential failures long before your team notices an issue.",
       metrics: "99.99% operational uptime maintained across client fleets.",
       icon: Eye,
       color: "#0284c7",
@@ -91,7 +91,7 @@ export function WhyTechnosprint() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <span className="text-xs font-bold tracking-widest text-cyan-600 uppercase font-display">
-            The Technosprint Difference
+            The Orbytes Difference
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 font-display">
             More than an IT provider.

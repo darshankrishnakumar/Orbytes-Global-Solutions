@@ -3,7 +3,7 @@ import { industriesData } from "@/data/industriesData";
 import { IndustryTemplate } from "@/components/common/IndustryTemplate";
 
 export const metadata: Metadata = {
-  title: "Education & Research IT Solutions | Technosprint",
+  title: "Education & Research IT Solutions | Orbytes",
   description: "High-density campus Wi-Fi, scalable LMS hosting, FERPA compliance, and academic research cloud clusters.",
 };
 

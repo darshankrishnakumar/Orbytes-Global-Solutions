@@ -6,8 +6,8 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { SolutionsMatrixVisual } from "@/components/visuals/services/SolutionsMatrixVisual";
 
 export const metadata: Metadata = {
-  title: "Enterprise Solutions & Services | Technosprint",
-  description: "Explore Technosprint's complete enterprise technology suite: MSSP cybersecurity, 24/7 Managed IT, Cloud, ITSM, and IT Consulting.",
+  title: "Enterprise Solutions & Services | Orbytes",
+  description: "Explore Orbytes's complete enterprise technology suite: MSSP cybersecurity, 24/7 Managed IT, Cloud, ITSM, and IT Consulting.",
 };
 
 export default function SolutionsHubPage() {

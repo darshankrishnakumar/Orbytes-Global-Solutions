@@ -84,7 +84,7 @@ export function CaseStudyHero() {
 
                 <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
                   <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 block mb-1">
-                    The Technosprint Solution:
+                    The Orbytes Solution:
                   </span>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     {current.solution}

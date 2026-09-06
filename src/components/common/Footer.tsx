@@ -54,10 +54,10 @@ export function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(0,229,255,0.4)]">
-                T
+                O
               </div>
               <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
-                TECHNOSPRINT
+                ORBYTES GLOBAL
               </span>
             </Link>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
@@ -216,7 +216,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-slate-200 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© 2026 Technosprint Info Solutions. All rights reserved.</p>
+          <p>© 2026 Orbytes Global Solutions. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">
               Privacy Policy

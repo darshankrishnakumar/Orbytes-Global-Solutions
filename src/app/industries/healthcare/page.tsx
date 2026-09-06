@@ -3,7 +3,7 @@ import { industriesData } from "@/data/industriesData";
 import { IndustryTemplate } from "@/components/common/IndustryTemplate";
 
 export const metadata: Metadata = {
-  title: "Healthcare IT Solutions | Technosprint",
+  title: "Healthcare IT Solutions | Orbytes",
   description: "HIPAA-compliant cloud architectures, EHR integrations, medical IoT security, and 24/7 clinical support.",
 };
 

@@ -5,8 +5,8 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { LeadershipVisual } from "@/components/visuals/about/LeadershipVisual";
 
 export const metadata: Metadata = {
-  title: "Executive Leadership Team | Technosprint",
-  description: "Meet the executive team driving Technosprint's mission: CEO Ranganadin C, Managing Partner Jothi Shankar K, CTO Ajay Sundar N, and CSO Jaganathan R.",
+  title: "Executive Leadership Team | Orbytes",
+  description: "Meet the executive team driving Orbytes's mission: CEO Ranganadin C, Managing Partner Jothi Shankar K, CTO Ajay Sundar N, and CSO Jaganathan R.",
 };
 
 export default function LeadershipPage() {
@@ -86,7 +86,7 @@ export default function LeadershipPage() {
                     <Shield className="h-3 w-3" />
                     Verified Leadership
                   </span>
-                  <span>Technosprint Executive</span>
+                  <span>Orbytes Executive</span>
                 </div>
               </div>
             ))}
