@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Shield, Sparkles, Play, Pause } from "lucide-react";
 import { EcosystemVisual } from "./EcosystemVisual";
 
@@ -32,15 +32,14 @@ export function HeroSection() {
     }
   }, []);
 
-  // When active visual switches to video, start playback
+  // When active visual switches to video, ensure playback
   useEffect(() => {
     if (activeVisual === "video" && isPlaying) {
       playVideo();
     }
   }, [activeVisual, isPlaying, playVideo]);
 
-  // Sequential cycle with AnimatePresence mode="wait":
-  // 7.5s Video ⟷ 8.5s Interactive Ecosystem Mesh
+  // Seamless auto-cycle: 7.5s full-bleed video ⟷ 8.5s interactive ecosystem mesh
   useEffect(() => {
     if (!isPlaying || isHovered) return;
 
@@ -119,18 +118,41 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-[95vh] flex items-center justify-center pt-28 pb-20 overflow-hidden bg-[#030714] text-white">
-      {/* Background ambient chromatic glow and subtle tech accents */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(14,165,233,0.08),rgba(255,255,255,0))] pointer-events-none z-0" />
+      {/* 1. Fully Utilized Ambient Video Layer (Full-Bleed Across the Hero Page) */}
+      <div
+        className={`absolute inset-0 z-0 overflow-hidden pointer-events-none transition-opacity duration-1000 ease-in-out ${
+          activeVisual === "video" ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <video
+          ref={videoRef}
+          src="/videos/hero-background.mp4"
+          poster="/videos/hero-poster.jpg"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover object-center lg:object-[62%_center] scale-105"
+        >
+          <source src="/videos/hero-background.mp4" type="video/mp4" />
+        </video>
 
-      {/* Edge blending gradients */}
-      <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#030714] to-transparent pointer-events-none z-0" />
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#030714] to-transparent pointer-events-none z-0" />
+        {/* Sophisticated Lateral Gradient (TCS Style): Solid dark on the left so typography is 100% crisp, fading smoothly to reveal the glowing video on the right and center */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030714] via-[#030714]/85 via-42% to-transparent" />
+
+        {/* Edge blending gradients */}
+        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#030714] to-transparent" />
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#030714] to-transparent" />
+      </div>
+
+      {/* 2. Background ambient chromatic glow */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none z-[1]" />
+      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-[1]" />
 
       <div className="mx-auto max-w-7xl px-6 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Hero Story Content (Clean & 100% Unobstructed) */}
+          {/* Left Hero Story Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -204,62 +226,20 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Hero Visual Stage: Seamless Frameless Visuals with Zero Overlap */}
+          {/* Right Hero Stage: Displays Ecosystem Mesh when active; clear open space when video is active */}
           <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             className="lg:col-span-6 relative flex flex-col items-center justify-center min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] w-full"
           >
-            <div className="w-full relative flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                {activeVisual === "video" ? (
-                  <motion.div
-                    key="hero-video-frameless"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      duration: 0.6,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="w-full flex items-center justify-center relative"
-                  >
-                    {/* Frameless, seamless ambient video with soft feathered edges — NO card border, NO separate screen */}
-                    <div className="relative w-full max-w-[580px] h-[380px] sm:h-[460px] lg:h-[520px] flex items-center justify-center overflow-hidden">
-                      <video
-                        ref={videoRef}
-                        src="/videos/hero-background.mp4"
-                        poster="/videos/hero-poster.jpg"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="auto"
-                        className="w-full h-full object-contain object-center scale-105"
-                      >
-                        <source src="/videos/hero-background.mp4" type="video/mp4" />
-                      </video>
-                      {/* Feathered gradient masks on all edges so video softly melts into dark canvas with zero box borders */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#030714] via-transparent to-[#030714] pointer-events-none" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#030714] via-transparent to-[#030714] pointer-events-none" />
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="hero-mesh-frameless"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      duration: 0.6,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="w-full flex items-center justify-center relative"
-                  >
-                    <EcosystemVisual />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+            <div
+              className={`w-full flex items-center justify-center transition-opacity duration-1000 ease-in-out ${
+                activeVisual === "mesh"
+                  ? "opacity-100 pointer-events-auto"
+                  : "opacity-0 pointer-events-none"
+              }`}
+            >
+              <EcosystemVisual />
             </div>
           </div>
         </div>
