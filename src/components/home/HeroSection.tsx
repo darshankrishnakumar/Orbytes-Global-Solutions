@@ -114,26 +114,31 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-[95vh] flex items-center justify-center pt-28 pb-20 overflow-hidden bg-[#030714] text-white">
-      {/* 1. Cinematic Ambient Background Video (Seamless Continuous Loop) */}
+      {/* 1. Cinematic Ambient Background Video (Positioned to the Right, Scaled to Prevent Text Overlap) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
-          ref={bgVideoRef}
-          src="/videos/hero-background.mp4"
-          poster="/videos/hero-poster.jpg"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className={`w-full h-full object-cover object-bottom scale-110 transition-opacity duration-[1400ms] ease-in-out ${
-            isMeshVisible ? "opacity-25 md:opacity-30" : "opacity-90 md:opacity-95"
-          }`}
-        >
-          <source src="/videos/hero-background.mp4" type="video/mp4" />
-        </video>
+        {/* Dedicated right-aligned video frame */}
+        <div className="absolute top-0 right-0 bottom-0 w-full lg:w-[62%] xl:w-[58%] h-full overflow-hidden flex items-center justify-center">
+          <video
+            ref={bgVideoRef}
+            src="/videos/hero-background.mp4"
+            poster="/videos/hero-poster.jpg"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className={`w-full h-full object-cover object-center lg:object-[65%_center] transition-opacity duration-[1400ms] ease-in-out ${
+              isMeshVisible ? "opacity-25 md:opacity-30" : "opacity-90 md:opacity-95"
+            }`}
+          >
+            <source src="/videos/hero-background.mp4" type="video/mp4" />
+          </video>
+          {/* Subtle vignette around video */}
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#030714]/20 to-[#030714]" />
+        </div>
 
-        {/* High-Contrast Lateral Gradient: deep black on left for typography readability, open on right for vivid glowing video */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030714] via-[#030714]/80 to-transparent w-full lg:w-3/5" />
+        {/* High-Contrast Lateral Gradient: solid dark backdrop on left for text readability, blending smoothly into the video on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030714] via-[#030714] to-transparent w-full lg:w-[52%]" />
 
         {/* Seamless Navigation & Section Edge Blending */}
         <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#030714] to-transparent" />
