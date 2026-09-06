@@ -204,7 +204,7 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Hero Visual Stage: Strictly Mutually Exclusive Display (Zero Overlap Guaranteed) */}
+          {/* Right Hero Visual Stage: Seamless Frameless Visuals with Zero Overlap */}
           <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -214,18 +214,18 @@ export function HeroSection() {
               <AnimatePresence mode="wait">
                 {activeVisual === "video" ? (
                   <motion.div
-                    key="hero-video-stage"
-                    initial={{ opacity: 0, scale: 0.97 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.97 }}
+                    key="hero-video-frameless"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{
-                      duration: 0.5,
+                      duration: 0.6,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="w-full flex flex-col items-center justify-center relative"
+                    className="w-full flex items-center justify-center relative"
                   >
-                    {/* Dedicated executive frame for video — right side only */}
-                    <div className="relative w-full max-w-[560px] aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden border border-cyan-500/25 bg-[#060c1d] shadow-2xl shadow-cyan-950/40">
+                    {/* Frameless, seamless ambient video with soft feathered edges — NO card border, NO separate screen */}
+                    <div className="relative w-full max-w-[580px] h-[380px] sm:h-[460px] lg:h-[520px] flex items-center justify-center overflow-hidden">
                       <video
                         ref={videoRef}
                         src="/videos/hero-background.mp4"
@@ -235,29 +235,23 @@ export function HeroSection() {
                         muted
                         playsInline
                         preload="auto"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain object-center scale-105"
                       >
                         <source src="/videos/hero-background.mp4" type="video/mp4" />
                       </video>
-                      {/* Subtle high-tech gradient frame */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#030714]/60 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl pointer-events-none" />
-                      
-                      {/* Live telemetry badge on video */}
-                      <div className="absolute top-3.5 left-3.5 flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-medium text-cyan-300">
-                        <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                        <span>Cloud Infrastructure Operations</span>
-                      </div>
+                      {/* Feathered gradient masks on all edges so video softly melts into dark canvas with zero box borders */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#030714] via-transparent to-[#030714] pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#030714] via-transparent to-[#030714] pointer-events-none" />
                     </div>
                   </motion.div>
                 ) : (
                   <motion.div
-                    key="hero-mesh-stage"
-                    initial={{ opacity: 0, scale: 0.97 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.97 }}
+                    key="hero-mesh-frameless"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{
-                      duration: 0.5,
+                      duration: 0.6,
                       ease: [0.16, 1, 0.3, 1],
                     }}
                     className="w-full flex items-center justify-center relative"
@@ -266,28 +260,6 @@ export function HeroSection() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
-
-            {/* Subtle Stage Switcher Indicator */}
-            <div className="flex items-center gap-2 mt-5">
-              <button
-                onClick={() => setActiveVisual("video")}
-                aria-label="View Cloud Video Visual"
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  activeVisual === "video"
-                    ? "w-7 bg-cyan-400 shadow-[0_0_8px_#00e5ff]"
-                    : "w-2 bg-white/20 hover:bg-white/40"
-                }`}
-              />
-              <button
-                onClick={() => setActiveVisual("mesh")}
-                aria-label="View Ecosystem Architecture Mesh"
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  activeVisual === "mesh"
-                    ? "w-7 bg-cyan-400 shadow-[0_0_8px_#00e5ff]"
-                    : "w-2 bg-white/20 hover:bg-white/40"
-                }`}
-              />
             </div>
           </div>
         </div>
