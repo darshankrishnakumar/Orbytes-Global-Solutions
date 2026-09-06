@@ -2,19 +2,19 @@
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Shield, Sparkles, Play, Pause } from "lucide-react";
 import { EcosystemVisual } from "./EcosystemVisual";
 
 export function HeroSection() {
-  const bgVideoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
-  const [isMeshVisible, setIsMeshVisible] = useState<boolean>(false);
+  const [activeVisual, setActiveVisual] = useState<"video" | "mesh">("video");
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  // Sync and play background video reliably across Safari, WebKit, and Chrome
+  // Sync and play video reliably across Safari, WebKit, and Chrome
   const playVideo = useCallback(() => {
-    const vid = bgVideoRef.current;
+    const vid = videoRef.current;
     if (vid) {
       vid.defaultMuted = true;
       vid.muted = true;
@@ -32,34 +32,39 @@ export function HeroSection() {
     }
   }, []);
 
-  // Natural choreographed cycle: 6.5s pure video ⟷ 8.5s interactive mesh
+  // When active visual switches to video, start playback
+  useEffect(() => {
+    if (activeVisual === "video" && isPlaying) {
+      playVideo();
+    }
+  }, [activeVisual, isPlaying, playVideo]);
+
+  // Sequential cycle with AnimatePresence mode="wait":
+  // 7.5s Video ⟷ 8.5s Interactive Ecosystem Mesh
   useEffect(() => {
     if (!isPlaying || isHovered) return;
 
-    // Time to hold the current phase before smoothly dissolving to the other
-    const phaseDuration = isMeshVisible ? 8500 : 6500;
+    const duration = activeVisual === "video" ? 7500 : 8500;
 
     const timer = setTimeout(() => {
-      setIsMeshVisible((prev) => !prev);
-    }, phaseDuration);
+      setActiveVisual((prev) => (prev === "video" ? "mesh" : "video"));
+    }, duration);
 
     return () => clearTimeout(timer);
-  }, [isMeshVisible, isPlaying, isHovered]);
+  }, [activeVisual, isPlaying, isHovered]);
 
   useEffect(() => {
     // Respect user's prefers-reduced-motion OS setting
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) {
-      bgVideoRef.current?.pause();
+      videoRef.current?.pause();
       setIsPlaying(false);
-      setIsMeshVisible(true); // Default to clean accessible static mesh
+      setActiveVisual("mesh"); // Default to clean static mesh for accessibility
       return;
     }
 
-    // Initialize playback immediately
     playVideo();
 
-    // Fallback: On first user interaction anywhere on the viewport (click, touch, scroll)
     const handleFirstTouch = () => {
       playVideo();
       window.removeEventListener("click", handleFirstTouch);
@@ -79,12 +84,12 @@ export function HeroSection() {
   }, [playVideo]);
 
   const togglePlay = () => {
-    const bgVideo = bgVideoRef.current;
+    const vid = videoRef.current;
     if (isPlaying) {
-      bgVideo?.pause();
+      vid?.pause();
       setIsPlaying(false);
     } else {
-      bgVideo?.play().catch(() => {});
+      vid?.play().catch(() => {});
       setIsPlaying(true);
     }
   };
@@ -114,46 +119,18 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-[95vh] flex items-center justify-center pt-28 pb-20 overflow-hidden bg-[#030714] text-white">
-      {/* 1. Cinematic Ambient Background Video (Positioned to the Right, Scaled to Prevent Text Overlap) */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Dedicated right-aligned video frame */}
-        <div className="absolute top-0 right-0 bottom-0 w-full lg:w-[62%] xl:w-[58%] h-full overflow-hidden flex items-center justify-center">
-          <video
-            ref={bgVideoRef}
-            src="/videos/hero-background.mp4"
-            poster="/videos/hero-poster.jpg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className={`w-full h-full object-cover object-center lg:object-[65%_center] transition-opacity duration-[1000ms] ease-in-out ${
-              isMeshVisible ? "opacity-0 invisible pointer-events-none" : "opacity-100 visible"
-            }`}
-          >
-            <source src="/videos/hero-background.mp4" type="video/mp4" />
-          </video>
-          {/* Subtle vignette around video */}
-          <div className={`absolute inset-0 bg-gradient-to-l from-transparent via-[#030714]/20 to-[#030714] transition-opacity duration-[1000ms] ${
-            isMeshVisible ? "opacity-0" : "opacity-100"
-          }`} />
-        </div>
+      {/* Background ambient chromatic glow and subtle tech accents */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(14,165,233,0.08),rgba(255,255,255,0))] pointer-events-none z-0" />
 
-        {/* High-Contrast Lateral Gradient: solid dark backdrop on left for text readability, blending smoothly into the video on the right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030714] via-[#030714] to-transparent w-full lg:w-[52%]" />
-
-        {/* Seamless Navigation & Section Edge Blending */}
-        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#030714] to-transparent" />
-        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#030714] to-transparent" />
-      </div>
-
-      {/* 2. Background ambient chromatic glow */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none z-[1]" />
-      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-[1]" />
+      {/* Edge blending gradients */}
+      <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#030714] to-transparent pointer-events-none z-0" />
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#030714] to-transparent pointer-events-none z-0" />
 
       <div className="mx-auto max-w-7xl px-6 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Hero Story Content */}
+          {/* Left Hero Story Content (Clean & 100% Unobstructed) */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -227,28 +204,91 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Hero Dynamic Visual: Silky Smooth 1.4s Dissolve to Ecosystem Mesh */}
+          {/* Right Hero Visual Stage: Strictly Mutually Exclusive Display (Zero Overlap Guaranteed) */}
           <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="lg:col-span-6 relative flex flex-col items-center justify-center min-h-[460px] sm:min-h-[540px] lg:min-h-[600px]"
+            className="lg:col-span-6 relative flex flex-col items-center justify-center min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] w-full"
           >
-            <motion.div
-              animate={{
-                opacity: isMeshVisible ? 1 : 0,
-                scale: isMeshVisible ? 1 : 0.95,
-                y: isMeshVisible ? 0 : 12,
-              }}
-              transition={{
-                duration: 1.4,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className={`w-full flex items-center justify-center ${
-                isMeshVisible ? "pointer-events-auto" : "pointer-events-none"
-              }`}
-            >
-              <EcosystemVisual />
-            </motion.div>
+            <div className="w-full relative flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                {activeVisual === "video" ? (
+                  <motion.div
+                    key="hero-video-stage"
+                    initial={{ opacity: 0, scale: 0.97 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.97 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="w-full flex flex-col items-center justify-center relative"
+                  >
+                    {/* Dedicated executive frame for video — right side only */}
+                    <div className="relative w-full max-w-[560px] aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden border border-cyan-500/25 bg-[#060c1d] shadow-2xl shadow-cyan-950/40">
+                      <video
+                        ref={videoRef}
+                        src="/videos/hero-background.mp4"
+                        poster="/videos/hero-poster.jpg"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                        className="w-full h-full object-cover"
+                      >
+                        <source src="/videos/hero-background.mp4" type="video/mp4" />
+                      </video>
+                      {/* Subtle high-tech gradient frame */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#030714]/60 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl pointer-events-none" />
+                      
+                      {/* Live telemetry badge on video */}
+                      <div className="absolute top-3.5 left-3.5 flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-medium text-cyan-300">
+                        <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                        <span>Cloud Infrastructure Operations</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="hero-mesh-stage"
+                    initial={{ opacity: 0, scale: 0.97 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.97 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="w-full flex items-center justify-center relative"
+                  >
+                    <EcosystemVisual />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Subtle Stage Switcher Indicator */}
+            <div className="flex items-center gap-2 mt-5">
+              <button
+                onClick={() => setActiveVisual("video")}
+                aria-label="View Cloud Video Visual"
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  activeVisual === "video"
+                    ? "w-7 bg-cyan-400 shadow-[0_0_8px_#00e5ff]"
+                    : "w-2 bg-white/20 hover:bg-white/40"
+                }`}
+              />
+              <button
+                onClick={() => setActiveVisual("mesh")}
+                aria-label="View Ecosystem Architecture Mesh"
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  activeVisual === "mesh"
+                    ? "w-7 bg-cyan-400 shadow-[0_0_8px_#00e5ff]"
+                    : "w-2 bg-white/20 hover:bg-white/40"
+                }`}
+              />
+            </div>
           </div>
         </div>
       </div>
