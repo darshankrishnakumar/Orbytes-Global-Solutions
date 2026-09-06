@@ -127,14 +127,16 @@ export function HeroSection() {
             muted
             playsInline
             preload="auto"
-            className={`w-full h-full object-cover object-center lg:object-[65%_center] transition-opacity duration-[1400ms] ease-in-out ${
-              isMeshVisible ? "opacity-25 md:opacity-30" : "opacity-90 md:opacity-95"
+            className={`w-full h-full object-cover object-center lg:object-[65%_center] transition-opacity duration-[1000ms] ease-in-out ${
+              isMeshVisible ? "opacity-0 invisible pointer-events-none" : "opacity-100 visible"
             }`}
           >
             <source src="/videos/hero-background.mp4" type="video/mp4" />
           </video>
           {/* Subtle vignette around video */}
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#030714]/20 to-[#030714]" />
+          <div className={`absolute inset-0 bg-gradient-to-l from-transparent via-[#030714]/20 to-[#030714] transition-opacity duration-[1000ms] ${
+            isMeshVisible ? "opacity-0" : "opacity-100"
+          }`} />
         </div>
 
         {/* High-Contrast Lateral Gradient: solid dark backdrop on left for text readability, blending smoothly into the video on the right */}
