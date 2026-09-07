@@ -13,13 +13,20 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t) => 1 - Math.pow(1 - t, 3),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.2,
     });
+
+    if (typeof window !== "undefined") {
+      (window as unknown as { __lenis?: Lenis; __heroLocked?: boolean }).__lenis = lenis;
+      if ((window as unknown as { __heroLocked?: boolean }).__heroLocked) {
+        lenis.stop();
+      }
+    }
 
     function raf(time: number) {
       lenis.raf(time);
@@ -30,6 +37,9 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     return () => {
       cancelAnimationFrame(rafId);
+      if (typeof window !== "undefined") {
+        (window as unknown as { __lenis?: Lenis }).__lenis = undefined;
+      }
       lenis.destroy();
     };
   }, []);

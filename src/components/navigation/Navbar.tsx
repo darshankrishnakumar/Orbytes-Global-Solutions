@@ -37,10 +37,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-[#030712]/95 backdrop-blur-md py-3.5 border-b border-white/10 shadow-lg shadow-black/40"
-          : "bg-[#030712]/70 backdrop-blur-sm py-5 border-b border-white/5"
+          ? "bg-[#030714] py-3.5 border-b border-white/10 shadow-lg shadow-black/60"
+          : "bg-[#030714] py-4 border-b border-white/10 shadow-md shadow-black/40"
       )}
     >
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between">

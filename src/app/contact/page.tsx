@@ -70,9 +70,14 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <span className="text-xs text-slate-500 block">General & Enterprise Email</span>
-                      <a href={`mailto:${companyData.email}`} className="font-semibold text-slate-900 hover:text-cyan-600 transition-colors">
-                        {companyData.email}
-                      </a>
+                      <div className="flex flex-col gap-0.5">
+                        <a href={`mailto:${companyData.email}`} className="font-semibold text-slate-900 hover:text-cyan-600 transition-colors">
+                          {companyData.email}
+                        </a>
+                        <a href={`mailto:${companyData.secondaryEmail}`} className="text-xs text-slate-600 hover:text-cyan-600 transition-colors">
+                          {companyData.secondaryEmail}
+                        </a>
+                      </div>
                     </div>
                   </div>
 
@@ -81,10 +86,15 @@ export default function ContactPage() {
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
-                      <span className="text-xs text-slate-500 block">India Primary Line</span>
-                      <a href={`tel:${companyData.phones.indiaPrimary.replace(/\s+/g, "")}`} className="font-semibold text-slate-900 hover:text-cyan-600 transition-colors">
-                        {companyData.phones.indiaPrimary}
-                      </a>
+                      <span className="text-xs text-slate-500 block">India Direct Lines</span>
+                      <div className="flex flex-col gap-0.5">
+                        <a href={`tel:${companyData.phones.indiaPrimary.replace(/\s+/g, "")}`} className="font-semibold text-slate-900 hover:text-cyan-600 transition-colors">
+                          {companyData.phones.indiaPrimary}
+                        </a>
+                        <a href={`tel:${companyData.phones.indiaSecondary.replace(/\s+/g, "")}`} className="text-xs text-slate-600 hover:text-cyan-600 transition-colors">
+                          {companyData.phones.indiaSecondary}
+                        </a>
+                      </div>
                     </div>
                   </div>
 

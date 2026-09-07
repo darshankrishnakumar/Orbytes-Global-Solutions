@@ -33,6 +33,17 @@ export function EcosystemVisual() {
       if (!canvas.parentElement) return;
       width = canvas.width = canvas.parentElement.clientWidth;
       height = canvas.height = canvas.parentElement.clientHeight;
+      const newCx = width / 2;
+      const newCy = height / 2;
+      if (nodes.length >= 7) {
+        nodes[0].x = newCx; nodes[0].y = newCy;
+        nodes[1].x = newCx - 170; nodes[1].y = newCy - 90;
+        nodes[2].x = newCx + 160; nodes[2].y = newCy - 100;
+        nodes[3].x = newCx - 180; nodes[3].y = newCy + 100;
+        nodes[4].x = newCx + 170; nodes[4].y = newCy + 90;
+        nodes[5].x = newCx; nodes[5].y = newCy - 180;
+        nodes[6].x = newCx; nodes[6].y = newCy + 180;
+      }
     };
 
     window.addEventListener("resize", handleResize);

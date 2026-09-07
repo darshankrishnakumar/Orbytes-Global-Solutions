@@ -8,8 +8,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes = [
     "",
+    "/services",
+    "/services/integrated",
+    "/services/cloud",
+    "/services/consulting",
+    "/services/development",
     "/solutions",
     "/industries",
+    "/industries/business-retail",
+    "/industries/healthcare-wellness",
+    "/industries/education-research",
+    "/industries/manufacturing-industrial",
     "/about",
     "/about/leadership",
     "/about/partners",
@@ -21,18 +30,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
-    priority: route === "" ? 1.0 : 0.8,
+    priority: route === "" ? 1.0 : 0.85,
   }));
 
-  const serviceRoutes = Object.keys(servicesData).map((slug) => ({
-    url: `${baseUrl}/solutions/${slug}`,
+  // Deduplicate services by href
+  const uniqueServiceHrefs = Array.from(
+    new Set(Object.values(servicesData).map((svc) => svc.href))
+  );
+  const serviceRoutes = uniqueServiceHrefs.map((href) => ({
+    url: `${baseUrl}${href}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.9,
   }));
 
-  const industryRoutes = Object.keys(industriesData).map((slug) => ({
-    url: `${baseUrl}/industries/${slug}`,
+  // Deduplicate industries by href
+  const uniqueIndustryHrefs = Array.from(
+    new Set(Object.values(industriesData).map((ind) => ind.href))
+  );
+  const industryRoutes = uniqueIndustryHrefs.map((href) => ({
+    url: `${baseUrl}${href}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.85,

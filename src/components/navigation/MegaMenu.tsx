@@ -12,11 +12,11 @@ import {
   Code2,
   ArrowRight,
   Stethoscope,
-  Landmark,
+  Building2,
   Factory,
-  ShoppingBag,
   GraduationCap,
-  Briefcase,
+  Layers,
+  Sparkles,
 } from "lucide-react";
 
 interface MegaMenuProps {
@@ -27,87 +27,128 @@ interface MegaMenuProps {
 export function MegaMenu({ activeTab, onClose }: MegaMenuProps) {
   if (!activeTab) return null;
 
-  const solutions = [
+  const servicePillars = [
     {
-      title: "Managed Security (MSSP)",
-      description: "24/7 SOC defense, SIEM analytics, and regulatory compliance.",
-      href: "/solutions/managed-security",
-      icon: ShieldCheck,
-      badge: "24/7 SOC",
-    },
-    {
-      title: "Managed IT Services (MSP)",
-      description: "Proactive infrastructure monitoring, SLA helpdesk, and maintenance.",
-      href: "/solutions/managed-it",
+      id: "integrated",
+      title: "Integrated IT Services",
+      tagline: "Proactive infrastructure, SOC defense, ITIL automation",
+      href: "/services/integrated",
       icon: Server,
-      badge: "99.99% SLA",
+      badge: "Managed IT",
+      services: [
+        { name: "Managed Security (MSSP)", href: "/services/integrated/managed-security" },
+        { name: "Managed IT Services (MSP)", href: "/services/integrated/managed-it" },
+        { name: "IT Service Management (ITSM)", href: "/services/integrated/itsm" },
+      ],
     },
     {
-      title: "Cloud & Data Migration",
-      description: "Azure, AWS, zero-downtime migration, and FinOps cost governance.",
-      href: "/solutions/cloud",
+      id: "cloud",
+      title: "Cloud Services",
+      tagline: "FinOps optimization, zero-downtime migration, IaaS",
+      href: "/services/cloud",
       icon: Cloud,
-      badge: "Azure / AWS",
+      badge: "Cloud Scale",
+      services: [
+        { name: "Azure Cost Management", href: "/services/cloud/azure-cost-management" },
+        { name: "Cloud & Data Migration", href: "/services/cloud/cloud-data-migration" },
+        { name: "Disaster Recovery Services", href: "/services/cloud/disaster-recovery" },
+        { name: "Infrastructure as a Service (IaaS)", href: "/services/cloud/iaas" },
+        { name: "Microsoft Cloud Solutions", href: "/services/cloud/microsoft-cloud" },
+      ],
     },
     {
-      title: "IT Service Management (ITSM)",
-      description: "ITIL-compliant ticketing, incident response, and asset tracking.",
-      href: "/solutions/itsm",
-      icon: Settings,
-      badge: "ITIL v4",
-    },
-    {
-      title: "IT Strategy & Consulting",
-      description: "vCIO leadership, GRC compliance audits, and tech roadmaps.",
-      href: "/solutions/consulting",
+      id: "consulting",
+      title: "IT Consulting Services",
+      tagline: "vCIO advisory, regulatory GRC audits, IT strategy",
+      href: "/services/consulting",
       icon: Compass,
-      badge: "GRC & vCIO",
+      badge: "Advisory",
+      services: [
+        { name: "Governance, Risk & Compliance (GRC)", href: "/services/consulting/grc" },
+        { name: "IT Assessment Services", href: "/services/consulting/it-assessment" },
+        { name: "IT Strategy & Consulting", href: "/services/consulting/it-strategy" },
+        { name: "Technology Strategy Services", href: "/services/consulting/technology-strategy" },
+      ],
     },
     {
-      title: "Digital Solutions & APIs",
-      description: "Custom enterprise web applications, APIs, and cloud microservices.",
-      href: "/solutions/digital-solutions",
+      id: "development",
+      title: "IT Development Services",
+      tagline: "Modern web apps, enterprise APIs, cloud integration",
+      href: "/services/development",
       icon: Code2,
-      badge: "Modern Web",
+      badge: "Digital Dev",
+      services: [
+        { name: "Web Development", href: "/services/development/web-development" },
+        { name: "E-Commerce Platforms", href: "/services/development/ecommerce" },
+        { name: "Cloud Integration Services", href: "/services/development/cloud-integration" },
+        { name: "API Development & Architecture", href: "/services/development/api-development" },
+      ],
     },
   ];
 
-  const industries = [
+  const industrySectors = [
     {
-      name: "Healthcare & Life Sciences",
-      description: "HIPAA-compliant cloud, EHR integration, and 24/7 clinical support.",
-      href: "/industries/healthcare",
+      id: "business-retail",
+      title: "Business & Retail",
+      tagline: "High-density SD-WAN, POS resilience, e-commerce",
+      href: "/industries/business-retail",
+      icon: Building2,
+      badge: "7 Verticals",
+      subSectors: [
+        { name: "Corporate Solutions", href: "/industries/business-retail/corporate" },
+        { name: "Financial Services & Banking", href: "/industries/business-retail/financial" },
+        { name: "Retail Stores & Chains", href: "/industries/business-retail/retail-stores" },
+        { name: "E-Commerce & Digital Storefronts", href: "/industries/business-retail/ecommerce-fulfillment" },
+        { name: "Real Estate & PropTech", href: "/industries/business-retail/real-estate" },
+        { name: "Hospitality & Hotel Networks", href: "/industries/business-retail/hospitality" },
+        { name: "Warehousing & Logistics", href: "/industries/business-retail/warehousing-logistics" },
+      ],
+    },
+    {
+      id: "healthcare-wellness",
+      title: "Healthcare & Wellness",
+      tagline: "HIPAA compliance, EHR uptime, clinical security",
+      href: "/industries/healthcare-wellness",
       icon: Stethoscope,
+      badge: "6 Verticals",
+      subSectors: [
+        { name: "Hospitals & Regional Health Systems", href: "/industries/healthcare-wellness/hospitals-clinics" },
+        { name: "Specialty Clinics & Outpatient Centers", href: "/industries/healthcare-wellness/specialty-clinics" },
+        { name: "Clinical Diagnostics & Pathology Labs", href: "/industries/healthcare-wellness/clinical-labs" },
+        { name: "Dental Groups & Orthodontics", href: "/industries/healthcare-wellness/dental-practices" },
+        { name: "Pharmacies & Prescription Hubs", href: "/industries/healthcare-wellness/pharmacies" },
+        { name: "Wellness & Digital Health Fitness", href: "/industries/healthcare-wellness/wellness-fitness" },
+      ],
     },
     {
-      name: "Financial Services & Banking",
-      description: "High-availability financial networks, PCI-DSS, and fraud defense.",
-      href: "/industries/financial-services",
-      icon: Landmark,
-    },
-    {
-      name: "Manufacturing & Industrial",
-      description: "OT/SCADA network security, predictive maintenance, and floor uptime.",
-      href: "/industries/manufacturing",
-      icon: Factory,
-    },
-    {
-      name: "Retail & E-commerce",
-      description: "POS terminal resilience, LTE failover, and high-concurrency cloud.",
-      href: "/industries/retail",
-      icon: ShoppingBag,
-    },
-    {
-      name: "Education & Research",
-      description: "High-density campus Wi-Fi, LMS scalability, and FERPA privacy.",
-      href: "/industries/education",
+      id: "education-research",
+      title: "Education & Research",
+      tagline: "Campus Wi-Fi 6E/7, CIPA filtering, research HPC",
+      href: "/industries/education-research",
       icon: GraduationCap,
+      badge: "5 Verticals",
+      subSectors: [
+        { name: "Colleges & Higher Education", href: "/industries/education-research/schools-universities" },
+        { name: "K-12 School Districts & Academies", href: "/industries/education-research/k12-districts" },
+        { name: "Research Institutes & Biotech Labs", href: "/industries/education-research/research-institutes" },
+        { name: "EdTech & Online Learning Platforms", href: "/industries/education-research/online-learning" },
+        { name: "Vocational & Professional Training", href: "/industries/education-research/training-centers" },
+      ],
     },
     {
-      name: "Professional Services",
-      description: "Confidential document portals for legal, accounting, and logistics.",
-      href: "/industries/professional-services",
-      icon: Briefcase,
+      id: "manufacturing-industrial",
+      title: "Manufacturing & Industrial",
+      tagline: "OT/SCADA air-gapping, CMMC, telemetry IoT",
+      href: "/industries/manufacturing-industrial",
+      icon: Factory,
+      badge: "5 Verticals",
+      subSectors: [
+        { name: "Discrete & Process Manufacturing", href: "/industries/manufacturing-industrial/factories-production" },
+        { name: "Aerospace & Defense Contractors", href: "/industries/manufacturing-industrial/aerospace-defense" },
+        { name: "Energy, Utilities & Power Grids", href: "/industries/manufacturing-industrial/energy-utilities" },
+        { name: "Mining & Precision Agriculture", href: "/industries/manufacturing-industrial/mining-agriculture" },
+        { name: "Transportation & Fleet Networks", href: "/industries/manufacturing-industrial/transportation" },
+      ],
     },
   ];
 
@@ -117,58 +158,88 @@ export function MegaMenu({ activeTab, onClose }: MegaMenuProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 8 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className="absolute top-full left-0 right-0 border-t border-b border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#070d1e]/95 backdrop-blur-xl shadow-2xl shadow-black/10 dark:shadow-black/80"
+      className="absolute top-full left-0 right-0 border-t border-b border-cyan-500/20 bg-[#030714] shadow-[0_25px_60px_rgba(0,0,0,0.9)] z-50"
       onMouseLeave={onClose}
     >
       <div className="mx-auto max-w-7xl px-6 py-8">
         {activeTab === "solutions" && (
           <div>
-            <div className="mb-6 flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-4">
+            <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-4 gap-2">
               <div>
-                <span className="text-xs font-semibold tracking-wider text-cyan-600 dark:text-cyan-400 uppercase">
-                  Enterprise Solutions
+                <span className="text-xs font-bold tracking-wider text-cyan-400 uppercase font-display block">
+                  Enterprise Solutions & Services
                 </span>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display">
-                  Technology solutions built around your business
+                <h3 className="text-lg sm:text-xl font-bold text-white font-display mt-0.5">
+                  16 Specialized Services Across 4 Core Technology Pillars
                 </h3>
               </div>
               <Link
-                href="/solutions"
+                href="/services"
                 onClick={onClose}
-                className="group flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium"
+                className="group inline-flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 font-semibold transition-colors shrink-0"
               >
-                <span>View All Solutions Overview</span>
+                <span>Browse All Services Catalog</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {solutions.map((item) => {
-                const IconComponent = item.icon;
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {servicePillars.map((pillar) => {
+                const IconComponent = pillar.icon;
                 return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={onClose}
-                    className="group relative flex items-start gap-4 rounded-xl border border-slate-200 dark:border-white/5 bg-slate-50/70 dark:bg-white/[0.02] p-4 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-50/80 dark:hover:bg-cyan-500/[0.04]"
+                  <div
+                    key={pillar.id}
+                    className="flex flex-col justify-between rounded-2xl border border-white/10 bg-[#070d1e] p-5 transition-all hover:border-cyan-400/50 hover:bg-[#0a142e] shadow-lg group"
                   >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/80 text-cyan-600 dark:text-cyan-400 transition-colors duration-300 group-hover:border-cyan-400/50 group-hover:bg-cyan-100/60 dark:group-hover:bg-cyan-950/40">
-                      <IconComponent className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1">
+                    <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300">
-                          {item.title}
-                        </h4>
-                        <span className="text-[10px] font-medium text-cyan-700 dark:text-cyan-400/80 bg-cyan-100 dark:bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-300 dark:border-cyan-500/20">
-                          {item.badge}
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-cyan-400 group-hover:border-cyan-400/40 group-hover:bg-cyan-500/10 transition-colors">
+                          <IconComponent className="h-5 w-5" />
+                        </div>
+                        <span className="text-[10px] font-bold text-cyan-300 bg-cyan-950/80 px-2.5 py-0.5 rounded-full border border-cyan-500/30 uppercase tracking-wide">
+                          {pillar.badge}
                         </span>
                       </div>
-                      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
-                        {item.description}
-                      </p>
+
+                      <div>
+                        <Link
+                          href={pillar.href}
+                          onClick={onClose}
+                          className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors block font-display"
+                        >
+                          {pillar.title}
+                        </Link>
+                        <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                          {pillar.tagline}
+                        </p>
+                      </div>
+
+                      <div className="pt-2.5 border-t border-white/10 space-y-1.5">
+                        {pillar.services.map((svc) => (
+                          <Link
+                            key={svc.href}
+                            href={svc.href}
+                            onClick={onClose}
+                            className="flex items-center text-xs text-slate-300 hover:text-cyan-300 hover:translate-x-1 transition-all py-0.5 font-medium group/link"
+                          >
+                            <span className="h-1 w-1 rounded-full bg-cyan-400 mr-2 shrink-0 group-hover/link:bg-cyan-300" />
+                            <span className="truncate">{svc.name}</span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </Link>
+
+                    <div className="pt-3 mt-3 border-t border-white/10">
+                      <Link
+                        href={pillar.href}
+                        onClick={onClose}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 group-hover:underline"
+                      >
+                        <span>View Pillar Hub</span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </div>
                 );
               })}
             </div>
@@ -177,47 +248,82 @@ export function MegaMenu({ activeTab, onClose }: MegaMenuProps) {
 
         {activeTab === "industries" && (
           <div>
-            <div className="mb-6 flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-4">
+            <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-4 gap-2">
               <div>
-                <span className="text-xs font-semibold tracking-wider text-cyan-600 dark:text-cyan-400 uppercase">
+                <span className="text-xs font-bold tracking-wider text-cyan-400 uppercase font-display block">
                   Industry Specialization
                 </span>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display">
-                  Technology engineered for your specific regulatory environment
+                <h3 className="text-lg sm:text-xl font-bold text-white font-display mt-0.5">
+                  22 Sector Architectures Across 4 Primary Industry Domains
                 </h3>
               </div>
               <Link
                 href="/industries"
                 onClick={onClose}
-                className="group flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium"
+                className="group inline-flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 font-semibold transition-colors shrink-0"
               >
                 <span>Explore All Industries</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {industries.map((item) => {
-                const IconComponent = item.icon;
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {industrySectors.map((sector) => {
+                const IconComponent = sector.icon;
                 return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={onClose}
-                    className="group relative flex items-start gap-4 rounded-xl border border-slate-200 dark:border-white/5 bg-slate-50/70 dark:bg-white/[0.02] p-4 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-50/80 dark:hover:bg-cyan-500/[0.04]"
+                  <div
+                    key={sector.id}
+                    className="flex flex-col justify-between rounded-2xl border border-white/10 bg-[#070d1e] p-5 transition-all hover:border-cyan-400/50 hover:bg-[#0a142e] shadow-lg group"
                   >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/80 text-cyan-600 dark:text-cyan-400 transition-colors duration-300 group-hover:border-cyan-400/50 group-hover:bg-cyan-100/60 dark:group-hover:bg-cyan-950/40">
-                      <IconComponent className="h-5 w-5" />
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-cyan-400 group-hover:border-cyan-400/40 group-hover:bg-cyan-500/10 transition-colors">
+                          <IconComponent className="h-5 w-5" />
+                        </div>
+                        <span className="text-[10px] font-bold text-cyan-300 bg-cyan-950/80 px-2.5 py-0.5 rounded-full border border-cyan-500/30 uppercase tracking-wide">
+                          {sector.badge}
+                        </span>
+                      </div>
+
+                      <div>
+                        <Link
+                          href={sector.href}
+                          onClick={onClose}
+                          className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors block font-display"
+                        >
+                          {sector.title}
+                        </Link>
+                        <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                          {sector.tagline}
+                        </p>
+                      </div>
+
+                      <div className="pt-2.5 border-t border-white/10 space-y-1.5">
+                        {sector.subSectors.map((sub) => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            onClick={onClose}
+                            className="flex items-center text-xs text-slate-300 hover:text-cyan-300 hover:translate-x-1 transition-all py-0.5 font-medium group/link"
+                          >
+                            <span className="h-1 w-1 rounded-full bg-cyan-400 mr-2 shrink-0 group-hover/link:bg-cyan-300" />
+                            <span className="truncate">{sub.name}</span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300">
-                        {item.name}
-                      </h4>
-                      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
-                        {item.description}
-                      </p>
+
+                    <div className="pt-3 mt-3 border-t border-white/10">
+                      <Link
+                        href={sector.href}
+                        onClick={onClose}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 group-hover:underline"
+                      >
+                        <span>View Sector Overview</span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>
@@ -227,3 +333,4 @@ export function MegaMenu({ activeTab, onClose }: MegaMenuProps) {
     </motion.div>
   );
 }
+

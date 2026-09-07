@@ -19,6 +19,7 @@ export const companyData = {
   tagline: "Technology that secures. Technology that scales. Technology that moves business forward.",
   foundedYear: 2020,
   email: "info@technosprint.net",
+  secondaryEmail: "info@technosprintinfo.com",
   phones: {
     indiaPrimary: "+91 90433 10908",
     indiaSecondary: "+91 90037 14619",

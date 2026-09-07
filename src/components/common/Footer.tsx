@@ -99,37 +99,37 @@ export function Footer() {
           {/* Solutions Column */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
-              Solutions
+              Solutions & Services
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/solutions/managed-security" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                <Link href="/services/integrated" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  Integrated IT Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/integrated/managed-security" className="hover:text-slate-950 dark:hover:text-white transition-colors">
                   Managed Security (MSSP)
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/managed-it" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                <Link href="/services/integrated/managed-it" className="hover:text-slate-950 dark:hover:text-white transition-colors">
                   Managed IT Services (MSP)
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/cloud" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  Cloud & Data Migration
+                <Link href="/services/cloud" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  Cloud Services & FinOps
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/itsm" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  IT Service Management (ITSM)
+                <Link href="/services/consulting" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  IT Consulting & GRC
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/consulting" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  IT Strategy & Consulting
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions/digital-solutions" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  Digital Solutions & APIs
+                <Link href="/services/development" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  IT Development & APIs
                 </Link>
               </li>
             </ul>
@@ -138,37 +138,37 @@ export function Footer() {
           {/* Industries Column */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
-              Industries
+              Industry Sectors
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/industries/healthcare" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  Healthcare & Life Sciences
+                <Link href="/industries/business-retail" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  Business & Retail
                 </Link>
               </li>
               <li>
-                <Link href="/industries/financial-services" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  Financial Services & Banking
+                <Link href="/industries/business-retail/corporate" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  Corporate Solutions
                 </Link>
               </li>
               <li>
-                <Link href="/industries/manufacturing" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  Manufacturing & Industrial
+                <Link href="/industries/healthcare-wellness" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  Healthcare & Wellness
                 </Link>
               </li>
               <li>
-                <Link href="/industries/retail" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  Retail & E-commerce
+                <Link href="/industries/healthcare-wellness/hospitals-clinics" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  Hospitals & Clinics
                 </Link>
               </li>
               <li>
-                <Link href="/industries/education" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                <Link href="/industries/education-research" className="hover:text-slate-950 dark:hover:text-white transition-colors">
                   Education & Research
                 </Link>
               </li>
               <li>
-                <Link href="/industries/professional-services" className="hover:text-slate-950 dark:hover:text-white transition-colors">
-                  Professional Services
+                <Link href="/industries/manufacturing-industrial" className="hover:text-slate-950 dark:hover:text-white transition-colors">
+                  Manufacturing & Industrial
                 </Link>
               </li>
             </ul>

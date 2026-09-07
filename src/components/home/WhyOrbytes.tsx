@@ -86,46 +86,47 @@ export function WhyOrbytes() {
   const CurrentIcon = current.icon;
 
   return (
-    <section id="why-technosprint" className="relative py-28 bg-slate-50 border-t border-b border-slate-200 overflow-hidden">
+    <section id="why-technosprint" className="relative py-12 sm:py-16 bg-slate-50 border-t border-b border-slate-200 overflow-hidden scroll-mt-20">
       <div className="mx-auto max-w-7xl px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-8 space-y-1.5">
           <span className="text-xs font-bold tracking-widest text-cyan-600 uppercase font-display">
             The Orbytes Difference
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 font-display">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 font-display">
             More than an IT provider.
           </h2>
-          <p className="text-base text-slate-600 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
             We operate as your dedicated strategic technology division, combining enterprise rigor with personalized partnership.
           </p>
         </div>
 
         {/* Interactive Story Progression */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          {/* Left: Interactive Pillar Selectors */}
-          <div className="lg:col-span-5 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          {/* Left: Interactive Pillar Selectors - Compact */}
+          <div className="lg:col-span-5 flex flex-col justify-between gap-2">
             {pillars.map((pillar, idx) => {
               const isActive = activeTab === idx;
               return (
-                <div
+                <button
                   key={pillar.step}
+                  type="button"
                   onClick={() => setActiveTab(idx)}
-                  className={`cursor-pointer rounded-2xl border p-6 transition-all duration-300 ${
+                  className={`w-full text-left cursor-pointer rounded-xl border p-3 sm:p-3.5 transition-all duration-200 ${
                     isActive
-                      ? "border-cyan-500/60 bg-white shadow-lg shadow-cyan-500/10 translate-x-2"
+                      ? "border-cyan-500/60 bg-white shadow-md shadow-cyan-500/10 translate-x-1"
                       : "border-slate-200 bg-white/70 hover:border-slate-300 hover:bg-white opacity-90 hover:opacity-100"
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <span
-                      className="text-2xl font-extrabold font-display"
+                      className="text-base font-bold font-display"
                       style={{ color: isActive ? pillar.color : "#94a3b8" }}
                     >
                       {pillar.step}
                     </span>
                     <span
-                      className="text-xs font-bold tracking-wider uppercase px-2.5 py-0.5 rounded border"
+                      className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded border"
                       style={{
                         borderColor: isActive ? `${pillar.color}50` : "#cbd5e1",
                         backgroundColor: isActive ? `${pillar.color}15` : "transparent",
@@ -135,76 +136,83 @@ export function WhyOrbytes() {
                       {pillar.tag}
                     </span>
                   </div>
-                  <h4 className="mt-2 text-base font-bold text-slate-900 font-display">
+                  <h4 className="mt-1 text-xs sm:text-sm font-semibold text-slate-900 font-display line-clamp-1">
                     {pillar.title}
                   </h4>
-                </div>
+                </button>
               );
             })}
           </div>
 
-          {/* Right: Dynamic Visual Story Stage */}
+          {/* Right: Dynamic Visual Story Stage - Compact */}
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.step}
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="rounded-3xl border border-slate-200 bg-white p-8 md:p-12 shadow-xl space-y-8 relative overflow-hidden"
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="h-full rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xl flex flex-col justify-between space-y-3.5 relative overflow-hidden"
               >
                 {/* Accent Watermark Number */}
-                <div className="pointer-events-none absolute -right-6 -bottom-10 text-[180px] font-black text-slate-900/[0.04] font-display select-none">
+                <div className="pointer-events-none absolute -right-3 -bottom-6 text-[100px] font-black text-slate-900/[0.03] font-display select-none">
                   {current.step}
                 </div>
 
-                {/* Top Badge */}
-                <div className="flex items-center gap-3">
-                  <div
-                    className="flex h-12 w-12 items-center justify-center rounded-xl border"
-                    style={{
-                      borderColor: `${current.color}50`,
-                      backgroundColor: `${current.color}15`,
-                      color: current.color,
-                    }}
-                  >
-                    <CurrentIcon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                      Pillar {current.step}
-                    </span>
-                    <h3
-                      className="text-lg font-bold uppercase tracking-wider font-display"
-                      style={{ color: current.color }}
+                {/* Top Row: Badge + Stat */}
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <div
+                      className="flex h-8 w-8 items-center justify-center rounded-lg border"
+                      style={{
+                        borderColor: `${current.color}50`,
+                        backgroundColor: `${current.color}15`,
+                        color: current.color,
+                      }}
                     >
-                      {current.tag}
-                    </h3>
+                      <CurrentIcon className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block leading-none">
+                        Pillar {current.step}
+                      </span>
+                      <h3
+                        className="text-xs font-bold uppercase tracking-wider font-display mt-0.5"
+                        style={{ color: current.color }}
+                      >
+                        {current.tag}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-semibold text-slate-700">
+                    <span className="text-slate-400 font-normal">Target:</span>
+                    <span className="font-bold text-slate-900 truncate max-w-[200px]">{current.metrics}</span>
                   </div>
                 </div>
 
                 {/* Main Headline & Description */}
-                <div className="space-y-4">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display leading-snug">
+                <div className="space-y-1">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 font-display leading-snug line-clamp-1 sm:line-clamp-2">
                     {current.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2">
                     {current.description}
                   </p>
                 </div>
 
-                {/* Visual Pillar Photo */}
+                {/* Visual Pillar Photo - Compact */}
                 {current.imageUrl && (
-                  <div className="relative group overflow-hidden rounded-xl border border-slate-200 shadow-md aspect-[16/8]">
+                  <div className="relative group overflow-hidden rounded-xl border border-slate-200 shadow-xs h-24 sm:h-28 w-full shrink-0">
                     <img
                       src={current.imageUrl}
                       alt={current.imageAlt || current.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3.5">
-                      <p className="text-xs text-white/95 font-medium tracking-wide">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-2.5">
+                      <p className="text-[11px] text-white/95 font-medium tracking-wide line-clamp-1">
                         {current.imageAlt}
                       </p>
                     </div>
@@ -212,23 +220,23 @@ export function WhyOrbytes() {
                 )}
 
                 {/* Checkpoint Highlights */}
-                <div className="space-y-2.5 pt-2 border-t border-slate-100">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-slate-100">
                   {current.highlights.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-600" />
-                      <span>{item}</span>
+                    <div key={idx} className="flex items-start gap-1.5 text-xs text-slate-700">
+                      <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-cyan-600 mt-0.5" />
+                      <span className="line-clamp-2 leading-tight">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Stat Badge */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <div>
-                    <span className="text-xs text-slate-500">Target Standard:</span>
-                    <p className="text-sm font-semibold text-slate-900">
-                      {current.metrics}
-                    </p>
-                  </div>
+                {/* Mobile Stat Badge */}
+                <div className="sm:hidden pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">
+                    Target Standard:
+                  </span>
+                  <p className="text-xs font-bold text-slate-900">
+                    {current.metrics}
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>

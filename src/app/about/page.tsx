@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Sparkles, ShieldCheck, Target, Award, Users } from "lucide-react";
+import { ArrowRight, Sparkles, ShieldCheck, Target, Award, Users, Quote } from "lucide-react";
 import { companyData } from "@/data/companyData";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { ChronoTimelineVisual } from "@/components/visuals/about/ChronoTimelineVisual";
@@ -126,7 +126,71 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Quick Navigation into Leadership & Partners [LIGHT] */}
+      {/* 4. Client Testimonials [LIGHT] */}
+      <section className="py-24 bg-white text-slate-900 border-b border-slate-200">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-xs font-bold tracking-widest text-cyan-600 uppercase font-display">
+              Verified Client Outcomes
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 font-display">
+              What Enterprise Leaders Say
+            </h2>
+            <p className="text-base text-slate-600 leading-relaxed">
+              Real feedback from operations executives, managing partners, and technology directors partnering with us for proactive IT and cybersecurity excellence.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+              <div className="space-y-4">
+                <div className="h-10 w-10 rounded-xl bg-cyan-100 border border-cyan-200 flex items-center justify-center text-cyan-600">
+                  <Quote className="h-5 w-5" />
+                </div>
+                <p className="text-sm text-slate-700 leading-relaxed italic">
+                  &ldquo;Partnering with the team has transformed our IT infrastructure completely. Their comprehensive IT management services have streamlined our operations, improved plant efficiency, and provided us with reliable technology solutions that grow with our business. Their proactive approach and expert support have made a significant difference in our daily operations.&rdquo;
+                </p>
+              </div>
+              <div className="pt-6 mt-6 border-t border-slate-200">
+                <h4 className="text-sm font-bold text-slate-900">Alex M.</h4>
+                <p className="text-xs text-slate-500 uppercase tracking-wider mt-0.5">VP of Operations, Manufacturing Firm</p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+              <div className="space-y-4">
+                <div className="h-10 w-10 rounded-xl bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600">
+                  <Quote className="h-5 w-5" />
+                </div>
+                <p className="text-sm text-slate-700 leading-relaxed italic">
+                  &ldquo;As a law firm handling complex client matters, efficient IT systems and strict confidentiality are crucial. The team has provided us with seamless technology solutions that enhance our productivity. Their managed IT services ensure our systems are always optimized, allowing us to focus on serving our clients effectively.&rdquo;
+                </p>
+              </div>
+              <div className="pt-6 mt-6 border-t border-slate-200">
+                <h4 className="text-sm font-bold text-slate-900">Jessica K.</h4>
+                <p className="text-xs text-slate-500 uppercase tracking-wider mt-0.5">Managing Partner, Commercial Law Firm</p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+              <div className="space-y-4">
+                <div className="h-10 w-10 rounded-xl bg-indigo-100 border border-indigo-200 flex items-center justify-center text-indigo-600">
+                  <Quote className="h-5 w-5" />
+                </div>
+                <p className="text-sm text-slate-700 leading-relaxed italic">
+                  &ldquo;Our e-commerce business demands reliable and efficient IT systems. The team delivers exactly that. Their comprehensive IT management ensures our operations run smoothly 24/7. Their solutions have significantly improved our system reliability and business efficiency during peak seasonal flash sales.&rdquo;
+                </p>
+              </div>
+              <div className="pt-6 mt-6 border-t border-slate-200">
+                <h4 className="text-sm font-bold text-slate-900">Taylor R.</h4>
+                <p className="text-xs text-slate-500 uppercase tracking-wider mt-0.5">Operations Director, Online Retailer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Quick Navigation into Leadership & Partners [LIGHT] */}
       <section className="py-20 bg-slate-50 text-slate-900 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

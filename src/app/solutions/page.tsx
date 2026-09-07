@@ -108,7 +108,7 @@ export default function SolutionsHubPage() {
 
                   <div className="p-8 pt-0">
                     <Link
-                      href={`/solutions/${service.slug}`}
+                      href={service.href || `/services/${service.category}/${service.slug}`}
                       className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-100 text-sm font-semibold text-cyan-600 hover:text-cyan-700 group-hover:translate-x-0.5 transition-all"
                     >
                       <span>View Architecture & Scope</span>

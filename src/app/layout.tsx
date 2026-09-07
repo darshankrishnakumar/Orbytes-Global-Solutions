@@ -73,7 +73,7 @@ export default function RootLayout({
           <SmoothScroll>
             <CustomCursor />
             <Navbar />
-            <main className="relative min-h-screen overflow-hidden">
+            <main className="relative min-h-screen">
               {children}
             </main>
             <Footer />
