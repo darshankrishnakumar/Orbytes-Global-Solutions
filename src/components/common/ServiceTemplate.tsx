@@ -15,6 +15,7 @@ import { CloudStreamVisual } from "@/components/visuals/services/CloudStreamVisu
 import { ApiNetworkVisual } from "@/components/visuals/services/ApiNetworkVisual";
 import { StrategyMatrixVisual } from "@/components/visuals/services/StrategyMatrixVisual";
 import { WorkflowPipelineVisual } from "@/components/visuals/services/WorkflowPipelineVisual";
+import { ItsmPipelineVisual } from "@/components/visuals/services/ItsmPipelineVisual";
 
 interface ServiceTemplateProps {
   service: ServiceItem;
@@ -24,16 +25,47 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
   // Determine if this service has a dedicated Hero visual
   const renderHeroVisual = () => {
     switch (service.slug) {
+      case "itsm":
+        return <ItsmPipelineVisual />;
       case "managed-security":
         return <SecurityRadarVisual />;
       case "managed-it":
         return <InfrastructureVisual />;
       case "cloud":
+      case "cloud-data-migration":
+      case "azure-cost-management":
+      case "disaster-recovery":
+      case "iaas":
+      case "microsoft-cloud":
         return <CloudStreamVisual />;
       case "digital-solutions":
+      case "api-development":
+      case "cloud-integration":
+      case "ecommerce":
+      case "web-development":
+        return <ApiNetworkVisual />;
+      case "consulting":
+      case "it-strategy":
+      case "grc":
+      case "it-assessment":
+      case "technology-strategy":
+        return <StrategyMatrixVisual />;
+      default:
+        break;
+    }
+
+    // Category fallback ensuring every service page always has a respective animation
+    switch (service.category) {
+      case "integrated":
+        return <InfrastructureVisual />;
+      case "cloud":
+        return <CloudStreamVisual />;
+      case "consulting":
+        return <StrategyMatrixVisual />;
+      case "development":
         return <ApiNetworkVisual />;
       default:
-        return null;
+        return <InfrastructureVisual />;
     }
   };
 
