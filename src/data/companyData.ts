@@ -31,7 +31,7 @@ export const companyData = {
   secondaryEmail: "contact@orbytesglobal.com",
   phones: {
     indiaPrimary: "+91 90433 10908",
-    indiaSecondary: "+91 90037 14619",
+    indiaSecondary: "+91 90433 10908",
     canada: "+1 (647) 269-2509",
   },
   socials: {
@@ -52,7 +52,7 @@ export const companyData = {
       city: "Puducherry",
       country: "India",
       address: "3rd & 4th Floor, Fun Center, 64, South Boulevard, MG Road Area, Puducherry - 605 001",
-      phone: "+91 90037 14619",
+      phone: "+91 90433 10908",
       isHeadquarter: false,
       imageUrl: "/images/about/company.webp",
     },

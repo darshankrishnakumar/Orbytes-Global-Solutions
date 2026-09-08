@@ -74,7 +74,7 @@ export function FloatingContactWidget() {
                 </div>
               </a>
 
-              {/* Direct Phone Call */}
+              {/* Direct Phone Call - India */}
               <a
                 href={`tel:${companyData.phones.indiaPrimary.replace(/[^0-9+]/g, "")}`}
                 className="flex items-center gap-3 rounded-xl border border-cyan-500/20 bg-cyan-500/10 p-3 text-xs font-medium text-cyan-300 hover:bg-cyan-500/20 transition-all group"
@@ -83,8 +83,22 @@ export function FloatingContactWidget() {
                   <Phone className="h-4 w-4" />
                 </div>
                 <div>
-                  <div className="font-semibold text-white">Call Engineering Center</div>
+                  <div className="font-semibold text-white">Call India (Chennai & Puducherry)</div>
                   <div className="text-[11px] text-cyan-300/80">{companyData.phones.indiaPrimary}</div>
+                </div>
+              </a>
+
+              {/* Direct Phone Call - Canada */}
+              <a
+                href={`tel:${companyData.phones.canada.replace(/[^0-9+]/g, "")}`}
+                className="flex items-center gap-3 rounded-xl border border-indigo-500/20 bg-indigo-500/10 p-3 text-xs font-medium text-indigo-300 hover:bg-indigo-500/20 transition-all group"
+              >
+                <div className="h-8 w-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0 text-indigo-400">
+                  <Phone className="h-4 w-4" />
+                </div>
+                <div>
+                  <div className="font-semibold text-white">Call Canada & North America</div>
+                  <div className="text-[11px] text-indigo-300/80">{companyData.phones.canada}</div>
                 </div>
               </a>
 

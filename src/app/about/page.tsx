@@ -285,10 +285,13 @@ export default function AboutPage() {
                       <span>{office.address}</span>
                     </div>
                     {office.phone && (
-                      <div className="flex items-center gap-2 text-xs text-slate-600 pt-1">
+                      <a
+                        href={`tel:${office.phone.replace(/\s+/g, "")}`}
+                        className="inline-flex items-center gap-2 text-xs text-slate-600 hover:text-cyan-600 font-medium transition-colors pt-1"
+                      >
                         <Phone className="h-3.5 w-3.5 text-cyan-600 shrink-0" />
                         <span>{office.phone}</span>
-                      </div>
+                      </a>
                     )}
                   </div>
                 </div>
