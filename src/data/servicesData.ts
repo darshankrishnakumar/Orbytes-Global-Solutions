@@ -98,8 +98,8 @@ export const servicesData: Record<string, ServiceItem> = {
     ],
     faqs: [
       {
-        question: "What does Technosprint's Managed IT Service include?",
-        answer: "Technosprint provides end-to-end IT management, including proactive monitoring, cybersecurity protection, cloud solutions, IT consulting, and round-the-clock support to ensure seamless business operations.",
+        question: "What does Orbytes's Managed IT Service include?",
+        answer: "Orbytes provides end-to-end IT management, including proactive monitoring, cybersecurity protection, cloud solutions, IT consulting, and round-the-clock support to ensure seamless business operations.",
       },
       {
         question: "How does managed IT support our existing internal IT staff?",

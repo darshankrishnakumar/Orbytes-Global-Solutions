@@ -1,0 +1,142 @@
+# ==============================================================================
+# Hostinger LiteSpeed / Apache Web Server Configuration
+# Orbytes Global Solutions (https://orbytesglobal.com)
+# ==============================================================================
+
+Options -MultiViews
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Legacy 301 Redirects
+  RewriteRule ^IT%20services/MSSP.*$ /services/integrated/managed-security [R=301,L,NC]
+  RewriteRule ^IT\ services/MSSP.*$ /services/integrated/managed-security [R=301,L,NC]
+  RewriteRule ^IT%20services/MSP.*$ /services/integrated/managed-it [R=301,L,NC]
+  RewriteRule ^IT\ services/MSP.*$ /services/integrated/managed-it [R=301,L,NC]
+  RewriteRule ^IT%20services/ITSM.*$ /services/integrated/itsm [R=301,L,NC]
+  RewriteRule ^IT\ services/ITSM.*$ /services/integrated/itsm [R=301,L,NC]
+
+  RewriteRule ^Cloud%20Services/Azure_Cost_Management.*$ /services/cloud/azure-cost-management [R=301,L,NC]
+  RewriteRule ^Cloud\ Services/Azure_Cost_Management.*$ /services/cloud/azure-cost-management [R=301,L,NC]
+  RewriteRule ^Cloud%20Services/IAAS.*$ /services/cloud/iaas [R=301,L,NC]
+  RewriteRule ^Cloud\ Services/IAAS.*$ /services/cloud/iaas [R=301,L,NC]
+  RewriteRule ^Cloud%20Services/Disaster_recovery_service.*$ /services/cloud/disaster-recovery [R=301,L,NC]
+  RewriteRule ^Cloud\ Services/Disaster_recovery_service.*$ /services/cloud/disaster-recovery [R=301,L,NC]
+  RewriteRule ^Cloud%20Services/Cloud&Data.*$ /services/cloud/cloud-data-migration [R=301,L,NC]
+  RewriteRule ^Cloud\ Services/Cloud&Data.*$ /services/cloud/cloud-data-migration [R=301,L,NC]
+  RewriteRule ^Cloud%20Services/Microsoft_cloud_service.*$ /services/cloud/microsoft-cloud [R=301,L,NC]
+  RewriteRule ^Cloud\ Services/Microsoft_cloud_service.*$ /services/cloud/microsoft-cloud [R=301,L,NC]
+
+  RewriteRule ^IT%20consulting/Governance.*$ /services/consulting/grc [R=301,L,NC]
+  RewriteRule ^IT\ consulting/Governance.*$ /services/consulting/grc [R=301,L,NC]
+  RewriteRule ^IT%20consulting/IT_Assessment.*$ /services/consulting/it-assessment [R=301,L,NC]
+  RewriteRule ^IT\ consulting/IT_Assessment.*$ /services/consulting/it-assessment [R=301,L,NC]
+  RewriteRule ^IT%20consulting/Technology_strategy.*$ /services/consulting/technology-strategy [R=301,L,NC]
+  RewriteRule ^IT%20consulting/Technology_syrategy.*$ /services/consulting/technology-strategy [R=301,L,NC]
+  RewriteRule ^IT\ consulting/Technology_strategy.*$ /services/consulting/technology-strategy [R=301,L,NC]
+  RewriteRule ^IT%20consulting/IT_Strategy.*$ /services/consulting/it-strategy [R=301,L,NC]
+  RewriteRule ^IT\ consulting/IT_Strategy.*$ /services/consulting/it-strategy [R=301,L,NC]
+
+  RewriteRule ^IT%20development/web-sol.*$ /services/development/web-development [R=301,L,NC]
+  RewriteRule ^IT%20development/e-commerce.*$ /services/development/ecommerce [R=301,L,NC]
+  RewriteRule ^IT%20development/cloud_integration.*$ /services/development/cloud-integration [R=301,L,NC]
+  RewriteRule ^IT%20development/api.*$ /services/development/api-development [R=301,L,NC]
+
+  RewriteRule ^about/about.*$ /about [R=301,L,NC]
+  RewriteRule ^about\.html$ /about [R=301,L,NC]
+  RewriteRule ^contact\.html$ /contact [R=301,L,NC]
+  RewriteRule ^leadership$ /about/leadership [R=301,L,NC]
+  RewriteRule ^about/Partner.*$ /about/partners [R=301,L,NC]
+  RewriteRule ^about/P&P.*$ /privacy [R=301,L,NC]
+
+  # Direct routes: /icon.svg, /robots.txt, /sitemap.xml, /manifest.webmanifest
+  RewriteRule ^favicon\.ico$ /icon.svg [L]
+  RewriteRule ^apple-touch-icon.*$ /apple-icon [L]
+
+  # Remove trailing slash (except for directories)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} (.+)/$
+  RewriteRule ^ %1 [R=301,L]
+
+  # Clean URLs: Serve .html file if matching requested path
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # Clean URLs in subdirectories: /services/integrated -> /services/integrated.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*)$ $1/index.html [L]
+</IfModule>
+
+# ==============================================================================
+# Gzip / Brotli Compression
+# ==============================================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css
+  AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ==============================================================================
+# Browser Caching
+# ==============================================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 2 days"
+
+  # Immutable Next.js bundle assets
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType application/x-javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+
+  # Media
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+
+  # HTML documents (always fresh)
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# ==============================================================================
+# Security Headers
+# ==============================================================================
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+  <FilesMatch "\.(js|css|woff2|woff)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <Files "manifest.webmanifest">
+    Header set Content-Type "application/manifest+json"
+  </Files>
+
+  <Files "icon.svg">
+    Header set Content-Type "image/svg+xml"
+  </Files>
+
+  <Files "apple-icon">
+    Header set Content-Type "image/png"
+  </Files>
+
+  <Files "opengraph-image">
+    Header set Content-Type "image/png"
+  </Files>
+</IfModule>

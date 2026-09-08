@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { siteConfig } from "@/config/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://technosprint.net/sitemap.xml",
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }
+

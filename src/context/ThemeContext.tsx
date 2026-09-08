@@ -18,7 +18,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Check saved theme or system preference
-    const saved = localStorage.getItem("technosprint-theme") as Theme | null;
+    const saved = (localStorage.getItem("orbytes-theme") ||
+      localStorage.getItem("technosprint-theme")) as Theme | null;
     if (saved === "light" || saved === "dark") {
       setThemeState(saved);
       applyTheme(saved);
@@ -46,7 +47,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
-    localStorage.setItem("technosprint-theme", t);
+    localStorage.setItem("orbytes-theme", t);
     applyTheme(t);
   };
 

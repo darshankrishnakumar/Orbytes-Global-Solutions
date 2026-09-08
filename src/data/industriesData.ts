@@ -16,7 +16,7 @@ export interface IndustryItem {
   imageUrl: string;
   imageAlt: string;
   challenges: { title: string; description: string }[];
-  technosprintSolution: string;
+  orbytesSolution: string;
   capabilities: { title: string; description: string }[];
   outcomes: { metric: string; label: string; description: string }[];
   subSectors: string[];
@@ -44,7 +44,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Hybrid Workforce Security Risks", description: "Employees moving between home, airport lounges, and office desks introduce credential theft, unmanaged device vulnerabilities, and unsecured Wi-Fi risks." },
       { title: "Meeting Room & Collaboration Friction", description: "Unreliable conference room AV, incompatible meeting platforms, and poor conference call bandwidth waste executive time and delay critical decisions." },
     ],
-    technosprintSolution: "Orbytes standardizes corporate IT across all locations with SD-WAN connectivity, zero-trust Entra ID authentication, centralized endpoint management, and white-glove executive conference room support.",
+    orbytesSolution: "Orbytes standardizes corporate IT across all locations with SD-WAN connectivity, zero-trust Entra ID authentication, centralized endpoint management, and white-glove executive conference room support.",
     capabilities: [
       { title: "Unified Enterprise SD-WAN", description: "Connect all corporate branches and cloud environments via encrypted, auto-failover SD-WAN links." },
       { title: "Centralized Identity & Access (SSO)", description: "Single sign-on, conditional access, and automated employee onboarding/offboarding workflows." },
@@ -86,7 +86,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Checkout Cart Abandonment", description: "Slow loading product catalogs, complex checkout steps, and payment gateway timeouts cause lost sales." },
       { title: "Inventory Overselling & Discrepancies", description: "Delayed inventory updates between the online storefront and warehouse management systems cause customer cancellations." },
     ],
-    technosprintSolution: "We architect resilient, auto-scaling cloud platforms on Azure and AWS backed by global Cloudflare/CloudFront edge caching, sub-second product search, and automated ERP inventory feeds.",
+    orbytesSolution: "We architect resilient, auto-scaling cloud platforms on Azure and AWS backed by global Cloudflare/CloudFront edge caching, sub-second product search, and automated ERP inventory feeds.",
     capabilities: [
       { title: "Elastic Auto-Scaling Infrastructure", description: "Dynamic cloud serverless compute that expands instantly during traffic spikes and scales down when traffic normalizes." },
       { title: "PCI-DSS Level 1 Compliant Security", description: "Tokenized payment gateways, encrypted customer data storage, and automated vulnerability scanning." },
@@ -128,7 +128,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Fleet Connectivity & Telematics Outages", description: "Intermittent cellular coverage and dropped dispatch feeds cause delayed deliveries and compliance penalties." },
       { title: "Ransomware Targeting Supply Chains", description: "Cybercriminals increasingly target logistics hubs with ransomware to force urgent ransom payments to prevent supply chain halts." },
     ],
-    technosprintSolution: "Orbytes designs enterprise RF-engineered Wi-Fi mesh networks that penetrate warehouse racking, deploys secure IoT telematics pipelines, and isolates critical dispatch systems behind 24/7 SOC monitoring.",
+    orbytesSolution: "Orbytes designs enterprise RF-engineered Wi-Fi mesh networks that penetrate warehouse racking, deploys secure IoT telematics pipelines, and isolates critical dispatch systems behind 24/7 SOC monitoring.",
     capabilities: [
       { title: "Industrial Warehouse Wi-Fi Mesh", description: "High-density wireless access points engineered specifically for metal rack reflection and mobile handheld scanners." },
       { title: "TMS & Fleet Telematics Integration", description: "Continuous integration between GPS trackers, Electronic Logging Devices (ELD), and Transportation Management Systems." },
@@ -170,7 +170,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Dispersed Mobile Agent Devices", description: "Brokers and agents working on personal smartphones and laptops create unmanaged security risks for sensitive client financial records." },
       { title: "Smart Building IoT Security", description: "Unsecured smart thermostats, access control turnstiles, and surveillance cameras create backdoors into property management networks." },
     ],
-    technosprintSolution: "We implement encrypted email authentication (DMARC/MFA) to stop wire fraud, deploy mobile device management for agents, and segment smart building IoT networks away from tenant databases.",
+    orbytesSolution: "We implement encrypted email authentication (DMARC/MFA) to stop wire fraud, deploy mobile device management for agents, and segment smart building IoT networks away from tenant databases.",
     capabilities: [
       { title: "Wire Fraud Prevention & Email Hardening", description: "Advanced phishing protection, encrypted email portals, and verified recipient verification for closing documents." },
       { title: "Property Management System (PMS) Hosting", description: "High-availability cloud hosting and support for Yardi, RealPage, AppFolio, and custom tenant portals." },
@@ -212,7 +212,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "PCI-DSS Compliance Audits", description: "Retail stores processing credit card data face strict compliance requirements and catastrophic penalties for unencrypted cardholder data." },
       { title: "Customer Wi-Fi Security Risks", description: "Unsegmented guest Wi-Fi allows malicious visitors to scan in-store networks and attempt attacks on POS terminals." },
     ],
-    technosprintSolution: "Orbytes installs dual-WAN routers with instant LTE failover, isolates POS terminals on dedicated PCI-compliant VLANs, and provides 24/7 monitoring so registers never go offline.",
+    orbytesSolution: "Orbytes installs dual-WAN routers with instant LTE failover, isolates POS terminals on dedicated PCI-compliant VLANs, and provides 24/7 monitoring so registers never go offline.",
     capabilities: [
       { title: "Zero-Downtime POS LTE Failover", description: "Instant cellular backup that seamlessly keeps credit card terminals processing transactions during fiber outages." },
       { title: "PCI-DSS Compliant Network Segmentation", description: "Physically and logically separate payment terminals from back-office computers and customer Wi-Fi networks." },
@@ -254,7 +254,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Client Privacy & Profile Protection", description: "Storing confidential client credit card details, treatment notes, and contact info requires strict data protection." },
       { title: "Unreliable Front Desk Tablets", description: "Slow tablet checkouts and failed contactless tap-to-pay transactions frustrate clients and slow down stylists." },
     ],
-    technosprintSolution: "We configure reliable, cloud-backed booking platforms (Mindbody, Boulevard, Phorest, Fresha), optimize salon Wi-Fi, and provide managed iPads and payment terminals with instant support.",
+    orbytesSolution: "We configure reliable, cloud-backed booking platforms (Mindbody, Boulevard, Phorest, Fresha), optimize salon Wi-Fi, and provide managed iPads and payment terminals with instant support.",
     capabilities: [
       { title: "Booking Software Optimization & Cloud Sync", description: "Ensure calendar appointments, staff schedules, and client histories synchronize flawlessly across all devices." },
       { title: "Managed Front-Desk & Stylist Tablets", description: "Pre-configured iPads locked into single-app kiosk mode for rapid client check-in and mobile chairside payments." },
@@ -299,7 +299,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "EHR / EMR System Latency", description: "Slow Electronic Health Record loading stalls clinician charting, delays medication orders, and frustrates physicians." },
       { title: "Medical Device Network Vulnerabilities", description: "Diagnostic imaging devices, infusion pumps, and patient monitors running legacy operating systems create attack entry points." },
     ],
-    technosprintSolution: "Orbytes builds zero-trust healthcare networks with isolated medical device VLANs, immutable ransomware-proof patient backups, and priority sub-15 minute emergency clinical response.",
+    orbytesSolution: "Orbytes builds zero-trust healthcare networks with isolated medical device VLANs, immutable ransomware-proof patient backups, and priority sub-15 minute emergency clinical response.",
     capabilities: [
       { title: "HIPAA Zero-Trust Architecture", description: "Full data encryption at rest and in transit, multi-factor biometric authentication, and immutable audit logging." },
       { title: "EHR / PACS Optimization & High Availability", description: "Performance tuning and low-latency storage for Epic, Cerner, MEDITECH, and high-resolution PACS imaging." },
@@ -341,7 +341,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "DEA EPCS Compliance Mandates", description: "Electronic Prescriptions for Controlled Substances (EPCS) require strict two-factor authentication and auditable digital chain-of-custody." },
       { title: "Insurance Adjudication Timeouts", description: "Slow network connections cause real-time insurance claims processing to time out, creating angry customer lines." },
     ],
-    technosprintSolution: "We provide high-speed, dual-WAN failover networks for uninterrupted insurance adjudication, hardened PMS hosting, and two-factor token authentication meeting strict DEA EPCS standards.",
+    orbytesSolution: "We provide high-speed, dual-WAN failover networks for uninterrupted insurance adjudication, hardened PMS hosting, and two-factor token authentication meeting strict DEA EPCS standards.",
     capabilities: [
       { title: "Pharmacy Management System (PMS) Support", description: "Expert maintenance and tuning for PioneerRx, QS/1, McKesson EnterpriseRx, and Computer-Rx." },
       { title: "DEA EPCS Two-Factor Authentication", description: "Deploy compliant hardware security keys and biometric tokens for controlled substance dispensing approval." },
@@ -383,7 +383,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "FDA 21 CFR Part 11 Audit Trails", description: "Clinical trial data and laboratory results must maintain immutable, tamper-evident audit logs to satisfy FDA scrutiny." },
       { title: "Cleanroom Workstation Restrictions", description: "Cleanroom IT equipment must comply with sterilization standards and maintain remote manageability without physical entry." },
     ],
-    technosprintSolution: "Orbytes delivers tiered hybrid cloud storage for multi-petabyte datasets, validates LIMS systems for FDA 21 CFR Part 11 compliance, and deploys sealed, remotely managed cleanroom terminals.",
+    orbytesSolution: "Orbytes delivers tiered hybrid cloud storage for multi-petabyte datasets, validates LIMS systems for FDA 21 CFR Part 11 compliance, and deploys sealed, remotely managed cleanroom terminals.",
     capabilities: [
       { title: "High-Performance Compute & Scientific Storage", description: "10Gbps/40Gbps laboratory storage networks with automated tiering to low-cost cloud archive vaults." },
       { title: "LIMS System Integration & Support", description: "Seamless deployment, backup, and database tuning for leading Laboratory Information Management Systems." },
@@ -425,7 +425,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Multi-Location Billing Sync Errors", description: "Members visiting different gym branches experience check-in rejection due to out-of-sync database records." },
       { title: "Gym Floor Wi-Fi Congestion", description: "Hundreds of concurrent members streaming music and video quickly saturate bandwidth, disrupting music feeds and cardio screens." },
     ],
-    technosprintSolution: "We deploy cloud-managed access control with local offline caching, optimize member management systems (ABC Fitness, Mindbody, Jonas), and engineer high-density gym floor Wi-Fi.",
+    orbytesSolution: "We deploy cloud-managed access control with local offline caching, optimize member management systems (ABC Fitness, Mindbody, Jonas), and engineer high-density gym floor Wi-Fi.",
     capabilities: [
       { title: "24/7 Access Control & Turnstile Integration", description: "RFID, barcode, and mobile NFC turnstile systems with local offline caching that grants access even during internet outages." },
       { title: "Multi-Club Membership Database Sync", description: "Real-time synchronization of member status, payments, and waiver forms across all regional locations." },
@@ -467,7 +467,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Manual Paper Patient Intake", description: "Paper health histories require manual retyping, increasing administrative overhead and introducing transcription errors." },
       { title: "Remote Clinician Laptop Vulnerabilities", description: "Therapists and wellness practitioners working from home laptops risk exposing client clinical notes if devices are lost or stolen." },
     ],
-    technosprintSolution: "We deploy turn-key, HIPAA-compliant telehealth portals, digital tablet intake workflows, and full-disk device encryption to protect client mental and physical health records.",
+    orbytesSolution: "We deploy turn-key, HIPAA-compliant telehealth portals, digital tablet intake workflows, and full-disk device encryption to protect client mental and physical health records.",
     capabilities: [
       { title: "HIPAA-Compliant Telehealth Infrastructure", description: "End-to-end encrypted video and audio consultation platforms that execute Business Associate Agreements (BAAs)." },
       { title: "Paperless Patient Intake & Consent", description: "Encrypted digital intake forms completed on patient phones or clinic iPads that populate directly into client charts." },
@@ -512,7 +512,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Managing Large 1:1 Device Fleets", description: "Deploying, monitoring, and filtering thousands of student Chromebooks, iPads, and laptops across school districts is an administrative nightmare." },
       { title: "CIPA & FERPA Regulatory Compliance", description: "Schools must enforce strict content filtering to block inappropriate content (CIPA) while safeguarding student privacy records (FERPA)." },
     ],
-    technosprintSolution: "Orbytes deploys high-density Wi-Fi 6E/7 campus networks, centralizes Google Workspace / Apple School Manager device fleets, and implements CIPA-compliant content filtering and threat protection.",
+    orbytesSolution: "Orbytes deploys high-density Wi-Fi 6E/7 campus networks, centralizes Google Workspace / Apple School Manager device fleets, and implements CIPA-compliant content filtering and threat protection.",
     capabilities: [
       { title: "High-Density Campus Wi-Fi 6E/7", description: "Engineered specifically for lecture halls, dormitories, and sports stadiums to support thousands of concurrent devices." },
       { title: "1:1 Student Device Fleet Management", description: "Automated provisioning, policy lockdown, web filtering, and remote recovery for Chromebook and iPad fleets." },
@@ -554,7 +554,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Video Latency & Buffer Lag", description: "Choppy video and out-of-sync audio during live virtual lectures degrade student engagement and retention." },
       { title: "Online Exam Cheating & Integrity", description: "Securing online testing environments against unauthorized browser tabs, screen sharing, and unverified test takers." },
     ],
-    technosprintSolution: "We engineer auto-scaling cloud clusters for learning management systems, deploy low-latency WebRTC live video pipelines, and integrate secure lockdown browser proctoring tools.",
+    orbytesSolution: "We engineer auto-scaling cloud clusters for learning management systems, deploy low-latency WebRTC live video pipelines, and integrate secure lockdown browser proctoring tools.",
     capabilities: [
       { title: "High-Concurrency LMS Cloud Hosting", description: "Auto-scaling cloud infrastructure for Canvas, Moodle, and custom LMS platforms capable of handling 50,000+ simultaneous test takers." },
       { title: "Low-Latency Global Video Delivery", description: "Global CDN and WebRTC video streaming pipelines delivering sub-second interactive lectures without buffering." },
@@ -596,7 +596,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Petabyte Storage Cost Prohibitions", description: "Scientific instruments generate petabytes of raw data that exceed local budget constraints if stored on expensive primary SANs." },
       { title: "Federal Grant Cybersecurity Mandates", description: "Federal research grants (NSF, NIH, DoD) require strict NIST SP 800-171 and CMMC cybersecurity controls to prevent intellectual property theft." },
     ],
-    technosprintSolution: "Orbytes designs hybrid HPC GPU compute clusters, deploys high-speed InfiniBand/100GbE storage pipelines, and implements NIST compliance frameworks to protect scientific discoveries.",
+    orbytesSolution: "Orbytes designs hybrid HPC GPU compute clusters, deploys high-speed InfiniBand/100GbE storage pipelines, and implements NIST compliance frameworks to protect scientific discoveries.",
     capabilities: [
       { title: "High-Performance Compute (HPC) & GPU Clusters", description: "Architect and manage on-prem and cloud burst HPC clusters optimized for Slurm, MPI, and CUDA workloads." },
       { title: "Multi-Petabyte Research Data Stores", description: "High-throughput Ceph, Lustre, and cloud object storage tiers providing lightning-fast IOPS for simulation jobs." },
@@ -638,7 +638,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Malware from Public Computer Use", description: "Patrons browsing public research computers introduce malware, keyloggers, and configuration tampering that compromise library networks." },
       { title: "Complex Metadata Search & Discovery", description: "Legacy library catalogs make searching rare manuscripts and digital historical collections difficult for remote scholars." },
     ],
-    technosprintSolution: "We deploy immutable WORM cloud archiving with continuous hash verification, implement automated reboot-to-restore software on public terminals, and host modern discovery portals.",
+    orbytesSolution: "We deploy immutable WORM cloud archiving with continuous hash verification, implement automated reboot-to-restore software on public terminals, and host modern discovery portals.",
     capabilities: [
       { title: "Immutable Digital Preservation & Archiving", description: "Long-term preservation storage with automated SHA-256 checksum verification to detect and repair data corruption." },
       { title: "Public Terminal Sandboxing & Instant Restore", description: "Automated wipe and re-image on every patron logout (Deep Freeze technology), removing all viruses and history." },
@@ -680,7 +680,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Student Machine Conflicts & Corruption", description: "Previous students altering settings, deleting files, or leaving unfinished code breaks environments for the next day's attendees." },
       { title: "Strict Certification Testing Requirements", description: "Proctored certification testing centers (Pearson VUE, Prometric) require locked-down workstation standards and uninterrupted internet." },
     ],
-    technosprintSolution: "Orbytes deploys one-click virtual lab provisioning that gives every attendee a fresh cloud environment in seconds, backed by high-speed classroom Wi-Fi and audio-visual integration.",
+    orbytesSolution: "Orbytes deploys one-click virtual lab provisioning that gives every attendee a fresh cloud environment in seconds, backed by high-speed classroom Wi-Fi and audio-visual integration.",
     capabilities: [
       { title: "Automated Virtual Hands-On Labs", description: "Spin up isolated cloud lab environments for coding, DevOps, or enterprise software workshops with a single click." },
       { title: "Rapid Classroom Reset & Re-Imaging", description: "Instantly re-image physical classroom workstations back to pre-course baseline in under 5 minutes between training cohorts." },
@@ -725,7 +725,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "OT / SCADA Ransomware Vulnerability", description: "Legacy PLC controllers and SCADA HMIs connected directly to corporate networks expose factory operations to devastating ransomware." },
       { title: "Harsh Factory Floor Physical Environment", description: "Vibration, extreme temperatures, dust, and electrical interference destroy standard office-grade Wi-Fi and computers." },
     ],
-    technosprintSolution: "Orbytes implements Purdue Model OT network segmentation, deploys IP67-rated ruggedized industrial Wi-Fi and switches, and monitors MES production databases around the clock.",
+    orbytesSolution: "Orbytes implements Purdue Model OT network segmentation, deploys IP67-rated ruggedized industrial Wi-Fi and switches, and monitors MES production databases around the clock.",
     capabilities: [
       { title: "Purdue Model OT / IT Air-Gapping", description: "Strict demilitarized zones (DMZs) and industrial firewalls separating corporate office networks from factory floor PLCs." },
       { title: "MES & ERP Database High Availability", description: "Real-time clustering and instant failover for Manufacturing Execution Systems, SAP, and Plex platforms." },
@@ -767,7 +767,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Massive 3D CAD/CAM File Transfer Latency", description: "Engineers collaborating on gigabyte-sized CATIA, SolidWorks, and Siemens NX assemblies suffer from sluggish file opening and saving over VPNs." },
       { title: "Automotive OEM EDI Supply Chain Deadlines", description: "Failing to transmit Electronic Data Interchange (EDI) advance shipping notices to Ford, GM, or Boeing results in severe supplier penalty chargebacks." },
     ],
-    technosprintSolution: "We build secure CMMC Level 2 enclaves for defense manufacturing, optimize VDI virtual workstations for 3D CAD modeling, and provide 24/7 monitored EDI transaction gateways.",
+    orbytesSolution: "We build secure CMMC Level 2 enclaves for defense manufacturing, optimize VDI virtual workstations for 3D CAD modeling, and provide 24/7 monitored EDI transaction gateways.",
     capabilities: [
       { title: "CMMC 2.0 & ITAR Compliance Enclaves", description: "Audit-ready cloud environments engineered to securely store and process Controlled Unclassified Information (CUI)." },
       { title: "GPU-Accelerated Virtual Workstations (VDI)", description: "High-performance cloud desktops powered by NVIDIA GPUs allowing engineers to model complex 3D CAD assemblies from anywhere." },
@@ -809,7 +809,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Slow BIM & Blueprint Synchronization", description: "Field engineers working off outdated blueprints due to slow syncing causes costly rework and construction delays." },
       { title: "Harsh Dust & Mud Jobsite Conditions", description: "Extreme temperatures, dust, vibrations, and weather quickly destroy consumer-grade laptops and networking equipment." },
     ],
-    technosprintSolution: "Orbytes provides turnkey 'Jobsite-in-a-Box' trailers with auto-aiming Starlink and multi-carrier 5G, rugged field tablets, and cloud sync for Procore, Autodesk Construction Cloud, and Revit.",
+    orbytesSolution: "Orbytes provides turnkey 'Jobsite-in-a-Box' trailers with auto-aiming Starlink and multi-carrier 5G, rugged field tablets, and cloud sync for Procore, Autodesk Construction Cloud, and Revit.",
     capabilities: [
       { title: "Jobsite-in-a-Box 5G & Starlink Connectivity", description: "Rapidly deployable, weather-sealed kits delivering high-speed internet and Wi-Fi to job trailers on day one." },
       { title: "BIM & Cloud Project Synchronization", description: "Optimized network pipelines for Procore, Autodesk Construction Cloud, Bluebeam, and PlanGrid." },
@@ -851,7 +851,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Strict NERC CIP Regulatory Mandates", description: "Electric utilities face severe daily fines for any physical or cybersecurity deficiency on BES (Bulk Electric System) cyber assets." },
       { title: "Remote Unmanned Substation Monitoring", description: "Monitoring substations and remote pump stations across hundreds of miles of remote terrain requires resilient industrial networking." },
     ],
-    technosprintSolution: "We build NERC CIP compliant security architectures, deploy ruggedized cellular routers with IPsec encryption for remote telemetry, and provide 24/7 specialized utility SOC monitoring.",
+    orbytesSolution: "We build NERC CIP compliant security architectures, deploy ruggedized cellular routers with IPsec encryption for remote telemetry, and provide 24/7 specialized utility SOC monitoring.",
     capabilities: [
       { title: "NERC CIP Audit & Compliance Hardening", description: "Comprehensive assistance achieving and documenting compliance with NERC CIP-002 through CIP-014 standards." },
       { title: "Rugged Substation SCADA Telemetry", description: "Substation-hardened (IEC 61850 / IEEE 1613) routers transferring RTU telemetry over private cellular APNs." },
@@ -893,7 +893,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Dust, Mud, and Extreme Temperature Wear", description: "Airborne mineral dust, slurry, and temperature extremes rapidly overheat and short-circuit standard networking gear." },
       { title: "Autonomous Hauler Network Latency", description: "Autonomous drill rigs and robotic haul trucks require guaranteed low-latency wireless links to prevent emergency safety stops." },
     ],
-    technosprintSolution: "We design Private LTE/5G wireless networks, deploy IP68 dust-proof edge compute clusters, and integrate Starlink/O3b satellite backhaul with local offline autonomous control.",
+    orbytesSolution: "We design Private LTE/5G wireless networks, deploy IP68 dust-proof edge compute clusters, and integrate Starlink/O3b satellite backhaul with local offline autonomous control.",
     capabilities: [
       { title: "Private LTE / 5G Industrial Networks", description: "Deploy dedicated private cellular base stations providing miles of reliable coverage for autonomous equipment." },
       { title: "Starlink & Satellite Telemetry Backhaul", description: "High-throughput satellite communication linking remote mining camps and agricultural sensors directly to headquarters." },
@@ -935,7 +935,7 @@ export const industriesData: Record<string, IndustryItem> = {
       { title: "Driver Cell Phone Distraction & Security", description: "Unsecured driver tablets allow unauthorized app downloads and social media use, creating severe road safety and liability risks." },
       { title: "Cargo Temperature Telemetry Outages", description: "Refrigerated freight requires continuous temperature logging; dropped sensor alerts cause spoiled loads and costly insurance claims." },
     ],
-    technosprintSolution: "We deploy locked-down Mobile Device Management (MDM) on driver tablets, integrate IoT reefers with real-time temperature telemetry, and ensure 100% ELD data compliance.",
+    orbytesSolution: "We deploy locked-down Mobile Device Management (MDM) on driver tablets, integrate IoT reefers with real-time temperature telemetry, and ensure 100% ELD data compliance.",
     capabilities: [
       { title: "ELD Compliance & Hours-of-Service Integration", description: "Automated engine diagnostic connectors transmitting verified driving hours to dispatch and regulatory portals." },
       { title: "Kiosk-Locked Driver Tablet MDM", description: "Lock company tablets so drivers can only access dispatch, navigation, and inspection apps, preventing distractions." },

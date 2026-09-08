@@ -2,9 +2,10 @@ import { MetadataRoute } from "next";
 import { servicesData } from "@/data/servicesData";
 import { industriesData } from "@/data/industriesData";
 import { insightsData } from "@/data/insightsData";
+import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://technosprint.net";
+  const baseUrl = siteConfig.url;
 
   const staticRoutes = [
     "",
@@ -26,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/insights",
     "/contact",
     "/privacy",
+    "/terms",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

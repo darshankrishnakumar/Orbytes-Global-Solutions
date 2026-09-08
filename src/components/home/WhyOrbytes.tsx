@@ -86,7 +86,7 @@ export function WhyOrbytes() {
   const CurrentIcon = current.icon;
 
   return (
-    <section id="why-technosprint" className="relative py-12 sm:py-16 bg-slate-50 border-t border-b border-slate-200 overflow-hidden scroll-mt-20">
+    <section id="why-orbytes" className="relative py-12 sm:py-16 bg-slate-50 border-t border-b border-slate-200 overflow-hidden scroll-mt-20">
       <div className="mx-auto max-w-7xl px-6">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 space-y-1.5">

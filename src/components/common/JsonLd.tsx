@@ -1,17 +1,29 @@
 import React from "react";
 import { companyData } from "@/data/companyData";
+import { siteConfig } from "@/config/site";
 
 export function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": `${siteConfig.url}/#website`,
+        "url": siteConfig.url,
+        "name": siteConfig.name,
+        "description": siteConfig.description,
+        "publisher": {
+          "@id": `${siteConfig.url}/#organization`,
+        },
+        "inLanguage": "en-US",
+      },
+      {
         "@type": "Organization",
-        "@id": "https://technosprint.net/#organization",
+        "@id": `${siteConfig.url}/#organization`,
         "name": companyData.name,
         "alternateName": companyData.shortName,
-        "url": "https://technosprint.net",
-        "logo": "https://technosprint.net/logo.png",
+        "url": siteConfig.url,
+        "logo": `${siteConfig.url}/icon.svg`,
         "sameAs": [
           companyData.socials.linkedin,
           companyData.socials.facebook,
@@ -36,7 +48,7 @@ export function JsonLd() {
       },
       ...companyData.offices.map((office, idx) => ({
         "@type": "LocalBusiness",
-        "@id": `https://technosprint.net/#office-${idx}`,
+        "@id": `${siteConfig.url}/#office-${idx}`,
         "name": `${companyData.name} - ${office.city}`,
         "address": {
           "@type": "PostalAddress",
@@ -46,7 +58,7 @@ export function JsonLd() {
         },
         "telephone": office.phone,
         "parentOrganization": {
-          "@id": "https://technosprint.net/#organization",
+          "@id": `${siteConfig.url}/#organization`,
         },
       })),
     ],

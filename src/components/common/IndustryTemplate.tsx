@@ -6,6 +6,7 @@ import { ArrowRight, ShieldAlert, Sparkles, TrendingUp, CheckCircle2, Building }
 import { IndustryItem } from "@/data/industriesData";
 import { FAQAccordion } from "./FAQAccordion";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { StructuredPageData } from "./StructuredPageData";
 
 // Specialized Industry Visuals
 import { HealthcareVisual } from "@/components/visuals/industries/HealthcareVisual";
@@ -53,6 +54,16 @@ export function IndustryTemplate({ industry }: IndustryTemplateProps) {
 
   return (
     <div className="pt-24 transition-colors duration-300">
+      <StructuredPageData
+        title={industry.name}
+        url={industry.href}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Industries", url: "/industries" },
+          { name: industry.name, url: industry.href },
+        ]}
+        faqs={industry.faqs}
+      />
       {/* 1. Industry Hero [DARK] */}
       <section className="relative py-20 bg-[#030714] text-white overflow-hidden border-b border-white/10">
         <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none -z-10" />
@@ -170,7 +181,7 @@ export function IndustryTemplate({ industry }: IndustryTemplateProps) {
 
               <div className="rounded-3xl border border-cyan-200 bg-slate-50 p-8 space-y-6 shadow-sm">
                 <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                  {industry.technosprintSolution}
+                  {industry.orbytesSolution}
                 </p>
 
                 <div className="space-y-3 pt-4 border-t border-slate-200">

@@ -18,8 +18,8 @@ export const companyData = {
   shortName: "Orbytes",
   tagline: "Technology that secures. Technology that scales. Technology that moves business forward.",
   foundedYear: 2020,
-  email: "info@technosprint.net",
-  secondaryEmail: "info@technosprintinfo.com",
+  email: "info@orbytesglobal.com",
+  secondaryEmail: "contact@orbytesglobal.com",
   phones: {
     indiaPrimary: "+91 90433 10908",
     indiaSecondary: "+91 90037 14619",

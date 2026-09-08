@@ -289,7 +289,7 @@ export function IndustryStory() {
                       <span>Orbytes Architecture</span>
                     </div>
                     <p className="text-xs text-slate-700 leading-relaxed line-clamp-2">
-                      {activeIndustry.technosprintSolution}
+                      {activeIndustry.orbytesSolution}
                     </p>
                     <div className="pt-1.5 border-t border-cyan-200/80 flex flex-wrap gap-1">
                       {activeIndustry.subSectors.slice(0, 3).map((sub, i) => (

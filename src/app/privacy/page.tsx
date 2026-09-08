@@ -84,7 +84,7 @@ export default function PrivacyPage() {
           </div>
 
           <div className="pt-4 text-xs text-slate-500 border-t border-slate-200">
-            For data protection inquiries or to exercise your privacy rights, contact our Data Protection Officer at: <a href="mailto:info@technosprint.net" className="text-cyan-600 hover:underline font-semibold">info@technosprint.net</a>
+            For data protection inquiries or to exercise your privacy rights, contact our Data Protection Officer at: <a href="mailto:info@orbytesglobal.com" className="text-cyan-600 hover:underline font-semibold">info@orbytesglobal.com</a>
           </div>
         </div>
       </section>

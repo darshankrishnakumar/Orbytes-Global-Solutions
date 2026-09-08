@@ -105,7 +105,7 @@ export function Navbar() {
           </div>
 
           <Link
-            href="/#why-technosprint"
+            href="/#why-orbytes"
             className="px-3.5 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
           >
             Why Orbytes

@@ -46,13 +46,35 @@ export function ContactWizard() {
     setStep(step + 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    try {
+      const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+      if (web3FormsKey) {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: web3FormsKey,
+            subject: `New Enterprise Inquiry from ${formData.companyName || formData.fullName}`,
+            from_name: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.companyName,
+            solution_area: formData.need,
+            company_size: formData.companySize,
+            challenge: formData.challenge,
+          }),
+        });
+      }
+    } catch (err) {
+      console.warn("Form dispatch info:", err);
+    } finally {
       setIsSubmitting(false);
       setStep(5); // Success state
-    }, 900);
+    }
   };
 
   return (
@@ -370,24 +392,40 @@ export function ContactWizard() {
               <div><strong>Response Channel:</strong> {formData.email}</div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => {
-                setStep(1);
-                setFormData({
-                  need: "",
-                  companySize: "",
-                  challenge: "",
-                  fullName: "",
-                  email: "",
-                  phone: "",
-                  companyName: "",
-                });
-              }}
-              className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
-            >
-              Submit another inquiry →
-            </button>
+            <div className="pt-2">
+              <a
+                href={`https://wa.me/919043310908?text=${encodeURIComponent(
+                  `Hi Orbytes, I just submitted an enterprise inquiry for ${formData.need || "IT Services"} on orbytesglobal.com.`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md transition-colors"
+              >
+                <span>Fast-track on WhatsApp</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+
+            <div>
+              <button
+                type="button"
+                onClick={() => {
+                  setStep(1);
+                  setFormData({
+                    need: "",
+                    companySize: "",
+                    challenge: "",
+                    fullName: "",
+                    email: "",
+                    phone: "",
+                    companyName: "",
+                  });
+                }}
+                className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
+              >
+                Submit another inquiry →
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

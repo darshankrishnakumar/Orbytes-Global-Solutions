@@ -6,6 +6,7 @@ import { ArrowRight, ShieldCheck, CheckCircle2, AlertTriangle, Sparkles, Layers 
 import { ServiceItem } from "@/data/servicesData";
 import { FAQAccordion } from "./FAQAccordion";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { StructuredPageData } from "./StructuredPageData";
 
 // Specialized Service Visuals
 import { SecurityRadarVisual } from "@/components/visuals/services/SecurityRadarVisual";
@@ -40,6 +41,16 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
 
   return (
     <div className="pt-24 transition-colors duration-300">
+      <StructuredPageData
+        title={service.title}
+        url={service.href}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: service.title, url: service.href },
+        ]}
+        faqs={service.faqs}
+      />
       {/* 1. Service Hero [DARK] */}
       <section className="relative py-20 bg-[#030714] text-white overflow-hidden border-b border-white/10">
         <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none -z-10" />
