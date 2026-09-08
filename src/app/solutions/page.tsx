@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Sparkles, Layers, ShieldCheck, Server, Cloud, Settings, Compass, Code2 } from "lucide-react";
 import { servicesData } from "@/data/servicesData";
 import { FinalCTA } from "@/components/home/FinalCTA";
-import { SolutionsMatrixVisual } from "@/components/visuals/services/SolutionsMatrixVisual";
+import { SolutionsArchitectureVisual } from "@/components/visuals/services/SolutionsArchitectureVisual";
 
 export const metadata: Metadata = {
   title: "Enterprise Solutions & Services | Orbytes",
@@ -23,7 +23,7 @@ export default function SolutionsHubPage() {
 
   return (
     <div className="pt-24 transition-colors duration-300">
-      {/* 1. Header & Solutions Constellation [DARK] */}
+      {/* 1. Header & Solutions Architecture Visual [DARK] */}
       <section className="py-20 bg-[#030714] text-white border-b border-white/10 text-center">
         <div className="mx-auto max-w-4xl px-6 space-y-4 mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-xs font-semibold text-cyan-300">
@@ -38,9 +38,9 @@ export default function SolutionsHubPage() {
           </p>
         </div>
 
-        {/* Specialized Interactive Service Mesh Constellation in Dark Room */}
-        <div className="mx-auto max-w-7xl px-6">
-          <SolutionsMatrixVisual />
+        {/* Specialized Interactive Solutions Architecture Visual matching Image 1 */}
+        <div className="mx-auto max-w-5xl px-6 text-left">
+          <SolutionsArchitectureVisual />
         </div>
       </section>
 

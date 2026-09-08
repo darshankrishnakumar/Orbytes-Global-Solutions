@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Sparkles, Server, ShieldCheck, Settings, Cloud, Compass, Code2, LineChart, ShieldAlert, Database, Layers, Network, CloudLightning, ShoppingBag, Layout } from "lucide-react";
 import { servicesData } from "@/data/servicesData";
 import { FinalCTA } from "@/components/home/FinalCTA";
-import { SolutionsMatrixVisual } from "@/components/visuals/services/SolutionsMatrixVisual";
+import { SolutionsArchitectureVisual } from "@/components/visuals/services/SolutionsArchitectureVisual";
 
 export const metadata: Metadata = {
   title: "Enterprise IT Services & Solutions | Orbytes",
@@ -77,8 +77,8 @@ export default function ServicesIndexPage() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-7xl px-6">
-          <SolutionsMatrixVisual />
+        <div className="mx-auto max-w-5xl px-6 text-left">
+          <SolutionsArchitectureVisual />
         </div>
       </section>
 
