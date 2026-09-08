@@ -53,15 +53,15 @@ export default function PartnersPage() {
               >
                 <div>
                   {partner.imageUrl && (
-                    <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+                    <div className="relative aspect-[16/9] overflow-hidden bg-slate-950 flex items-center justify-center p-6">
                       <img
                         src={partner.imageUrl}
                         alt={`${partner.name} alliance architecture`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="max-h-24 max-w-[80%] object-contain rounded-xl group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
                       <div className="absolute top-3 right-3">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-900 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-md border border-slate-200 shadow-sm">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 bg-[#030714]/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-cyan-500/30 shadow-sm">
                           {partner.badge}
                         </span>
                       </div>

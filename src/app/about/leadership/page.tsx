@@ -52,13 +52,23 @@ export default function LeadershipPage() {
                 className="group relative flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-cyan-500/50 hover:bg-white shadow-sm hover:shadow-xl"
               >
                 <div className="space-y-6">
-                  {/* Portrait Placeholder Avatar with Initials & Gradient */}
+                  {/* Executive Portrait Photo with fallback to Initials */}
                   <div className="flex items-center gap-4">
-                    <div
-                      className={`h-16 w-16 rounded-2xl bg-gradient-to-br ${exec.gradient} flex items-center justify-center font-bold text-xl text-white shadow-md`}
-                    >
-                      {exec.initials}
-                    </div>
+                    {exec.image ? (
+                      <div className="relative h-16 w-16 rounded-2xl overflow-hidden border border-slate-200 shadow-md shrink-0 bg-slate-100">
+                        <img
+                          src={exec.image}
+                          alt={exec.name}
+                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className={`h-16 w-16 rounded-2xl bg-gradient-to-br ${exec.gradient} flex items-center justify-center font-bold text-xl text-white shadow-md shrink-0`}
+                      >
+                        {exec.initials}
+                      </div>
+                    )}
                     <div>
                       <h3 className="text-lg font-bold text-slate-900 font-display">
                         {exec.name}

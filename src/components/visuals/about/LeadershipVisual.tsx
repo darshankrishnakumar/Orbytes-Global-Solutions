@@ -10,25 +10,45 @@ export function LeadershipVisual() {
   const active = leadershipData[selectedLeader];
 
   const domainFocus: Record<string, { mandate: string; focus: string[]; badge: string }> = {
+    "Arun G": {
+      mandate: "Directs executive strategy, high-level investor relationships, and enterprise expansion initiatives across international delivery centers.",
+      focus: ["Corporate Strategy", "Global Expansion", "Enterprise Vision"],
+      badge: "Founder & Executive Director",
+    },
     "Ranganadin C": {
-      mandate: "Directs global corporate strategy, enterprise client fiduciary trust, and continuous institutional growth across India and international markets.",
-      focus: ["Enterprise Scalability", "Capital Stewardship", "Fiduciary Integrity"],
-      badge: "Executive Chairman",
+      mandate: "Directs global corporate operations, enterprise client fiduciary trust, and continuous institutional growth across India and international markets.",
+      focus: ["Enterprise Scalability", "Global Operations", "Fiduciary Integrity"],
+      badge: "Chief Executive Officer",
     },
     "Jothi Shankar K": {
       mandate: "Heads international market expansions, Tier-1 enterprise partner alliances, and cross-border commercial engagements in North America and Asia-Pacific.",
-      focus: ["Strategic Partnerships", "North American Expansion", "Client Advisory"],
-      badge: "Commercial Director",
+      focus: ["Enterprise Delivery", "Strategic Partnerships", "Client Advisory"],
+      badge: "Managing Partner & Delivery Head",
+    },
+    "Padmavathy V": {
+      mandate: "Spearheads Orbytes brand architecture, market positioning, and enterprise client education, articulating complex cybersecurity capabilities into clear business value.",
+      focus: ["Brand Architecture", "Market Positioning", "Client Engagement"],
+      badge: "Chief Marketing Officer",
     },
     "Ajay Sundar N": {
-      mandate: "Engineers proprietary Cloud DevOps frameworks, automated infrastructure pipelines, and next-generation Edge AI platforms with 99.999% SLA standards.",
+      mandate: "Engineers proprietary Cloud DevOps frameworks, automated infrastructure pipelines, and next-generation Edge AI platforms with 99.99% SLA standards.",
       focus: ["Multi-Cloud Architecture", "AIOps & Automation", "Continuous Delivery"],
-      badge: "Technology Architect",
+      badge: "Chief Technical Officer",
     },
     "Jaganathan R": {
       mandate: "Oversees 24/7/365 Global SOC operations, threat hunting intelligence, zero-trust cryptographic boundaries, and ISO 27001 regulatory compliance.",
-      focus: ["24/7 SOC / Incident Response", "Zero-Trust Cryptography", "Threat Intelligence"],
-      badge: "Cyber Defense Chief",
+      focus: ["24/7 SOC Defense", "Zero-Trust Architecture", "Threat Intelligence"],
+      badge: "Chief Security Officer",
+    },
+    "Cyrille Helena": {
+      mandate: "Directs Orbytes regional expansion and enterprise managed service delivery across Central Africa, managing localized client support and infrastructure resilience.",
+      focus: ["Regional Expansion", "SLA Continuity", "Localized Delivery"],
+      badge: "Operation Head — Central Africa",
+    },
+    "Akansha Arora": {
+      mandate: "Oversees European market outreach, GDPR compliance alignments, and enterprise partnerships across Central Europe.",
+      focus: ["European Alliances", "Regulatory GDPR", "Cross-Border Support"],
+      badge: "Operation Head — Central Europe",
     },
   };
 
@@ -94,12 +114,29 @@ export function LeadershipVisual() {
           transition={{ duration: 0.2 }}
           className="rounded-2xl border border-white/10 bg-[#040816] p-6 space-y-4"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
-            <div>
-              <span className="text-xs font-mono text-cyan-400">{activeFocus.badge}</span>
-              <h3 className="text-lg font-bold text-white font-display mt-0.5">
-                {active.name} — {active.role}
-              </h3>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+            <div className="flex items-center gap-4">
+              {active.image ? (
+                <div className="relative h-16 w-16 rounded-2xl overflow-hidden border border-cyan-500/40 shadow-lg shrink-0 bg-slate-900">
+                  <img
+                    src={active.image}
+                    alt={active.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+              ) : (
+                <div
+                  className={`h-16 w-16 rounded-2xl bg-gradient-to-br ${active.gradient} flex items-center justify-center font-bold text-xl text-white shadow-lg shrink-0`}
+                >
+                  {active.initials}
+                </div>
+              )}
+              <div>
+                <span className="text-xs font-mono text-cyan-400">{activeFocus.badge}</span>
+                <h3 className="text-lg font-bold text-white font-display mt-0.5">
+                  {active.name} — {active.role}
+                </h3>
+              </div>
             </div>
             <div className="text-xs text-slate-400 font-mono">
               Orbytes Executive Governance

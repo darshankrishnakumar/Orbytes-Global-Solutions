@@ -7,8 +7,15 @@ export interface OfficeLocation {
   imageUrl?: string;
 }
 
-export interface TimelineMilestone {
-  year: string;
+export interface ModernPillar {
+  title: string;
+  tagline: string;
+  description: string;
+  highlights: string[];
+}
+
+export interface GovernancePrinciple {
+  number: string;
   title: string;
   description: string;
 }
@@ -17,7 +24,9 @@ export const companyData = {
   name: "Orbytes Global Solutions",
   shortName: "Orbytes",
   tagline: "Technology that secures. Technology that scales. Technology that moves business forward.",
-  foundedYear: 2020,
+  philosophy: "Stay Focused on Leadership — We've Got Your IT Covered.",
+  missionStatement: "At Orbytes, we deliver cutting-edge IT solutions that empower businesses to thrive in the digital age. Built from the ground up for modern enterprise agility, unbreakable cybersecurity, and cloud elasticity.",
+  partnerPromise: "Your Strategic IT Partner: Delivering exceptional IT services tailored to your business objectives, ensuring long-term success, zero downtime, and a definitive competitive advantage.",
   email: "info@orbytesglobal.com",
   secondaryEmail: "contact@orbytesglobal.com",
   phones: {
@@ -37,7 +46,7 @@ export const companyData = {
       address: "A4, Chandra Shekhar Avenue, 1st Street, Thuraipakkam, Chennai - 600 097, Tamil Nadu",
       phone: "+91 90433 10908",
       isHeadquarter: true,
-      imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+      imageUrl: "/images/about/company2.webp",
     },
     {
       city: "Puducherry",
@@ -45,7 +54,7 @@ export const companyData = {
       address: "3rd & 4th Floor, Fun Center, 64, South Boulevard, MG Road Area, Puducherry - 605 001",
       phone: "+91 90037 14619",
       isHeadquarter: false,
-      imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80",
+      imageUrl: "/images/about/company.webp",
     },
     {
       city: "Toronto",
@@ -58,40 +67,46 @@ export const companyData = {
   ] as OfficeLocation[],
   metrics: [
     { label: "Uptime SLA Guarantee", value: "99.99%", detail: "Enterprise-grade operational reliability" },
-    { label: "Continuous Monitoring", value: "24/7/365", detail: "Proactive threat detection and SOC defense" },
-    { label: "Global Coverage", value: "3 Continents", detail: "Serving India, North America & Central Africa" },
-    { label: "Enterprise Experience", value: "10+ Years", detail: "Collective technical leadership expertise" },
+    { label: "Continuous Monitoring", value: "24/7/365", detail: "Proactive threat detection & SOC defense" },
+    { label: "Global Coverage", value: "India & Canada", detail: "Multi-region technical dispatch & support" },
+    { label: "Delivery Standard", value: "Zero Downtime", detail: "Engineered for business continuity" },
   ],
-  milestones: [
+  foundationalPillars: [
     {
-      year: "2020",
-      title: "Foundation of Orbytes",
-      description: "Founded with a clear mission to provide high-reliability enterprise IT services, modern infrastructure, and secure technology management.",
+      title: "Born Cloud-Native & Zero Legacy Debt",
+      tagline: "Pure Modern Architecture",
+      description: "Unlike traditional MSPs bogged down by legacy architectures, Orbytes was built from Day One with cloud-native pipelines, containerized microservices, and modern infrastructure-as-code.",
+      highlights: ["No legacy technical debt", "Container & cloud-native first", "Automated deployment pipelines", "Modern observability tooling"],
     },
     {
-      year: "2021",
-      title: "MSSP & Managed IT Launch",
-      description: "Launched flagship 24/7 Managed Security Services (MSSP) and Managed IT Services (MSP) with continuous network defense and SLA monitoring.",
+      title: "24/7 Proactive SOC & Threat Defense",
+      tagline: "Autonomous Security Operations",
+      description: "Our Security Operations Center delivers continuous monitoring, AI-augmented telemetry, and immediate endpoint containment to protect client data before breaches occur.",
+      highlights: ["Real-time threat telemetry", "Zero Trust access enforcement", "Sub-15 min critical response", "Proactive vulnerability remediation"],
     },
     {
-      year: "2022",
-      title: "Cloud & Data Migration Expansion",
-      description: "Expanded our service portfolio to include enterprise Cloud Migration, Azure Cost Governance, and Infrastructure as a Service (IaaS).",
+      title: "Enterprise Multi-Cloud & FinOps Scalability",
+      tagline: "Elastic Infrastructure",
+      description: "We architect resilient multi-cloud environments on Microsoft Azure and AWS, incorporating continuous FinOps cost governance to maximize ROI while maintaining 99.99% uptime.",
+      highlights: ["Certified Azure & AWS engineers", "Automated disaster recovery", "FinOps continuous cost reduction", "Hybrid-cloud migration expertise"],
     },
     {
-      year: "2023",
-      title: "ITSM & Strategic Consulting",
-      description: "Introduced comprehensive IT Service Management (ITSM) aligning with ITIL standards and strategic Governance, Risk & Compliance (GRC) advisory.",
+      title: "Global Delivery & Unified Enterprise SLAs",
+      tagline: "Seamless Cross-Border Support",
+      description: "Operating synchronously across India and North America, our delivery model combines around-the-clock follow-the-sun technical expertise with guaranteed SLAs.",
+      highlights: ["India & Canada operational hubs", "Follow-the-sun 24/7 coverage", "Transparent ticketing & reporting", "Direct access to lead engineers"],
     },
-    {
-      year: "2024",
-      title: "Industry Vertical Specialization",
-      description: "Engineered purpose-built technology architectures for Healthcare (HIPAA compliant), Manufacturing (OT/IoT), and Education sectors.",
-    },
-    {
-      year: "2025–2026",
-      title: "Global Enterprise Transformation",
-      description: "Established operations in Canada and Africa while delivering autonomous cybersecurity resilience and cloud-scale architectures worldwide.",
-    },
-  ] as TimelineMilestone[],
+  ] as ModernPillar[],
+  governancePrinciples: [
+    { number: "01", title: "Accountability", description: "Taking full ownership of infrastructure resilience and data security across every client engagement." },
+    { number: "02", title: "Identifying Purpose", description: "Ensuring every technology deployment and data process serves a clear, documented business objective." },
+    { number: "03", title: "Consent & Transparency", description: "Maintaining complete transparency in data handling, communication, and client authorization." },
+    { number: "04", title: "Limiting Collection", description: "Collecting and analyzing only telemetry and data essential to operational excellence." },
+    { number: "05", title: "Accuracy & Integrity", description: "Enforcing strict data integrity, automated validation, and rigorous change management (CAB)." },
+    { number: "06", title: "Safeguarding Information", description: "Deploying end-to-end encryption, multi-factor authentication, and Zero Trust access controls." },
+    { number: "07", title: "Openness", description: "Providing direct, real-time access to system status, metrics, and incident reporting." },
+    { number: "08", title: "Individual Access", description: "Empowering client teams with self-service visibility, auditing rights, and clear data ownership." },
+    { number: "09", title: "Compliance Excellence", description: "Adhering strictly to international privacy frameworks, ISO 27001, SOC 2, and regulatory standards." },
+    { number: "10", title: "Continuous Mastery", description: "Relentless improvement, ongoing security drills, and continuous upskilling across modern technology." },
+  ] as GovernancePrinciple[],
 };
