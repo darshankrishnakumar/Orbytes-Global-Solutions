@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Shield } from "lucide-react";
 
 export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -318,28 +315,8 @@ export function HeroSection() {
     };
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 22 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
-
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 overflow-hidden bg-[#030714] text-white">
+    <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#030714] text-white">
       {/* ==========================================
           0. Scheduled Alternating Video Background
           Cycle: Video 1 -> Video 2 -> Video 1 -> Video 2 ...
@@ -358,7 +335,7 @@ export function HeroSection() {
           onEnded={handleVideo1Ended}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
           className={`absolute inset-0 w-full h-full object-cover object-center lg:object-[65%_center] z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
-            activeVideoIndex === 0 ? "opacity-80" : "opacity-0"
+            activeVideoIndex === 0 ? "opacity-90" : "opacity-0"
           }`}
         >
           <source src="/videos/hero-background.mp4" type="video/mp4" />
@@ -375,7 +352,7 @@ export function HeroSection() {
           onEnded={handleVideo2Ended}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
           className={`absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
-            activeVideoIndex === 1 ? "opacity-80" : "opacity-0"
+            activeVideoIndex === 1 ? "opacity-90" : "opacity-0"
           }`}
         >
           <source src="/videos/wave-motion.mp4" type="video/mp4" />
@@ -395,100 +372,11 @@ export function HeroSection() {
       <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-[1]" />
 
       {/* Contrast Enhancement Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030714]/50 via-[#030714]/25 to-[#030714]/75 pointer-events-none z-[2]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030714]/40 via-[#030714]/15 to-[#030714]/70 pointer-events-none z-[2]" />
 
       {/* Top and Bottom Edge Soft Blending */}
       <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#030714] to-transparent pointer-events-none z-[3]" />
       <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#030714] to-transparent pointer-events-none z-[3]" />
-
-      {/* ==========================================
-          2. Hero Content (Grand Typography & Clean CTAs)
-          ========================================== */}
-      <div className="mx-auto max-w-5xl px-6 w-full relative z-10 text-center">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-8"
-        >
-          {/* Enterprise Category Pill */}
-          <motion.div variants={itemVariants} className="flex justify-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-xs font-semibold text-cyan-300 backdrop-blur-md shadow-sm">
-              <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-              <span>Enterprise Technology & Managed Cybersecurity</span>
-            </div>
-          </motion.div>
-
-          {/* 3 Core Headlines */}
-          <motion.div variants={itemVariants} className="space-y-3">
-            <span className="text-xs sm:text-sm font-bold tracking-widest text-cyan-400 uppercase font-display block">
-              ORBYTES GLOBAL
-            </span>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white font-display leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]">
-              Technology that{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 drop-shadow-[0_0_35px_rgba(0,229,255,0.45)]">
-                secures.
-              </span>
-              <br />
-              Technology that{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 drop-shadow-[0_0_35px_rgba(129,140,248,0.45)]">
-                scales.
-              </span>
-              <br />
-              Technology that{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-300 to-emerald-400 drop-shadow-[0_0_35px_rgba(52,211,153,0.45)]">
-                moves business forward.
-              </span>
-            </h1>
-          </motion.div>
-
-          {/* Value Pitch */}
-          <motion.p
-            variants={itemVariants}
-            className="mx-auto max-w-2xl text-base sm:text-lg text-slate-300 leading-relaxed drop-shadow-md"
-          >
-            We engineer mission-critical digital foundations for forward-thinking organizations. From proactive 24/7 cybersecurity monitoring to zero-downtime cloud migration and strategic IT operations.
-          </motion.p>
-
-          {/* CTA Action Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
-          >
-            <Link
-              href="/contact"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:from-cyan-400 hover:to-blue-500 hover:shadow-cyan-500/40 hover:scale-[1.02]"
-            >
-              <span>Talk to an Expert</span>
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/solutions"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-7 py-3.5 text-base font-semibold text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/40 hover:bg-white/[0.08] hover:text-white"
-            >
-              <span>Explore Solutions</span>
-            </Link>
-          </motion.div>
-
-          {/* Proof & SLA Badges */}
-          <motion.div
-            variants={itemVariants}
-            className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400"
-          >
-            <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
-              <span>24/7 Active SOC Defense</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Shield className="h-3.5 w-3.5 text-cyan-400" />
-              <span>99.99% Uptime Guarantee</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span>Global Coverage: India & Canada</span>
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
     </section>
   );
 }
