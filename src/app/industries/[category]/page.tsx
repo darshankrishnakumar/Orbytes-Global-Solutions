@@ -41,7 +41,8 @@ export function generateStaticParams() {
     { category: "manufacturing-industrial" },
   ];
   const industryParams = Object.keys(industriesData).map((category) => ({ category }));
-  return [...categoryParams, ...industryParams];
+  const all = [...categoryParams, ...industryParams];
+  return Array.from(new Set(all.map((item) => item.category))).map((category) => ({ category }));
 }
 
 export function generateMetadata({ params }: Props): Metadata {

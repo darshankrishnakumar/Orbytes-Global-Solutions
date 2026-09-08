@@ -9,13 +9,27 @@ interface Props {
 
 export function generateStaticParams() {
   const params: { category: string; slug: string }[] = [];
-  Object.values(industriesData).forEach((item) => {
-    params.push({
-      category: item.category,
-      slug: item.slug,
-    });
+  Object.entries(industriesData).forEach(([key, item]) => {
+    if (item && item.category && item.slug) {
+      params.push({
+        category: item.category,
+        slug: key,
+      });
+      if (item.slug !== key) {
+        params.push({
+          category: item.category,
+          slug: item.slug,
+        });
+      }
+    }
   });
-  return params;
+
+  const uniqueMap = new Map<string, { category: string; slug: string }>();
+  params.forEach((p) => {
+    uniqueMap.set(`${p.category}/${p.slug}`, p);
+  });
+
+  return Array.from(uniqueMap.values());
 }
 
 export function generateMetadata({ params }: Props): Metadata {

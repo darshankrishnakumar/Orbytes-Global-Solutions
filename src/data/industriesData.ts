@@ -976,3 +976,161 @@ industriesData["business-retail"] = industriesData["corporate"];
 industriesData["healthcare-wellness"] = industriesData["hospitals-clinics"];
 industriesData["education-research"] = industriesData["schools-universities"];
 industriesData["manufacturing-industrial"] = industriesData["factories-production"];
+
+// ==========================================
+// SUB-SECTOR VERTICALS & SLUG ALIASES
+// ==========================================
+industriesData["specialty-clinics"] = {
+  ...industriesData["hospitals-clinics"],
+  slug: "specialty-clinics",
+  category: "healthcare-wellness",
+  categoryName: "Healthcare & Wellness",
+  href: "/industries/healthcare-wellness/specialty-clinics",
+  name: "Specialty Clinics & Outpatient Centers",
+  badge: "Ambulatory & Clinical IT",
+  tagline: "High-reliability clinical networks, automated patient intake, and HIPAA-compliant PACS imaging for specialized medical practices.",
+  heroHeadline: "IT Solutions for Specialty Clinics & Outpatient Care Centers",
+  heroSubheadline: "Eliminate downtime in treatment rooms. We deliver high-speed medical Wi-Fi, seamless EHR integration, automated appointment telephony, and 24/7 proactive cybersecurity.",
+  subSectors: ["Orthopedic & Spine Centers", "Cardiology Outpatient Clinics", "Ambulatory Surgical Centers (ASC)", "Ophthalmology & Eye Care Clinics"],
+};
+
+industriesData["clinical-labs"] = {
+  ...industriesData["biotech-labs"],
+  slug: "clinical-labs",
+  category: "healthcare-wellness",
+  categoryName: "Healthcare & Wellness",
+  href: "/industries/healthcare-wellness/clinical-labs",
+  name: "Clinical Diagnostics & Pathology Labs",
+  badge: "LIMS & Clinical Pathology",
+  tagline: "Ultra-secure diagnostic instrument networks, automated LIMS test reporting, and HIPAA/CAP-compliant pathology storage.",
+  heroHeadline: "High-Throughput IT & Data Infrastructure for Diagnostic Laboratories",
+  heroSubheadline: "Accelerate test turnaround times with high-throughput laboratory networks, automated instrument interfaces, and encrypted result delivery portals.",
+  subSectors: ["Pathology Diagnostic Centers", "Genomic Sequencing Labs", "Clinical Reference Laboratories", "Toxicology & Blood Testing Centers"],
+};
+
+industriesData["dental-practices"] = {
+  ...industriesData["hospitals-clinics"],
+  slug: "dental-practices",
+  category: "healthcare-wellness",
+  categoryName: "Healthcare & Wellness",
+  href: "/industries/healthcare-wellness/dental-practices",
+  name: "Dental Groups & Orthodontics",
+  badge: "Dental Practice Management",
+  tagline: "High-speed digital intraoral sensor networks, 3D cone-beam CT server clustering, and cloud practice management software.",
+  heroHeadline: "Dental IT & Practice Management Infrastructure",
+  heroSubheadline: "Streamline multi-chair operatory imaging, patient chart synchronization, and automated appointment confirmations with 99.99% uptime.",
+  subSectors: ["Multi-Location Dental Groups", "Orthodontic & Pediatric Practices", "Oral & Maxillofacial Surgical Centers", "Periodontal Specialist Clinics"],
+};
+
+industriesData["wellness-fitness"] = {
+  ...industriesData["fitness-centers"],
+  slug: "wellness-fitness",
+  category: "healthcare-wellness",
+  categoryName: "Healthcare & Wellness",
+  href: "/industries/healthcare-wellness/wellness-fitness",
+  name: "Wellness & Digital Health Fitness",
+  badge: "Member Experience & IoT",
+  tagline: "High-density streaming cardio Wi-Fi, turnstile RFID access control, and resilient cloud booking infrastructure.",
+  heroHeadline: "Modern IT Architecture for Health Clubs & Wellness Studios",
+  heroSubheadline: "Keep member check-ins moving fast and cardio streams uninterrupted with enterprise Wi-Fi 6E, automated payment processing, and unified surveillance.",
+  subSectors: ["Commercial Health & Athletic Clubs", "Boutique Fitness Franchises", "Day Spas & Medical Spas", "Holistic Wellness Centers"],
+};
+
+industriesData["financial"] = {
+  ...industriesData["corporate"],
+  slug: "financial",
+  category: "business-retail",
+  categoryName: "Business & Retail",
+  href: "/industries/business-retail/financial",
+  name: "Financial Services & Banking",
+  badge: "FINRA / SEC & Wealth Tech",
+  tagline: "Zero-trust cybersecurity, immutable transaction logging, and high-availability trading networks for wealth managers and financial institutions.",
+  heroHeadline: "Financial-Grade Cybersecurity & Mission-Critical IT Management",
+  heroSubheadline: "Protect fiduciary assets and satisfy SEC/FINRA examination requirements with automated compliance archiving, DLP data safeguards, and 24/7 SOC surveillance.",
+  subSectors: ["Wealth Management & Family Offices", "Community Banks & Credit Unions", "Private Equity & Hedge Funds", "Accounting & Audit Advisory Firms"],
+};
+
+industriesData["ecommerce-fulfillment"] = {
+  ...industriesData["ecommerce"],
+  slug: "ecommerce-fulfillment",
+  category: "business-retail",
+  categoryName: "Business & Retail",
+  href: "/industries/business-retail/ecommerce-fulfillment",
+  name: "E-Commerce & Digital Storefronts",
+  badge: "High-Concurrency Cloud & PCI-DSS",
+  tagline: "Elastic cloud compute for viral flash sales, sub-second checkout latency, and real-time fulfillment warehouse ERP sync.",
+  heroHeadline: "High-Scalability Cloud Foundations for E-Commerce & Fulfillment",
+  heroSubheadline: "Ensure zero cart abandonment during peak seasonal demand with auto-scaling Kubernetes clusters, PCI-DSS Level 1 security, and multi-CDN edge delivery.",
+  subSectors: ["DTC Consumer Brands", "Multi-Channel Retailers", "Third-Party Logistics (3PL) E-Commerce", "Subscription Box Platforms"],
+};
+
+industriesData["hospitality"] = {
+  ...industriesData["salons-spas"],
+  slug: "hospitality",
+  category: "business-retail",
+  categoryName: "Business & Retail",
+  href: "/industries/business-retail/hospitality",
+  name: "Hospitality & Hotel Networks",
+  badge: "Guest Wi-Fi & PMS Systems",
+  tagline: "High-speed guest Wi-Fi gateways, keycard RFID lock servers, and 24/7 PMS payment terminal uptime for hospitality properties.",
+  heroHeadline: "Hospitality IT Solutions for Hotels, Resorts & Event Venues",
+  heroSubheadline: "Deliver 5-star digital guest experiences with high-density in-room Wi-Fi, PMS-integrated digital check-in, and reliable restaurant POS networking.",
+  subSectors: ["Boutique & Luxury Hotels", "Resort & Conference Centers", "Restaurant & Hospitality Groups", "Extended-Stay Properties"],
+};
+
+industriesData["warehousing-logistics"] = {
+  ...industriesData["logistics"],
+  slug: "warehousing-logistics",
+  category: "business-retail",
+  categoryName: "Business & Retail",
+  href: "/industries/business-retail/warehousing-logistics",
+  name: "Warehousing & Logistics Networks",
+  badge: "Supply Chain & Industrial Wi-Fi",
+  tagline: "Extreme-range warehouse wireless, rugged barcode scanner mobility, and automated EDI order dispatch clustering.",
+  heroHeadline: "Industrial Wi-Fi & Mission-Critical WMS Infrastructure for Logistics",
+  heroSubheadline: "Eliminate barcode scanner dropouts in high-rack aisles with directional antennas, redundant dual-ISP fiber failover, and automated cold-chain sensor monitoring.",
+  subSectors: ["Regional Distribution Centers", "Cold Storage & Refrigerated Logistics", "Cross-Docking Facilities", "Freight Forwarding Operations"],
+};
+
+industriesData["k12-districts"] = {
+  ...industriesData["schools-universities"],
+  slug: "k12-districts",
+  category: "education-research",
+  categoryName: "Education & Research",
+  href: "/industries/education-research/k12-districts",
+  name: "K-12 School Districts & Academies",
+  badge: "CIPA & 1:1 Student Devices",
+  tagline: "CIPA-compliant web filtering, 1:1 student Chromebook fleet automation, and district-wide campus emergency notification systems.",
+  heroHeadline: "Secure Classroom Networks & Device Management for K-12 Districts",
+  heroSubheadline: "Provide safe, uninterrupted learning for thousands of concurrent students with automated content filtering, Google Workspace for Education governance, and campus safety IoT.",
+  subSectors: ["Public School Districts", "Private & Independent Academies", "Charter School Systems", "Regional Educational Boards"],
+};
+
+industriesData["research-institutes"] = {
+  ...industriesData["research-institutions"],
+  slug: "research-institutes",
+  category: "education-research",
+  categoryName: "Education & Research",
+  href: "/industries/education-research/research-institutes",
+  name: "Research Institutes & Scientific Labs",
+  badge: "HPC Clusters & Big Data",
+  tagline: "Petabyte-scale scientific file systems, InfiniBand GPU clusters, and NIST 800-171 controlled research compliance.",
+  heroHeadline: "HPC & Ultra-High Bandwidth Infrastructure for Research Institutes",
+  heroSubheadline: "Empower breakthroughs with GPU-accelerated computing pipelines, automated scientific instrument backups, and zero-loss multi-terabit research networking.",
+  subSectors: ["Applied Physics & Materials Labs", "Biomedical Research Institutes", "Renewable Energy Research Centers", "Atmospheric & Environmental Science Hubs"],
+};
+
+industriesData["aerospace-defense"] = {
+  ...industriesData["automotive-aerospace"],
+  slug: "aerospace-defense",
+  category: "manufacturing-industrial",
+  categoryName: "Manufacturing & Industrial",
+  href: "/industries/manufacturing-industrial/aerospace-defense",
+  name: "Aerospace & Defense Contractors",
+  badge: "CMMC 2.0 & ITAR Security",
+  tagline: "CMMC Level 2 cybersecurity, ITAR-compliant air-gapped CAD engineering vaults, and DFARS supply chain audit readiness.",
+  heroHeadline: "CMMC 2.0 & Defense Supply Chain Cyber Infrastructure",
+  heroSubheadline: "Protect Controlled Unclassified Information (CUI) and maintain DoD contract eligibility with encrypted CAD/CAM enclaves, multi-factor hardware keys, and 24/7 US/Canada-based SOC logging.",
+  subSectors: ["DoD Tier-1 & Tier-2 Suppliers", "Precision Aerospace Machining", "Avionics & Drone Systems", "Defense Electronics Manufacturers"],
+};
+
