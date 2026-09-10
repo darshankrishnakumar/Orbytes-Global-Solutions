@@ -162,7 +162,7 @@ export function HeroSection() {
           Cycle: Video 1 -> Video 2 -> Video 1 -> Video 2 ...
           ========================================== */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        {/* Video 1: PixVerse Premium */}
+        {/* Video 1: PixVerse Premium (Zoomed in to crop out watermark) */}
         <video
           ref={video1Ref}
           src="/videos/pixverse-premium.mp4"
@@ -172,8 +172,8 @@ export function HeroSection() {
           preload="auto"
           onTimeUpdate={() => handleTimeUpdate(0)}
           onEnded={() => handleEnded(0)}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          className={`absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
+          style={{ width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.12)", transformOrigin: "center center" }}
+          className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.12] z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
             activeVideoIndex === 0 ? "opacity-100" : "opacity-0"
           }`}
         />
