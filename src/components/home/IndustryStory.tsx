@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   Building2,
   Landmark,
@@ -25,13 +24,11 @@ import {
   Plane,
   Zap,
   Pickaxe,
-  Briefcase,
   ArrowRight,
-  ShieldAlert,
+  ArrowLeft,
   Sparkles,
-  TrendingUp,
 } from "lucide-react";
-import { industriesData } from "@/data/industriesData";
+import { industriesData, IndustryItem } from "@/data/industriesData";
 
 const iconMap: Record<string, React.ElementType> = {
   // Business & Retail
@@ -39,6 +36,7 @@ const iconMap: Record<string, React.ElementType> = {
   financial: Landmark,
   "retail-stores": ShoppingBag,
   "ecommerce-fulfillment": Truck,
+  ecommerce: Truck,
   "real-estate": Building,
   hospitality: Hotel,
   "warehousing-logistics": Warehouse,
@@ -77,272 +75,278 @@ const categoryTabs: { id: string; label: string; count: number }[] = [
 export function IndustryStory() {
   const allIndustries = useMemo(() => Object.values(industriesData), []);
   const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [selectedSlug, setSelectedSlug] = useState<string>(allIndustries[0].slug);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const [canScrollLeft, setCanScrollLeft] = useState<boolean>(false);
+  const [canScrollRight, setCanScrollRight] = useState<boolean>(true);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   const filteredIndustries = useMemo(() => {
     if (activeCategory === "all") return allIndustries;
     return allIndustries.filter((item) => item.category === activeCategory);
   }, [activeCategory, allIndustries]);
 
-  const activeIndustry =
-    industriesData[selectedSlug] || filteredIndustries[0] || allIndustries[0];
+  const updateScrollState = useCallback(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
+    const maxScroll = scrollWidth - clientWidth;
+    if (maxScroll > 0) {
+      setScrollProgress(Math.min(1, Math.max(0, scrollLeft / maxScroll)));
+    } else {
+      setScrollProgress(0);
+    }
+  }, []);
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    updateScrollState();
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [updateScrollState, filteredIndustries]);
+
+  const scroll = (direction: "left" | "right") => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const scrollAmount = Math.min(el.clientWidth * 0.8, 380);
+    el.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
 
   const handleCategoryChange = (catId: string) => {
     setActiveCategory(catId);
-    if (catId !== "all") {
-      const matching = allIndustries.filter((item) => item.category === catId);
-      if (matching.length > 0 && !matching.some((m) => m.slug === selectedSlug)) {
-        setSelectedSlug(matching[0].slug);
-      }
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({ left: 0, behavior: "smooth" });
     }
   };
 
   return (
     <section
       id="industries"
-      className="relative py-12 sm:py-16 bg-slate-50 border-t border-b border-slate-200 scroll-mt-20"
+      className="relative py-20 sm:py-24 bg-white border-t border-b border-slate-200 scroll-mt-20 overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-6">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 space-y-2">
-          <span className="text-xs font-bold tracking-widest text-cyan-600 uppercase font-display">
-            Domain Specialization
-          </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 font-display">
-            Technology that understands your industry.
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Every sector operates under distinct regulatory frameworks, threat models, and operational rhythms. Discover how Orbytes tailors architecture for your sector.
-          </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+          <div className="space-y-3 max-w-3xl">
+            <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-cyan-600 uppercase font-display">
+              <Sparkles className="h-3.5 w-3.5 text-cyan-500" />
+              <span>Domain Specialization</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 font-display leading-[1.12]">
+              Technology that understands your industry.
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+              Every sector operates under distinct regulatory frameworks, threat models, and operational rhythms. Discover how Orbytes tailors architecture for your sector.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0 self-start md:self-end">
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              aria-label="Previous industries"
+              className={`h-11 w-11 rounded-full border border-slate-300 flex items-center justify-center transition-all duration-300 shadow-sm ${
+                canScrollLeft
+                  ? "bg-white text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 active:scale-95"
+                  : "bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed"
+              }`}
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              aria-label="Next industries"
+              className={`h-11 w-11 rounded-full border border-slate-300 flex items-center justify-center transition-all duration-300 shadow-sm ${
+                canScrollRight
+                  ? "bg-white text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 active:scale-95"
+                  : "bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed"
+              }`}
+            >
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Master-Detail Interactive Split Component */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left: Scrollable Interactive List with Category Filters */}
-          <div className="lg:col-span-5 space-y-2.5">
-            {/* Category Filter Pills */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scrollbar">
-              {categoryTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => handleCategoryChange(tab.id)}
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-200 border shrink-0 ${
-                    activeCategory === tab.id
-                      ? "bg-slate-900 text-white border-slate-900 shadow-sm"
-                      : "bg-white text-slate-600 hover:text-slate-900 border-slate-200 hover:border-slate-300 shadow-sm"
-                  }`}
-                >
-                  <span>{tab.label}</span>
-                  <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-                      activeCategory === tab.id
-                        ? "bg-white/20 text-white"
-                        : "bg-slate-100 text-slate-500"
-                    }`}
-                  >
-                    {tab.count}
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            {/* Counter bar */}
-            <div className="flex items-center justify-between text-[11px] text-slate-500 px-1">
-              <span>Showing {filteredIndustries.length} industries</span>
-              <span className="text-cyan-600 font-medium">
-                Scroll to explore ↓
-              </span>
-            </div>
-
-            {/* Scrollable Container with Lenis Prevent */}
-            <div
-              data-lenis-prevent
-              className="max-h-[460px] xl:max-h-[480px] overflow-y-auto overscroll-contain pr-2 space-y-2 custom-scrollbar"
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-4 scrollbar-none">
+          {categoryTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => handleCategoryChange(tab.id)}
+              className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 border shrink-0 ${
+                activeCategory === tab.id
+                  ? "bg-slate-900 text-white border-slate-900 shadow-sm"
+                  : "bg-white text-slate-600 hover:text-slate-900 border-slate-200 hover:border-slate-300 shadow-sm"
+              }`}
             >
-              {filteredIndustries.map((ind) => {
-                const Icon = iconMap[ind.slug] || Briefcase;
-                const isSelected = selectedSlug === ind.slug;
-
-                return (
-                  <button
-                    key={ind.slug}
-                    onClick={() => setSelectedSlug(ind.slug)}
-                    onMouseEnter={() => setSelectedSlug(ind.slug)}
-                    className={`w-full flex items-center justify-between p-2.5 rounded-xl text-left transition-all duration-200 border ${
-                      isSelected
-                        ? "bg-cyan-50 border-cyan-500 shadow-sm translate-x-0.5"
-                        : "bg-white border-slate-200 hover:border-slate-300 text-slate-600 hover:text-slate-900 shadow-xs"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors ${
-                          isSelected
-                            ? "border-cyan-500/50 bg-cyan-100 text-cyan-700"
-                            : "border-slate-200 bg-slate-100 text-slate-600"
-                        }`}
-                      >
-                        <Icon className="h-4 w-4" />
-                      </div>
-                      <div className="min-w-0 pr-1">
-                        <h4
-                          className={`text-xs sm:text-sm font-semibold transition-colors truncate ${
-                            isSelected
-                              ? "text-slate-900 font-bold"
-                              : "text-slate-800"
-                          }`}
-                        >
-                          {ind.name}
-                        </h4>
-                        <p className="text-[11px] text-slate-500 truncate">
-                          {ind.tagline}
-                        </p>
-                      </div>
-                    </div>
-                    <ArrowRight
-                      className={`h-3.5 w-3.5 shrink-0 transition-transform duration-200 ${
-                        isSelected
-                          ? "text-cyan-600 translate-x-0"
-                          : "text-transparent -translate-x-2"
-                      }`}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right: Sticky Dynamic Storytelling Panel - Compact */}
-          <div className="lg:col-span-7 lg:sticky lg:top-24">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndustry.slug}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-lg space-y-4"
+              <span>{tab.label}</span>
+              <span
+                className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                  activeCategory === tab.id
+                    ? "bg-white/20 text-white"
+                    : "bg-slate-100 text-slate-500"
+                }`}
               >
-                {/* Header */}
-                <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                  <div>
-                    <span className="text-[10px] font-bold tracking-wider text-cyan-700 uppercase bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200 inline-block mb-1">
-                      {activeIndustry.badge}
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display line-clamp-1">
-                      {activeIndustry.heroHeadline}
-                    </h3>
-                  </div>
-                  <Link
-                    href={`/industries/${activeIndustry.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-600 hover:text-cyan-700 transition-colors shrink-0 group"
-                  >
-                    <span>Full Blueprint</span>
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Link>
-                </div>
+                {tab.count}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
 
-                {/* Visual Technology Banner - Compact */}
-                {activeIndustry.imageUrl && (
-                  <div className="relative group overflow-hidden rounded-xl border border-slate-200 shadow-xs h-28 sm:h-32 w-full">
-                    <img
-                      src={activeIndustry.imageUrl}
-                      alt={activeIndustry.imageAlt || activeIndustry.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
+      <div className="relative w-full">
+        <div
+          ref={scrollContainerRef}
+          data-lenis-prevent
+          className="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-4 px-6 max-w-7xl mx-auto scroll-smooth"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {filteredIndustries.map((item: IndustryItem) => {
+            const Icon = iconMap[item.slug] || Building2;
+            const primaryOutcome = item.outcomes?.[0];
+            const displayCategory =
+              item.category === "business-retail"
+                ? "Business & Retail"
+                : item.category === "healthcare-wellness"
+                ? "Healthcare & Wellness"
+                : item.category === "education-research"
+                ? "Education & Research"
+                : item.category === "manufacturing-industrial"
+                ? "Manufacturing & Industrial"
+                : item.category;
+
+            const cardHref =
+              item.href || `/industries/${item.category}/${item.slug}`;
+
+            return (
+              <Link
+                key={item.slug}
+                href={cardHref}
+                className="group relative w-[290px] sm:w-[330px] md:w-[355px] h-[500px] sm:h-[540px] shrink-0 rounded-3xl overflow-hidden shadow-xl border border-slate-200/80 bg-slate-950 snap-start transition-all duration-500 hover:shadow-2xl hover:border-cyan-500/50 hover:-translate-y-2 flex flex-col justify-between p-6 text-white select-none"
+              >
+                {/* Photographic Background */}
+                <img
+                  src={item.imageUrl}
+                  alt={item.imageAlt || item.name}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-[62%] object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out brightness-[0.85] group-hover:brightness-95"
+                />
+
+                {/* Card Top Vignette */}
+                <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-[1]" />
+
+                {/* Lower Half Dark Solid Backdrop with Soft Top Gradient */}
+                <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black via-slate-950 via-80% to-transparent pointer-events-none z-[1]" />
+
+                {/* Signature TCS Glowing Harmonic Wave Ribbon */}
+                <div className="absolute top-[46%] inset-x-0 h-20 pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity z-[2]">
+                  <svg
+                    viewBox="0 0 350 70"
+                    fill="none"
+                    className="w-full h-full"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M0 40 C70 12, 130 58, 200 32 C260 10, 310 46, 350 25"
+                      stroke="#00e5ff"
+                      strokeWidth="2.2"
+                      strokeOpacity="0.85"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-2.5">
-                      <p className="text-[11px] text-white/95 font-medium tracking-wide line-clamp-1">
-                        {activeIndustry.imageAlt}
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Challenges vs Solution - Compact */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {/* Challenges */}
-                  <div className="rounded-xl border border-rose-200 bg-rose-50/70 p-3 space-y-1.5">
-                    <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-rose-600">
-                      <ShieldAlert className="h-3.5 w-3.5 shrink-0" />
-                      <span>Key Sector Challenges</span>
-                    </div>
-                    <ul className="space-y-1 text-xs text-slate-700">
-                      {activeIndustry.challenges.slice(0, 2).map((ch, i) => (
-                        <li key={i} className="flex items-start gap-1.5 leading-snug">
-                          <span className="h-1.5 w-1.5 rounded-full bg-rose-500 mt-1 shrink-0" />
-                          <span className="line-clamp-2">
-                            <strong className="text-slate-900 font-semibold">
-                              {ch.title}:
-                            </strong>{" "}
-                            {ch.description}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Solution */}
-                  <div className="rounded-xl border border-cyan-200 bg-cyan-50/70 p-3 space-y-1.5">
-                    <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-cyan-600">
-                      <Sparkles className="h-3.5 w-3.5 shrink-0" />
-                      <span>Orbytes Architecture</span>
-                    </div>
-                    <p className="text-xs text-slate-700 leading-relaxed line-clamp-2">
-                      {activeIndustry.orbytesSolution}
-                    </p>
-                    <div className="pt-1.5 border-t border-cyan-200/80 flex flex-wrap gap-1">
-                      {activeIndustry.subSectors.slice(0, 3).map((sub, i) => (
-                        <span
-                          key={i}
-                          className="text-[9px] text-cyan-800 bg-cyan-100 px-2 py-0.5 rounded border border-cyan-200 font-medium"
-                        >
-                          {sub}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                    <path
+                      d="M0 48 C80 20, 140 52, 210 38 C270 24, 320 42, 350 34"
+                      stroke="#38bdf8"
+                      strokeWidth="1.4"
+                      strokeOpacity="0.6"
+                    />
+                    <path
+                      d="M0 34 C60 18, 150 64, 220 28 C280 2, 320 38, 350 20"
+                      stroke="#818cf8"
+                      strokeWidth="1"
+                      strokeOpacity="0.45"
+                    />
+                    <path
+                      d="M0 55 C90 32, 160 56, 230 44 C290 32, 330 48, 350 42"
+                      stroke="#06b6d4"
+                      strokeWidth="0.8"
+                      strokeOpacity="0.35"
+                    />
+                  </svg>
                 </div>
 
-                {/* Quantified Outcomes - Compact */}
-                <div className="pt-0.5">
-                  <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
-                    <TrendingUp className="h-3.5 w-3.5 text-emerald-500" />
-                    <span>Verified Business Outcomes</span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {activeIndustry.outcomes.map((out, i) => (
-                      <div
-                        key={i}
-                        className="rounded-xl border border-slate-200 bg-slate-50 p-2 text-center"
-                      >
-                        <div className="text-base sm:text-lg font-extrabold text-cyan-600 font-display">
-                          {out.metric}
-                        </div>
-                        <div className="text-[10px] font-semibold text-slate-900 mt-0.5 line-clamp-1">
-                          {out.label}
-                        </div>
-                        <p className="text-[9px] text-slate-500 mt-0.5 line-clamp-1">
-                          {out.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                {/* Top Row: Sector Badge & Outcome Metric */}
+                <div className="relative z-10 flex items-center justify-between w-full">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-semibold text-cyan-300 shadow-sm">
+                    <Icon className="h-3 w-3 text-cyan-400" />
+                    <span>{displayCategory}</span>
+                  </span>
+
+                  {primaryOutcome && (
+                    <span className="px-2.5 py-0.5 rounded-full bg-cyan-950/80 backdrop-blur-md border border-cyan-400/40 text-[10px] font-bold text-cyan-300 font-mono shadow-sm">
+                      {primaryOutcome.metric}
+                    </span>
+                  )}
                 </div>
 
-                {/* Bottom CTA Button - Compact */}
-                <div className="pt-2 border-t border-slate-100 flex justify-end">
-                  <Link
-                    href={`/industries/${activeIndustry.slug}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-xs font-semibold text-white shadow-md shadow-cyan-500/20 hover:from-cyan-400 hover:to-blue-500 transition-all duration-300"
-                  >
-                    <span>Explore {activeIndustry.name} Solutions</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
+                {/* Bottom Content Area */}
+                <div className="relative z-10 space-y-2.5 text-left pt-28">
+                  <h3 className="text-2xl sm:text-[26px] font-bold text-white font-display leading-tight group-hover:text-cyan-300 transition-colors">
+                    {item.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed opacity-90 group-hover:opacity-100">
+                    {item.tagline}
+                  </p>
+
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-cyan-400 group-hover:text-cyan-300">
+                    <span className="inline-flex items-center gap-1.5">
+                      <span>Explore Sector Blueprint</span>
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
+                    </span>
+                    {item.subSectors?.[0] && (
+                      <span className="text-[11px] text-slate-400 font-normal truncate max-w-[120px]">
+                        {item.subSectors[0]}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="mx-auto max-w-7xl px-6 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <div className="h-1.5 w-32 sm:w-44 bg-slate-200 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-slate-900 rounded-full transition-all duration-200"
+                style={{
+                  width: `${Math.max(15, scrollProgress * 100)}%`,
+                }}
+              />
+            </div>
+            <span className="text-xs text-slate-500 font-medium">
+              Showing {filteredIndustries.length} Domain Solutions
+            </span>
           </div>
+
+          <Link
+            href="/industries"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors group"
+          >
+            <span>View All 22 Industry Blueprints</span>
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>
