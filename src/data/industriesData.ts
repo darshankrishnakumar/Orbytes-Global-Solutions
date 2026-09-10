@@ -79,7 +79,7 @@ export const industriesData: Record<string, IndustryItem> = {
     tagline: "Scalable cloud architecture, PCI-compliant checkout, and real-time ERP inventory sync for digital retailers.",
     heroHeadline: "E-Commerce IT Infrastructure & High-Traffic Availability",
     heroSubheadline: "Protect revenue and customer trust during peak promotional surges. We engineer auto-scaling cloud architectures, lightning-fast edge CDNs, and zero-downtime payment pipelines.",
-    imageUrl: "https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "High-volume e-commerce fulfillment and online payment processing center",
     challenges: [
       { title: "Flash Sale Server Crashes", description: "Unprepared cloud servers crash under sudden traffic surges during Black Friday, holiday promotions, or viral marketing campaigns." },
@@ -505,7 +505,7 @@ export const industriesData: Record<string, IndustryItem> = {
     tagline: "High-density campus networking, 1:1 Chromebook/iPad management, FERPA compliance, and classroom AV.",
     heroHeadline: "Campus IT Solutions for K-12 Schools & Universities",
     heroSubheadline: "Empower modern digital learning with resilient campus infrastructure. We engineer ultra-fast campus Wi-Fi, manage 1:1 student device fleets, ensure FERPA/CIPA compliance, and secure digital classrooms.",
-    imageUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "University campus modern digital lecture hall with connected students and interactive displays",
     challenges: [
       { title: "Massive Campus Wi-Fi Saturation", description: "Thousands of students streaming educational video and connecting multiple personal devices simultaneously overwhelm campus access points." },
@@ -735,7 +735,7 @@ export const industriesData: Record<string, IndustryItem> = {
     outcomes: [
       { metric: "99.99%", label: "Production Uptime", description: "Zero production line halts due to IT or network failures." },
       { metric: "100%", label: "OT Segmentation", description: "Complete isolation of PLC and SCADA devices from public threats." },
-      { metric: "< 10 min", label: "Shop-Floor SLA", description: "Immediate response for manufacturing station interruptions." },
+      { metric: "< 15 min", label: "Shop-Floor SLA", description: "Immediate response for manufacturing station interruptions." },
     ],
     subSectors: ["Automated Assembly Plants", "Food & Beverage Processing", "Consumer Goods Manufacturing", "Plastics & Metal Fabrication"],
     faqs: [
@@ -960,6 +960,32 @@ export const industriesData: Record<string, IndustryItem> = {
     ],
   },
 };
+
+// Canonical 22 Primary Industry Verticals (without alias duplicates)
+export const primaryIndustries: IndustryItem[] = [
+  industriesData["corporate"],
+  industriesData["ecommerce"],
+  industriesData["logistics"],
+  industriesData["real-estate"],
+  industriesData["retail-stores"],
+  industriesData["salons-spas"],
+  industriesData["hospitals-clinics"],
+  industriesData["pharmacies"],
+  industriesData["biotech-labs"],
+  industriesData["fitness-centers"],
+  industriesData["wellness-services"],
+  industriesData["schools-universities"],
+  industriesData["online-learning"],
+  industriesData["research-institutions"],
+  industriesData["libraries-archives"],
+  industriesData["training-centers"],
+  industriesData["factories-production"],
+  industriesData["automotive-aerospace"],
+  industriesData["construction"],
+  industriesData["energy-utilities"],
+  industriesData["mining-agriculture"],
+  industriesData["transportation"],
+];
 
 // ==========================================
 // BACKWARD COMPATIBILITY / CATEGORY ALIASES

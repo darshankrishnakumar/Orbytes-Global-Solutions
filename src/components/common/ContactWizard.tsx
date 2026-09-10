@@ -27,6 +27,7 @@ export function ContactWizard() {
     companyName: "",
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const needsOptions = [
     { id: "security", label: "Managed Security (MSSP)", icon: ShieldAlert },
@@ -49,31 +50,52 @@ export function ContactWizard() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     try {
-      const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-      if (web3FormsKey) {
-        await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            access_key: web3FormsKey,
-            subject: `New Enterprise Inquiry from ${formData.companyName || formData.fullName}`,
-            from_name: formData.fullName,
-            email: formData.email,
-            phone: formData.phone,
-            company: formData.companyName,
-            solution_area: formData.need,
-            company_size: formData.companySize,
-            challenge: formData.challenge,
-          }),
-        });
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(data?.error || "Failed to submit request.");
       }
-    } catch (err) {
-      console.warn("Form dispatch info:", err);
+
+      setStep(5); // Success state
+    } catch (err: any) {
+      console.warn("API dispatch error, attempting direct notification fallback:", err);
+      // Fallback: If running purely static or API is unreachable, try direct Web3Forms if key exists
+      try {
+        const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+        if (web3FormsKey) {
+          await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+              access_key: web3FormsKey,
+              subject: `New Enterprise Inquiry from ${formData.companyName || formData.fullName}`,
+              from_name: formData.fullName,
+              email: formData.email,
+              phone: formData.phone,
+              company: formData.companyName,
+              solution_area: formData.need,
+              company_size: formData.companySize,
+              challenge: formData.challenge,
+            }),
+          });
+        }
+        setStep(5);
+      } catch (fallbackErr) {
+        setErrorMessage(
+          err.message || "Unable to submit inquiry. Please reach out to us at info@orbytesglobal.com or via WhatsApp."
+        );
+      }
     } finally {
       setIsSubmitting(false);
-      setStep(5); // Success state
     }
   };
 
@@ -343,6 +365,12 @@ export function ContactWizard() {
                 />
               </div>
             </div>
+
+            {errorMessage && (
+              <div className="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-xs text-red-600 dark:text-red-400 font-medium">
+                {errorMessage}
+              </div>
+            )}
 
             <div className="pt-4 flex items-center justify-between">
               <button

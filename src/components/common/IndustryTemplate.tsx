@@ -106,6 +106,13 @@ export function IndustryTemplate({ industry }: IndustryTemplateProps) {
                   alt={industry.imageAlt || industry.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                   loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (!target.dataset.fallback) {
+                      target.dataset.fallback = "true";
+                      target.src = "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80";
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030714]/90 via-[#030714]/20 to-transparent flex items-end p-4">
                   <p className="text-xs text-cyan-300 font-medium">
@@ -170,6 +177,13 @@ export function IndustryTemplate({ industry }: IndustryTemplateProps) {
                     alt={industry.imageAlt || industry.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (!target.dataset.fallback) {
+                        target.dataset.fallback = "true";
+                        target.src = "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80";
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex items-end p-4">
                     <p className="text-xs text-slate-200 font-medium tracking-wide">

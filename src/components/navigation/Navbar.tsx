@@ -7,6 +7,7 @@ import { ChevronDown, ArrowRight, Menu } from "lucide-react";
 import { MegaMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { BrandLogo } from "@/components/common/BrandLogo";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -45,13 +46,8 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(0,229,255,0.4)] transition-transform duration-300 group-hover:scale-105">
-            O
-          </div>
-          <span className="text-xl font-bold tracking-tight text-white font-display">
-            ORBYTES GLOBAL
-          </span>
+        <Link href="/" className="group flex items-center">
+          <BrandLogo size="md" />
         </Link>
 
         {/* Desktop Navigation */}

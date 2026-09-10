@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { companyData } from "@/data/companyData";
+import { BrandLogo } from "@/components/common/BrandLogo";
 
 export function Footer() {
   return (
@@ -52,13 +53,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(0,229,255,0.4)]">
-                O
-              </div>
-              <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white font-display">
-                ORBYTES GLOBAL
-              </span>
+            <Link href="/" className="group flex items-center">
+              <BrandLogo size="md" textClassName="text-xl text-slate-900 dark:text-white" />
             </Link>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-sm">
               Technology that secures. Technology that scales. Technology that moves business forward.

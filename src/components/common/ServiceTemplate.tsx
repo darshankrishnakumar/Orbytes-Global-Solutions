@@ -172,6 +172,13 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
                       alt={service.imageAlt || service.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
+                      onError={(e) => {
+                        const target = e.currentTarget as HTMLImageElement;
+                        if (!target.dataset.fallback) {
+                          target.dataset.fallback = "true";
+                          target.src = "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80";
+                        }
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex items-end p-4">
                       <p className="text-xs text-slate-200 font-medium tracking-wide">
@@ -241,7 +248,7 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
               How It Works
             </h2>
             <p className="text-slate-600 text-sm">
-              Our structured 5-stage lifecycle for {service.title}.
+              Our structured {service.process.length}-stage lifecycle for {service.title}.
             </p>
           </div>
 
@@ -252,11 +259,21 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div
+            className={`grid grid-cols-1 ${
+              service.process.length === 3
+                ? "sm:grid-cols-3"
+                : service.process.length === 4
+                ? "sm:grid-cols-2 lg:grid-cols-4"
+                : service.process.length === 5
+                ? "sm:grid-cols-2 lg:grid-cols-5"
+                : "sm:grid-cols-2 lg:grid-cols-4"
+            } gap-6`}
+          >
             {service.process.map((step) => (
               <div
                 key={step.step}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center space-y-3 shadow-sm hover:border-cyan-500/40 hover:bg-white transition-all duration-300"
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center space-y-3 shadow-sm hover:border-cyan-500/40 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-start"
               >
                 <div className="text-2xl font-black text-cyan-600 font-display">
                   {step.step}
@@ -297,6 +314,13 @@ export function ServiceTemplate({ service }: ServiceTemplateProps) {
                     alt={service.imageAlt || service.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                     loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (!target.dataset.fallback) {
+                        target.dataset.fallback = "true";
+                        target.src = "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80";
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#060b1e]/90 via-[#060b1e]/20 to-transparent flex items-end p-4">
                     <p className="text-xs text-cyan-300 font-medium">

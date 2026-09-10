@@ -28,7 +28,7 @@ import {
   ArrowLeft,
   Sparkles,
 } from "lucide-react";
-import { industriesData, IndustryItem } from "@/data/industriesData";
+import { primaryIndustries, IndustryItem } from "@/data/industriesData";
 
 const iconMap: Record<string, React.ElementType> = {
   // Business & Retail
@@ -37,9 +37,11 @@ const iconMap: Record<string, React.ElementType> = {
   "retail-stores": ShoppingBag,
   "ecommerce-fulfillment": Truck,
   ecommerce: Truck,
+  logistics: Truck,
   "real-estate": Building,
   hospitality: Hotel,
   "warehousing-logistics": Warehouse,
+  "salons-spas": Sparkles,
 
   // Healthcare & Wellness
   "hospitals-clinics": Stethoscope,
@@ -48,38 +50,62 @@ const iconMap: Record<string, React.ElementType> = {
   "dental-practices": HeartPulse,
   pharmacies: Pill,
   "wellness-fitness": Dumbbell,
+  "fitness-centers": Dumbbell,
+  "wellness-services": HeartPulse,
+  "biotech-labs": FlaskConical,
 
   // Education & Research
   "schools-universities": GraduationCap,
   "k12-districts": School,
   "research-institutes": FlaskConical,
+  "research-institutions": FlaskConical,
+  "libraries-archives": School,
   "online-learning": Laptop,
   "training-centers": Award,
 
   // Manufacturing & Industrial
   "factories-production": Factory,
   "aerospace-defense": Plane,
+  "automotive-aerospace": Plane,
+  construction: Building,
   "energy-utilities": Zap,
   "mining-agriculture": Pickaxe,
   transportation: Truck,
 };
 
-const categoryTabs: { id: string; label: string; count: number }[] = [
-  { id: "all", label: "All Sectors", count: 22 },
-  { id: "business-retail", label: "Business & Retail", count: 7 },
-  { id: "healthcare-wellness", label: "Healthcare", count: 6 },
-  { id: "education-research", label: "Education", count: 5 },
-  { id: "manufacturing-industrial", label: "Industrial", count: 4 },
-];
-
 export function IndustryStory() {
-  const allIndustries = useMemo(() => Object.values(industriesData), []);
+  const allIndustries = useMemo(() => primaryIndustries, []);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   const [canScrollLeft, setCanScrollLeft] = useState<boolean>(false);
   const [canScrollRight, setCanScrollRight] = useState<boolean>(true);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
+
+  // Drag-to-scroll state
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollLeftRef = useRef(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragMovedRef = useRef(false);
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: allIndustries.length };
+    allIndustries.forEach((item) => {
+      counts[item.category] = (counts[item.category] || 0) + 1;
+    });
+    return counts;
+  }, [allIndustries]);
+
+  const categoryTabs = useMemo(
+    () => [
+      { id: "all", label: "All Sectors", count: categoryCounts.all || 22 },
+      { id: "business-retail", label: "Business & Retail", count: categoryCounts["business-retail"] || 6 },
+      { id: "healthcare-wellness", label: "Healthcare", count: categoryCounts["healthcare-wellness"] || 5 },
+      { id: "education-research", label: "Education", count: categoryCounts["education-research"] || 5 },
+      { id: "manufacturing-industrial", label: "Industrial", count: categoryCounts["manufacturing-industrial"] || 6 },
+    ],
+    [categoryCounts]
+  );
 
   const filteredIndustries = useMemo(() => {
     if (activeCategory === "all") return allIndustries;
@@ -115,12 +141,70 @@ export function IndustryStory() {
     };
   }, [updateScrollState, filteredIndustries]);
 
+  // Horizontal scroll support with vertical mouse wheel
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Allow native horizontal gestures (trackpads) to function natively
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (Math.abs(e.deltaY) < 1) return;
+
+      const isAtStart = el.scrollLeft <= 2;
+      const isAtEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 2;
+
+      // Translate vertical wheel scroll to carousel horizontal scroll
+      if ((e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart)) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+      }
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    isDraggingRef.current = true;
+    dragMovedRef.current = false;
+    startXRef.current = e.pageX - el.offsetLeft;
+    startScrollLeftRef.current = el.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startXRef.current) * 1.3;
+    if (Math.abs(walk) > 5) {
+      dragMovedRef.current = true;
+      if (!isDragging) setIsDragging(true);
+    }
+    el.scrollLeft = startScrollLeftRef.current - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    setTimeout(() => {
+      setIsDragging(false);
+      dragMovedRef.current = false;
+    }, 50);
+  };
+
   const scroll = (direction: "left" | "right") => {
     const el = scrollContainerRef.current;
     if (!el) return;
-    const scrollAmount = Math.min(el.clientWidth * 0.8, 380);
+    const firstCard = (el.firstElementChild as HTMLElement) || null;
+    const step = firstCard?.offsetWidth ? firstCard.offsetWidth + 24 : 379;
     el.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
+      left: direction === "left" ? -step : step,
       behavior: "smooth",
     });
   };
@@ -210,7 +294,13 @@ export function IndustryStory() {
         <div
           ref={scrollContainerRef}
           data-lenis-prevent
-          className="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-4 px-6 max-w-7xl mx-auto scroll-smooth"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
+          className={`flex gap-6 overflow-x-auto scrollbar-none py-4 px-6 max-w-7xl mx-auto select-none scroll-px-6 ${
+            isDragging ? "cursor-grabbing" : "cursor-grab snap-x snap-mandatory"
+          }`}
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {filteredIndustries.map((item: IndustryItem) => {
@@ -234,15 +324,30 @@ export function IndustryStory() {
               <Link
                 key={item.slug}
                 href={cardHref}
+                onClick={(e) => {
+                  if (dragMovedRef.current) {
+                    e.preventDefault();
+                  }
+                }}
                 className="group relative w-[290px] sm:w-[330px] md:w-[355px] h-[500px] sm:h-[540px] shrink-0 rounded-3xl overflow-hidden shadow-xl border border-slate-200/80 bg-slate-950 snap-start transition-all duration-500 hover:shadow-2xl hover:border-cyan-500/50 hover:-translate-y-2 flex flex-col justify-between p-6 text-white select-none"
               >
                 {/* Photographic Background */}
-                <img
-                  src={item.imageUrl}
-                  alt={item.imageAlt || item.name}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-[62%] object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out brightness-[0.85] group-hover:brightness-95"
-                />
+                <div className="absolute inset-0 w-full h-[62%] bg-slate-900 overflow-hidden">
+                  <img
+                    src={item.imageUrl}
+                    alt={item.imageAlt || item.name}
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (!target.dataset.fallback) {
+                        target.dataset.fallback = "true";
+                        target.src =
+                          "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80";
+                      }
+                    }}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out brightness-[0.85] group-hover:brightness-95"
+                  />
+                </div>
 
                 {/* Card Top Vignette */}
                 <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-[1]" />

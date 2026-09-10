@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Server, Cloud, Compass, Code2, Building2, Stethoscope, GraduationCap, Factory, ChevronDown } from "lucide-react";
+import { BrandLogo } from "@/components/common/BrandLogo";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -38,11 +39,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         >
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-            <Link href="/" onClick={onClose} className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight text-white font-display">
-                ORBYTES GLOBAL
-              </span>
-              <div className="h-2 w-2 rounded-full bg-cyan-400" />
+            <Link href="/" onClick={onClose} className="group flex items-center">
+              <BrandLogo size="md" />
             </Link>
             <div className="flex items-center gap-2">
               <button

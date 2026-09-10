@@ -1043,7 +1043,7 @@ export const servicesData: Record<string, ServiceItem> = {
     problemStatement: "Slow loading pages, clunky mobile checkout steps, and out-of-sync inventory cause abandoned shopping carts, lost revenue, and customer frustration.",
     solutionOverview: "Our e-commerce engineering practice builds bespoke, high-converting digital storefronts. Using headless commerce architectures, edge-cached product catalogs, and PCI-compliant payment integrations, we deliver sub-second shopping experiences.",
     iconName: "ShoppingBag",
-    imageUrl: "https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Modern e-commerce platform analytics and secure mobile checkout interface",
     capabilities: [
       {

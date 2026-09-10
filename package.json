@@ -9,6 +9,7 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@tidbcloud/serverless": "^0.3.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.9",
     "lenis": "^1.1.14",

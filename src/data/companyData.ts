@@ -62,7 +62,7 @@ export const companyData = {
       address: "15 Freeborn Crescent, Scarborough, Toronto, Ontario M1P 3T9",
       phone: "+1 (647) 269-2509",
       isHeadquarter: false,
-      imageUrl: "https://images.unsplash.com/photo-1517935703635-2717090c2226?auto=format&fit=crop&w=800&q=80",
+      imageUrl: "/images/about/toronto.jpg",
     },
   ] as OfficeLocation[],
   metrics: [
