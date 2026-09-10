@@ -98,25 +98,25 @@ export default function IndustryCategoryPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="py-20 bg-[#050814] text-white border-b border-white/10">
+      <section className="py-20 bg-slate-50 text-slate-900 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {subIndustries.map((ind) => (
               <div
                 key={ind.slug}
-                className="rounded-2xl border border-white/10 bg-[#081024] overflow-hidden flex flex-col justify-between shadow-lg hover:border-cyan-400/50 hover:bg-[#0c1630] transition-all duration-300 group"
+                className="rounded-2xl border border-slate-200 bg-white overflow-hidden flex flex-col justify-between shadow-sm hover:border-cyan-500/40 hover:shadow-xl transition-all duration-300 group"
               >
                 <div>
                   {ind.imageUrl && (
-                    <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
+                    <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
                       <img
                         src={ind.imageUrl}
                         alt={ind.imageAlt || ind.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
                       <div className="absolute top-3 right-3">
-                        <span className="text-[10px] uppercase font-bold text-cyan-300 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-cyan-500/30 shadow-sm">
+                        <span className="text-[10px] uppercase font-bold text-cyan-900 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-md border border-slate-200 shadow-sm">
                           {ind.badge}
                         </span>
                       </div>
@@ -124,17 +124,17 @@ export default function IndustryCategoryPage({ params }: Props) {
                   )}
 
                   <div className="p-6 space-y-4">
-                    <h2 className="text-xl font-bold text-white font-display group-hover:text-cyan-300 transition-colors">
+                    <h2 className="text-xl font-bold text-slate-900 font-display group-hover:text-cyan-600 transition-colors">
                       {ind.name}
                     </h2>
-                    <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">
+                    <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
                       {ind.tagline}
                     </p>
 
-                    <div className="pt-3 border-t border-white/10 space-y-1.5">
+                    <div className="pt-3 border-t border-slate-100 space-y-1.5">
                       {ind.capabilities.slice(0, 3).map((c, i) => (
-                        <div key={i} className="text-xs text-slate-300 flex items-center gap-2">
-                          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shrink-0" />
+                        <div key={i} className="text-xs text-slate-700 flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 shrink-0" />
                           <span className="truncate">{c.title}</span>
                         </div>
                       ))}

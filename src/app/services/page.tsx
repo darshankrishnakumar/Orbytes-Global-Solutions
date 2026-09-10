@@ -82,26 +82,26 @@ export default function ServicesIndexPage() {
         </div>
       </section>
 
-      {/* 2. Structured Pillars [DARK] */}
-      <section className="py-24 bg-[#050814] text-white border-b border-white/10">
+      {/* 2. Structured Pillars [LIGHT] */}
+      <section className="py-24 bg-slate-50 text-slate-900 border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 space-y-24">
           {categories.map((cat) => (
             <div key={cat.id} className="space-y-8">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
                 <div>
-                  <span className="text-xs font-bold tracking-widest text-cyan-400 uppercase font-display">
+                  <span className="text-xs font-bold tracking-widest text-cyan-600 uppercase font-display">
                     Pillar
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white font-display">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-display">
                     {cat.name}
                   </h2>
-                  <p className="text-sm text-slate-400 mt-1 max-w-xl">
+                  <p className="text-sm text-slate-600 mt-1 max-w-xl">
                     {cat.tagline}
                   </p>
                 </div>
                 <Link
                   href={cat.href}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors"
                 >
                   <span>View All in {cat.name}</span>
                   <ArrowRight className="h-4 w-4" />
@@ -116,19 +116,19 @@ export default function ServicesIndexPage() {
                   return (
                     <div
                       key={service.slug}
-                      className="rounded-2xl border border-white/10 bg-[#081024] overflow-hidden flex flex-col justify-between shadow-lg hover:border-cyan-400/50 hover:bg-[#0c1630] transition-all duration-300 group"
+                      className="rounded-2xl border border-slate-200 bg-white overflow-hidden flex flex-col justify-between shadow-sm hover:border-cyan-500/40 hover:shadow-xl transition-all duration-300 group"
                     >
                       <div>
                         {service.imageUrl && (
-                          <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
+                          <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
                             <img
                               src={service.imageUrl}
                               alt={service.imageAlt || service.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               loading="lazy"
                             />
                             <div className="absolute top-3 right-3">
-                              <span className="text-[10px] uppercase font-bold text-cyan-300 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-cyan-500/30 shadow-sm">
+                              <span className="text-[10px] uppercase font-bold text-cyan-900 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-md border border-slate-200 shadow-sm">
                                 {service.badge}
                               </span>
                             </div>
@@ -137,22 +137,22 @@ export default function ServicesIndexPage() {
 
                         <div className="p-6 space-y-4">
                           <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:border-cyan-400/40 group-hover:bg-cyan-500/10 transition-colors">
+                            <div className="h-10 w-10 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600 shrink-0 group-hover:border-cyan-400/40 group-hover:bg-cyan-100 transition-colors">
                               <Icon className="h-5 w-5" />
                             </div>
-                            <h3 className="text-lg font-bold text-white font-display line-clamp-1 group-hover:text-cyan-300 transition-colors">
+                            <h3 className="text-lg font-bold text-slate-900 font-display line-clamp-1 group-hover:text-cyan-600 transition-colors">
                               {service.title}
                             </h3>
                           </div>
 
-                          <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">
+                          <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
                             {service.shortDescription}
                           </p>
 
-                          <div className="pt-3 border-t border-white/10 space-y-1.5">
+                          <div className="pt-3 border-t border-slate-100 space-y-1.5">
                             {service.capabilities.slice(0, 3).map((c, i) => (
-                              <div key={i} className="text-xs text-slate-300 flex items-center gap-2">
-                                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shrink-0" />
+                              <div key={i} className="text-xs text-slate-700 flex items-center gap-2">
+                                <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 shrink-0" />
                                 <span className="truncate">{c.title}</span>
                               </div>
                             ))}
