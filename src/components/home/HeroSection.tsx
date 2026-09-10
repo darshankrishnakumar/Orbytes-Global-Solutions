@@ -3,10 +3,11 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 
 export function HeroSection() {
+  const video0Ref = useRef<HTMLVideoElement>(null);
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
-  const [activeVideoIndex, setActiveVideoIndex] = useState<0 | 1>(0);
-  const activeIndexRef = useRef<0 | 1>(0);
+  const [activeVideoIndex, setActiveVideoIndex] = useState<0 | 1 | 2>(0);
+  const activeIndexRef = useRef<0 | 1 | 2>(0);
   const isSwitchingRef = useRef<boolean>(false);
 
   // Safe video playback helper for Safari, Chrome & iOS
@@ -25,14 +26,29 @@ export function HeroSection() {
     }
   }, []);
 
+  const nextIndex = (curr: 0 | 1 | 2): 0 | 1 | 2 => {
+    return ((curr + 1) % 3) as 0 | 1 | 2;
+  };
+
   // Perform seamless transition from current active video to target video
   const performSwitch = useCallback(
-    (toIndex: 0 | 1) => {
+    (toIndex: 0 | 1 | 2) => {
       if (isSwitchingRef.current) return;
       isSwitchingRef.current = true;
 
-      const incomingVid = toIndex === 0 ? video1Ref.current : video2Ref.current;
-      const outgoingVid = toIndex === 0 ? video2Ref.current : video1Ref.current;
+      const fromIndex = activeIndexRef.current;
+      const incomingVid =
+        toIndex === 0
+          ? video0Ref.current
+          : toIndex === 1
+          ? video1Ref.current
+          : video2Ref.current;
+      const outgoingVid =
+        fromIndex === 0
+          ? video0Ref.current
+          : fromIndex === 1
+          ? video1Ref.current
+          : video2Ref.current;
 
       // 1. Immediately start incoming video from beginning
       if (incomingVid) {
@@ -58,13 +74,18 @@ export function HeroSection() {
 
   // Trigger cross-fade slightly before the video reaches the end (0.8s prior) for seamless blend
   const handleTimeUpdate = useCallback(
-    (index: 0 | 1) => {
+    (index: 0 | 1 | 2) => {
       if (activeIndexRef.current !== index || isSwitchingRef.current) return;
-      const vid = index === 0 ? video1Ref.current : video2Ref.current;
+      const vid =
+        index === 0
+          ? video0Ref.current
+          : index === 1
+          ? video1Ref.current
+          : video2Ref.current;
       if (!vid || !vid.duration) return;
 
       if (vid.currentTime >= vid.duration - 0.8) {
-        performSwitch(index === 0 ? 1 : 0);
+        performSwitch(nextIndex(index));
       }
     },
     [performSwitch]
@@ -72,9 +93,9 @@ export function HeroSection() {
 
   // Fail-safe ended handler in case timeupdate wasn't triggered at the threshold
   const handleEnded = useCallback(
-    (index: 0 | 1) => {
+    (index: 0 | 1 | 2) => {
       if (activeIndexRef.current !== index) return;
-      performSwitch(index === 0 ? 1 : 0);
+      performSwitch(nextIndex(index));
     },
     [performSwitch]
   );
@@ -83,7 +104,12 @@ export function HeroSection() {
   useEffect(() => {
     const watchdog = setInterval(() => {
       const activeIdx = activeIndexRef.current;
-      const activeVid = activeIdx === 0 ? video1Ref.current : video2Ref.current;
+      const activeVid =
+        activeIdx === 0
+          ? video0Ref.current
+          : activeIdx === 1
+          ? video1Ref.current
+          : video2Ref.current;
       if (!activeVid) return;
 
       // If document is visible and active video is unexpectedly paused outside of transition, resume it
@@ -101,7 +127,7 @@ export function HeroSection() {
         activeVid.duration > 0 &&
         (activeVid.ended || activeVid.currentTime >= activeVid.duration - 0.3)
       ) {
-        performSwitch(activeIdx === 0 ? 1 : 0);
+        performSwitch(nextIndex(activeIdx));
       }
     }, 500);
 
@@ -114,6 +140,8 @@ export function HeroSection() {
       if (document.visibilityState === "visible") {
         const activeVid =
           activeIndexRef.current === 0
+            ? video0Ref.current
+            : activeIndexRef.current === 1
             ? video1Ref.current
             : video2Ref.current;
         safePlay(activeVid);
@@ -124,13 +152,15 @@ export function HeroSection() {
       document.removeEventListener("visibilitychange", handleVisibility);
   }, [safePlay]);
 
-  // Initial mount: Start Video 1 and register one-time unlock gesture fallback
+  // Initial mount: Start Video 0 and register one-time unlock gesture fallback
   useEffect(() => {
-    safePlay(video1Ref.current);
+    safePlay(video0Ref.current);
 
     const handleOneTimeGesture = () => {
       const activeVid =
         activeIndexRef.current === 0
+          ? video0Ref.current
+          : activeIndexRef.current === 1
           ? video1Ref.current
           : video2Ref.current;
       if (activeVid && activeVid.paused) {
@@ -157,24 +187,40 @@ export function HeroSection() {
     <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#030714] text-white">
       {/* ==========================================
           Scheduled Alternating Video Background
+          Video 0: Hero Intro Animation (IMG_2123.MP4)
           Video 1: PixVerse Premium Showcase
           Video 2: Screen Recording Showcase
-          Cycle: Video 1 -> Video 2 -> Video 1 -> Video 2 ...
+          Cycle: Video 0 -> Video 1 -> Video 2 -> Video 0 ...
           ========================================== */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        {/* Video 1: PixVerse Premium (Zoomed in to crop out watermark) */}
+        {/* Video 0: Hero Intro Animation (First) */}
         <video
-          ref={video1Ref}
-          src="/videos/pixverse-premium.mp4"
+          ref={video0Ref}
+          src="/videos/hero-intro.mp4"
           autoPlay
           muted
           playsInline
           preload="auto"
           onTimeUpdate={() => handleTimeUpdate(0)}
           onEnded={() => handleEnded(0)}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          className={`absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
+            activeVideoIndex === 0 ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
+        {/* Video 1: PixVerse Premium (Zoomed in to crop out watermark) */}
+        <video
+          ref={video1Ref}
+          src="/videos/pixverse-premium.mp4"
+          muted
+          playsInline
+          preload="auto"
+          onTimeUpdate={() => handleTimeUpdate(1)}
+          onEnded={() => handleEnded(1)}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.12)", transformOrigin: "center center" }}
           className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.12] z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
-            activeVideoIndex === 0 ? "opacity-100" : "opacity-0"
+            activeVideoIndex === 1 ? "opacity-100" : "opacity-0"
           }`}
         />
 
@@ -185,11 +231,11 @@ export function HeroSection() {
           muted
           playsInline
           preload="auto"
-          onTimeUpdate={() => handleTimeUpdate(1)}
-          onEnded={() => handleEnded(1)}
+          onTimeUpdate={() => handleTimeUpdate(2)}
+          onEnded={() => handleEnded(2)}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
           className={`absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
-            activeVideoIndex === 1 ? "opacity-100" : "opacity-0"
+            activeVideoIndex === 2 ? "opacity-100" : "opacity-0"
           }`}
         />
       </div>
