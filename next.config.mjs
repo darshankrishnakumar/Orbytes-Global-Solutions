@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  output: "standalone",
+  output: process.env.NEXT_EXPORT === "true" ? "export" : "standalone",
   trailingSlash: true,
   images: {
     unoptimized: true,
