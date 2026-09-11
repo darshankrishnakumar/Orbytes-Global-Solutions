@@ -18,6 +18,7 @@ export function HeroSection() {
     vid.playsInline = true;
     vid.setAttribute("playsinline", "true");
     vid.setAttribute("webkit-playsinline", "true");
+    vid.setAttribute("muted", "");
     const playPromise = vid.play();
     if (playPromise !== undefined) {
       playPromise.catch((err) => {
@@ -100,6 +101,17 @@ export function HeroSection() {
     [performSwitch]
   );
 
+  // Fail-safe error handler: if a video fails to load or decode, advance to next video
+  const handleError = useCallback(
+    (index: 0 | 1 | 2) => {
+      console.warn(`Video ${index} failed to load or play. Advancing to next video.`);
+      if (activeIndexRef.current === index) {
+        performSwitch(nextIndex(index));
+      }
+    },
+    [performSwitch]
+  );
+
   // Fail-safe watchdog: guarantees continuous playback and loop continuity
   useEffect(() => {
     const watchdog = setInterval(() => {
@@ -154,7 +166,12 @@ export function HeroSection() {
 
   // Initial mount: Start Video 0 and register one-time unlock gesture fallback
   useEffect(() => {
-    safePlay(video0Ref.current);
+    const vid0 = video0Ref.current;
+    if (vid0) {
+      safePlay(vid0);
+      const handleCanPlay = () => safePlay(vid0);
+      vid0.addEventListener("canplay", handleCanPlay, { once: true });
+    }
 
     const handleOneTimeGesture = () => {
       const activeVid =
@@ -187,12 +204,19 @@ export function HeroSection() {
     <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#030714] text-white">
       {/* ==========================================
           Scheduled Alternating Video Background
-          Video 0: Hero Intro Animation (IMG_2123.MP4)
+          Video 0: Hero Intro Animation (FastStart streamable)
           Video 1: PixVerse Premium Showcase
           Video 2: Screen Recording Showcase
           Cycle: Video 0 -> Video 1 -> Video 2 -> Video 0 ...
           ========================================== */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        {/* Instant Fallback Poster Layer */}
+        <img
+          src="/videos/hero-poster.jpg"
+          alt="Orbytes Hero Background"
+          className="absolute inset-0 w-full h-full object-cover object-center z-[-1] pointer-events-none"
+        />
+
         {/* Video 0: Hero Intro Animation (First) */}
         <video
           ref={video0Ref}
@@ -200,9 +224,12 @@ export function HeroSection() {
           autoPlay
           muted
           playsInline
+          poster="/videos/hero-poster.jpg"
           preload="auto"
+          onCanPlay={() => safePlay(video0Ref.current)}
           onTimeUpdate={() => handleTimeUpdate(0)}
           onEnded={() => handleEnded(0)}
+          onError={() => handleError(0)}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
           className={`absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
             activeVideoIndex === 0 ? "opacity-100" : "opacity-0"
@@ -215,9 +242,11 @@ export function HeroSection() {
           src="/videos/pixverse-premium.mp4"
           muted
           playsInline
+          poster="/videos/hero-poster.jpg"
           preload="auto"
           onTimeUpdate={() => handleTimeUpdate(1)}
           onEnded={() => handleEnded(1)}
+          onError={() => handleError(1)}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: "scale(1.12)", transformOrigin: "center center" }}
           className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.12] z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
             activeVideoIndex === 1 ? "opacity-100" : "opacity-0"
@@ -230,9 +259,11 @@ export function HeroSection() {
           src="/videos/screen-showcase.mp4"
           muted
           playsInline
+          poster="/videos/hero-poster.jpg"
           preload="auto"
           onTimeUpdate={() => handleTimeUpdate(2)}
           onEnded={() => handleEnded(2)}
+          onError={() => handleError(2)}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
           className={`absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none transition-opacity duration-1000 ease-in-out ${
             activeVideoIndex === 2 ? "opacity-100" : "opacity-0"
