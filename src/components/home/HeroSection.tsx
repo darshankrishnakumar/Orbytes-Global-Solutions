@@ -1,14 +1,21 @@
 "use client";
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { BrandLogoIcon } from "@/components/common/BrandLogo";
 
 export function HeroSection() {
   const video0Ref = useRef<HTMLVideoElement>(null);
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
   const [activeVideoIndex, setActiveVideoIndex] = useState<0 | 1 | 2>(0);
+  const [isVideoReady, setIsVideoReady] = useState<boolean>(false);
   const activeIndexRef = useRef<0 | 1 | 2>(0);
   const isSwitchingRef = useRef<boolean>(false);
+
+  const handleVideoReady = useCallback(() => {
+    setIsVideoReady(true);
+  }, []);
 
   // Safe video playback helper for Safari, Chrome & iOS
   const safePlay = useCallback((vid: HTMLVideoElement | null) => {
@@ -105,12 +112,21 @@ export function HeroSection() {
   const handleError = useCallback(
     (index: 0 | 1 | 2) => {
       console.warn(`Video ${index} failed to load or play. Advancing to next video.`);
+      handleVideoReady();
       if (activeIndexRef.current === index) {
         performSwitch(nextIndex(index));
       }
     },
-    [performSwitch]
+    [performSwitch, handleVideoReady]
   );
+
+  // Safety timeout: ensure loader dissolves after max 2.4s even on slow networks
+  useEffect(() => {
+    const safetyTimer = setTimeout(() => {
+      handleVideoReady();
+    }, 2400);
+    return () => clearTimeout(safetyTimer);
+  }, [handleVideoReady]);
 
   // Fail-safe watchdog: guarantees continuous playback and loop continuity
   useEffect(() => {
@@ -169,7 +185,10 @@ export function HeroSection() {
     const vid0 = video0Ref.current;
     if (vid0) {
       safePlay(vid0);
-      const handleCanPlay = () => safePlay(vid0);
+      const handleCanPlay = () => {
+        safePlay(vid0);
+        handleVideoReady();
+      };
       vid0.addEventListener("canplay", handleCanPlay, { once: true });
     }
 
@@ -183,6 +202,7 @@ export function HeroSection() {
       if (activeVid && activeVid.paused) {
         safePlay(activeVid);
       }
+      handleVideoReady();
     };
 
     window.addEventListener("click", handleOneTimeGesture, {
@@ -198,10 +218,81 @@ export function HeroSection() {
       window.removeEventListener("click", handleOneTimeGesture);
       window.removeEventListener("touchstart", handleOneTimeGesture);
     };
-  }, [safePlay]);
+  }, [safePlay, handleVideoReady]);
 
   return (
     <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#030714] text-white">
+      {/* ==========================================
+          TCS-Style High-Tech Loading Experience
+          Elegantly fades out as soon as the video is ready
+          ========================================== */}
+      <AnimatePresence>
+        {!isVideoReady && (
+          <motion.div
+            key="tcs-hero-loader"
+            initial={{ opacity: 1 }}
+            exit={{
+              opacity: 0,
+              scale: 1.03,
+              transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+            }}
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#030714] text-white pointer-events-none select-none"
+          >
+            {/* Subtle Cyan Cyber Ambience */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.15)_0%,rgba(3,7,20,0.96)_70%)] pointer-events-none" />
+
+            {/* Concentric Orbital Rings & Logo */}
+            <div className="relative flex items-center justify-center mb-6">
+              {/* Outer Ambient Glow */}
+              <div className="absolute h-32 w-32 rounded-full bg-cyan-500/15 blur-xl animate-pulse" />
+
+              {/* Outer Rotating Dashed Ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+                className="absolute h-24 w-24 rounded-full border border-dashed border-cyan-400/35"
+              />
+
+              {/* Inner Counter-Rotating Gradient Ring */}
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
+                className="h-20 w-20 rounded-full border-2 border-transparent border-t-cyan-400 border-r-blue-500 border-b-cyan-500/20"
+              />
+
+              {/* Central Core Brand Logo */}
+              <div className="absolute flex items-center justify-center">
+                <BrandLogoIcon className="h-10 w-10 drop-shadow-[0_0_12px_rgba(6,182,212,0.6)] animate-pulse" />
+              </div>
+            </div>
+
+            {/* Futuristic Status Typography & Micro Progress Indicator */}
+            <div className="space-y-3.5 text-center relative z-10">
+              <div className="flex items-center justify-center gap-2">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping" />
+                <p className="text-[11px] font-semibold tracking-[0.28em] text-cyan-300 uppercase font-mono">
+                  Loading Experience
+                </p>
+              </div>
+
+              {/* High-Tech Glowing Micro Progress Bar */}
+              <div className="w-48 h-1 rounded-full bg-white/10 overflow-hidden mx-auto relative">
+                <motion.div
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "100%" }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 1.3,
+                    ease: "easeInOut",
+                  }}
+                  className="w-1/2 h-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_#22d3ee]"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ==========================================
           Scheduled Alternating Video Background
           Video 0: Hero Intro Animation (FastStart streamable)
@@ -226,7 +317,12 @@ export function HeroSection() {
           playsInline
           poster="/videos/hero-poster.jpg"
           preload="auto"
-          onCanPlay={() => safePlay(video0Ref.current)}
+          onCanPlay={() => {
+            safePlay(video0Ref.current);
+            handleVideoReady();
+          }}
+          onPlaying={handleVideoReady}
+          onLoadedData={handleVideoReady}
           onTimeUpdate={() => handleTimeUpdate(0)}
           onEnded={() => handleEnded(0)}
           onError={() => handleError(0)}
