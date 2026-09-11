@@ -9,12 +9,25 @@ export function HeroSection() {
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
   const [activeVideoIndex, setActiveVideoIndex] = useState<0 | 1 | 2>(0);
-  const [isVideoReady, setIsVideoReady] = useState<boolean>(false);
+  const [isBuffering, setIsBuffering] = useState<boolean>(true);
+  const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
   const activeIndexRef = useRef<0 | 1 | 2>(0);
   const isSwitchingRef = useRef<boolean>(false);
+  const lastTimeRef = useRef<number>(-1);
+  const stallCountRef = useRef<number>(0);
 
-  const handleVideoReady = useCallback(() => {
-    setIsVideoReady(true);
+  const handleBufferStart = useCallback((index: 0 | 1 | 2) => {
+    if (activeIndexRef.current === index && !isSwitchingRef.current) {
+      setIsBuffering(true);
+    }
+  }, []);
+
+  const handleBufferEnd = useCallback((index: 0 | 1 | 2) => {
+    if (activeIndexRef.current === index) {
+      setIsBuffering(false);
+      setIsInitialLoad(false);
+      stallCountRef.current = 0;
+    }
   }, []);
 
   // Safe video playback helper for Safari, Chrome & iOS
@@ -43,6 +56,8 @@ export function HeroSection() {
     (toIndex: 0 | 1 | 2) => {
       if (isSwitchingRef.current) return;
       isSwitchingRef.current = true;
+      lastTimeRef.current = -1;
+      stallCountRef.current = 0;
 
       const fromIndex = activeIndexRef.current;
       const incomingVid =
@@ -83,7 +98,10 @@ export function HeroSection() {
   // Trigger cross-fade slightly before the video reaches the end (0.8s prior) for seamless blend
   const handleTimeUpdate = useCallback(
     (index: 0 | 1 | 2) => {
-      if (activeIndexRef.current !== index || isSwitchingRef.current) return;
+      if (activeIndexRef.current !== index) return;
+      handleBufferEnd(index);
+
+      if (isSwitchingRef.current) return;
       const vid =
         index === 0
           ? video0Ref.current
@@ -96,7 +114,7 @@ export function HeroSection() {
         performSwitch(nextIndex(index));
       }
     },
-    [performSwitch]
+    [performSwitch, handleBufferEnd]
   );
 
   // Fail-safe ended handler in case timeupdate wasn't triggered at the threshold
@@ -112,23 +130,24 @@ export function HeroSection() {
   const handleError = useCallback(
     (index: 0 | 1 | 2) => {
       console.warn(`Video ${index} failed to load or play. Advancing to next video.`);
-      handleVideoReady();
+      handleBufferEnd(index);
       if (activeIndexRef.current === index) {
         performSwitch(nextIndex(index));
       }
     },
-    [performSwitch, handleVideoReady]
+    [performSwitch, handleBufferEnd]
   );
 
-  // Safety timeout: ensure loader dissolves after max 2.4s even on slow networks
+  // Safety timeout: ensure initial loader dissolves after max 2.8s even on slow networks
   useEffect(() => {
     const safetyTimer = setTimeout(() => {
-      handleVideoReady();
-    }, 2400);
+      setIsBuffering(false);
+      setIsInitialLoad(false);
+    }, 2800);
     return () => clearTimeout(safetyTimer);
-  }, [handleVideoReady]);
+  }, []);
 
-  // Fail-safe watchdog: guarantees continuous playback and loop continuity
+  // Fail-safe watchdog: guarantees continuous playback, stall/poor-connection detection & loop continuity
   useEffect(() => {
     const watchdog = setInterval(() => {
       const activeIdx = activeIndexRef.current;
@@ -139,6 +158,30 @@ export function HeroSection() {
           ? video1Ref.current
           : video2Ref.current;
       if (!activeVid) return;
+
+      // Detect if video is stuck/frozen in buffering state due to poor connection
+      if (
+        !isSwitchingRef.current &&
+        document.visibilityState === "visible" &&
+        activeVid.duration > 0 &&
+        !activeVid.paused &&
+        !activeVid.ended
+      ) {
+        if (activeVid.currentTime === lastTimeRef.current && activeVid.readyState < 4) {
+          stallCountRef.current += 1;
+          // If video hasn't progressed for 2 watchdog checks (~800ms), show buffering animation
+          if (stallCountRef.current >= 2) {
+            setIsBuffering(true);
+          }
+        } else {
+          lastTimeRef.current = activeVid.currentTime;
+          stallCountRef.current = 0;
+          if (activeVid.readyState >= 3) {
+            setIsBuffering(false);
+            setIsInitialLoad(false);
+          }
+        }
+      }
 
       // If document is visible and active video is unexpectedly paused outside of transition, resume it
       if (
@@ -157,7 +200,7 @@ export function HeroSection() {
       ) {
         performSwitch(nextIndex(activeIdx));
       }
-    }, 500);
+    }, 400);
 
     return () => clearInterval(watchdog);
   }, [performSwitch, safePlay]);
@@ -187,7 +230,7 @@ export function HeroSection() {
       safePlay(vid0);
       const handleCanPlay = () => {
         safePlay(vid0);
-        handleVideoReady();
+        handleBufferEnd(0);
       };
       vid0.addEventListener("canplay", handleCanPlay, { once: true });
     }
@@ -202,7 +245,7 @@ export function HeroSection() {
       if (activeVid && activeVid.paused) {
         safePlay(activeVid);
       }
-      handleVideoReady();
+      handleBufferEnd(activeIndexRef.current);
     };
 
     window.addEventListener("click", handleOneTimeGesture, {
@@ -218,51 +261,52 @@ export function HeroSection() {
       window.removeEventListener("click", handleOneTimeGesture);
       window.removeEventListener("touchstart", handleOneTimeGesture);
     };
-  }, [safePlay, handleVideoReady]);
+  }, [safePlay, handleBufferEnd]);
 
   return (
     <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden bg-[#030714] text-white">
       {/* ==========================================
-          TCS-Style High-Tech Loading Experience
-          Elegantly fades out as soon as the video is ready
+          TCS-Style High-Tech Loading / Buffering Experience
+          Triggers on initial load AND when playback stalls due to poor connection
           ========================================== */}
       <AnimatePresence>
-        {!isVideoReady && (
+        {isBuffering && (
           <motion.div
             key="tcs-hero-loader"
-            initial={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{
               opacity: 0,
               scale: 1.03,
-              transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+              transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
             }}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#030714] text-white pointer-events-none select-none"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#030714]/85 backdrop-blur-md text-white pointer-events-none select-none transition-colors duration-300"
           >
             {/* Subtle Cyan Cyber Ambience */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.15)_0%,rgba(3,7,20,0.96)_70%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.18)_0%,rgba(3,7,20,0.95)_70%)] pointer-events-none" />
 
             {/* Concentric Orbital Rings & Logo */}
             <div className="relative flex items-center justify-center mb-6">
               {/* Outer Ambient Glow */}
-              <div className="absolute h-32 w-32 rounded-full bg-cyan-500/15 blur-xl animate-pulse" />
+              <div className="absolute h-32 w-32 rounded-full bg-cyan-500/20 blur-xl animate-pulse" />
 
               {/* Outer Rotating Dashed Ring */}
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
-                className="absolute h-24 w-24 rounded-full border border-dashed border-cyan-400/35"
+                className="absolute h-24 w-24 rounded-full border border-dashed border-cyan-400/40"
               />
 
               {/* Inner Counter-Rotating Gradient Ring */}
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
-                className="h-20 w-20 rounded-full border-2 border-transparent border-t-cyan-400 border-r-blue-500 border-b-cyan-500/20"
+                className="h-20 w-20 rounded-full border-2 border-transparent border-t-cyan-400 border-r-blue-500 border-b-cyan-500/25"
               />
 
               {/* Central Core Brand Logo */}
               <div className="absolute flex items-center justify-center">
-                <BrandLogoIcon className="h-10 w-10 drop-shadow-[0_0_12px_rgba(6,182,212,0.6)] animate-pulse" />
+                <BrandLogoIcon className="h-10 w-10 drop-shadow-[0_0_14px_rgba(6,182,212,0.7)] animate-pulse" />
               </div>
             </div>
 
@@ -271,7 +315,7 @@ export function HeroSection() {
               <div className="flex items-center justify-center gap-2">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping" />
                 <p className="text-[11px] font-semibold tracking-[0.28em] text-cyan-300 uppercase font-mono">
-                  Loading Experience
+                  {isInitialLoad ? "Initializing Experience" : "Buffering Stream • Poor Connection"}
                 </p>
               </div>
 
@@ -282,7 +326,7 @@ export function HeroSection() {
                   animate={{ x: "100%" }}
                   transition={{
                     repeat: Infinity,
-                    duration: 1.3,
+                    duration: 1.2,
                     ease: "easeInOut",
                   }}
                   className="w-1/2 h-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_#22d3ee]"
@@ -317,12 +361,14 @@ export function HeroSection() {
           playsInline
           poster="/videos/hero-poster.jpg"
           preload="auto"
+          onWaiting={() => handleBufferStart(0)}
+          onStalled={() => handleBufferStart(0)}
+          onPlaying={() => handleBufferEnd(0)}
           onCanPlay={() => {
             safePlay(video0Ref.current);
-            handleVideoReady();
+            handleBufferEnd(0);
           }}
-          onPlaying={handleVideoReady}
-          onLoadedData={handleVideoReady}
+          onLoadedData={() => handleBufferEnd(0)}
           onTimeUpdate={() => handleTimeUpdate(0)}
           onEnded={() => handleEnded(0)}
           onError={() => handleError(0)}
@@ -340,6 +386,11 @@ export function HeroSection() {
           playsInline
           poster="/videos/hero-poster.jpg"
           preload="auto"
+          onWaiting={() => handleBufferStart(1)}
+          onStalled={() => handleBufferStart(1)}
+          onPlaying={() => handleBufferEnd(1)}
+          onCanPlay={() => handleBufferEnd(1)}
+          onLoadedData={() => handleBufferEnd(1)}
           onTimeUpdate={() => handleTimeUpdate(1)}
           onEnded={() => handleEnded(1)}
           onError={() => handleError(1)}
@@ -357,6 +408,11 @@ export function HeroSection() {
           playsInline
           poster="/videos/hero-poster.jpg"
           preload="auto"
+          onWaiting={() => handleBufferStart(2)}
+          onStalled={() => handleBufferStart(2)}
+          onPlaying={() => handleBufferEnd(2)}
+          onCanPlay={() => handleBufferEnd(2)}
+          onLoadedData={() => handleBufferEnd(2)}
           onTimeUpdate={() => handleTimeUpdate(2)}
           onEnded={() => handleEnded(2)}
           onError={() => handleError(2)}
